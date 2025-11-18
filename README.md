@@ -290,8 +290,9 @@ MIT © [Hidetaka Okamoto](https://wp-kyoto.net)
 
 ## Changelog
 
-### 2.0.0 (2025-11-17)
+### 0.1.0
 
+- Forked and renewed from [stripe-utils](https://github.com/megumiteam/stripe-utils)
 - Complete rewrite in TypeScript
 - Modern build system with Vite + Biome
 - Added comprehensive type definitions
