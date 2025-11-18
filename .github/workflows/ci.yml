@@ -3,8 +3,24 @@ name: CI
 on:
   push:
     branches: [ main, master ]
+    paths:
+      - '.github/workflows/**'
+      - 'class/**'
+      - 'libs/**'
+      - 'tests/**'
+      - 'index.js'
+      - 'package.json'
+      - 'package-lock.json'
   pull_request:
     branches: [ main, master ]
+    paths:
+      - '.github/workflows/**'
+      - 'class/**'
+      - 'libs/**'
+      - 'tests/**'
+      - 'index.js'
+      - 'package.json'
+      - 'package-lock.json'
 
 jobs:
   test:
@@ -13,7 +29,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
       # Run all versions in parallel
       fail-fast: false
 
