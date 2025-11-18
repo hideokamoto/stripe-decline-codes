@@ -15,6 +15,7 @@ A lightweight, zero-dependency TypeScript library providing human-readable descr
 - 🪶 **Zero Dependencies** - Lightweight and fast
 - 🔄 **Up-to-date** - Based on Stripe API documentation (2024-12-18)
 - ✅ **Well Tested** - Comprehensive test coverage
+- 🎨 **Message Formatting** - Customizable message templates with variable substitution
 
 ## About This Project
 
@@ -119,7 +120,9 @@ try {
 
 ## API Reference
 
-### `getDeclineDescription(declineCode?: string): DeclineCodeResult`
+### Core Functions
+
+#### `getDeclineDescription(declineCode?: string): DeclineCodeResult`
 
 Returns detailed information about a decline code.
 
@@ -141,7 +144,7 @@ Returns detailed information about a decline code.
 }
 ```
 
-### `getDeclineMessage(declineCode: string, locale?: Locale): string | undefined`
+#### `getDeclineMessage(declineCode: string, locale?: Locale): string | undefined`
 
 Returns a localized user-facing message for a decline code.
 
@@ -149,17 +152,33 @@ Returns a localized user-facing message for a decline code.
 - `declineCode` - The Stripe decline code
 - `locale` - The locale to use (`'en'` or `'ja'`, default: `'en'`)
 
-### `getAllDeclineCodes(): DeclineCode[]`
+#### `getAllDeclineCodes(): DeclineCode[]`
 
 Returns an array of all supported decline code strings.
 
-### `isValidDeclineCode(code: string): code is DeclineCode`
+#### `isValidDeclineCode(code: string): code is DeclineCode`
 
 Type guard to check if a string is a valid decline code.
 
-### `getDocVersion(): string`
+#### `getDocVersion(): string`
 
 Returns the Stripe API documentation version that this library is based on.
+
+### Message Formatting
+
+#### `formatDeclineMessage(declineCode: string, locale?: Locale, variables?: Record<string, string>): string | undefined`
+
+Returns a formatted message with optional variable substitution.
+
+**Example:**
+```typescript
+import { formatDeclineMessage } from 'stripe-decline-codes';
+
+const message = formatDeclineMessage('insufficient_funds', 'en', {
+  merchantName: 'Acme Store',
+  supportEmail: 'support@acme.com'
+});
+```
 
 ## Supported Decline Codes
 
@@ -219,6 +238,7 @@ import type {
   DeclineCodeInfo,
   DeclineCodeResult,
   Locale,
+  Translation,
 } from 'stripe-decline-codes';
 ```
 

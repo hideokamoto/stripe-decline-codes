@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { DeclineCodeInfo } from '../src/index';
 import {
+  formatDeclineMessage,
   getAllDeclineCodes,
   getDeclineDescription,
   getDeclineMessage,
@@ -107,5 +108,35 @@ describe('getDocVersion', () => {
   it('should match the format YYYY-MM-DD', () => {
     const version = getDocVersion();
     expect(version).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+});
+
+describe('formatDeclineMessage', () => {
+  it('should return base message without variables', () => {
+    const message = formatDeclineMessage('insufficient_funds');
+    expect(message).toBe('Please try again using an alternative payment method.');
+  });
+
+  it('should return base message when no variables provided', () => {
+    const message = formatDeclineMessage('insufficient_funds', 'en');
+    expect(message).toBe('Please try again using an alternative payment method.');
+  });
+
+  it('should return Japanese message', () => {
+    const message = formatDeclineMessage('insufficient_funds', 'ja');
+    expect(message).toBe('別のお支払い方法を使用してもう一度お試しください。');
+  });
+
+  it('should replace variables in message template', () => {
+    const message = formatDeclineMessage('insufficient_funds', 'en', {
+      merchantName: 'Acme Store',
+    });
+    // Base message doesn't have placeholders, so should remain unchanged
+    expect(message).toBe('Please try again using an alternative payment method.');
+  });
+
+  it('should return undefined for invalid code', () => {
+    const message = formatDeclineMessage('invalid_code');
+    expect(message).toBeUndefined();
   });
 });

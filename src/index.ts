@@ -106,6 +106,49 @@ export function getDocVersion(): string {
   return DOC_VERSION;
 }
 
+/**
+ * Format a decline message with custom template variables
+ *
+ * @param declineCode - The Stripe decline code
+ * @param locale - The locale to use (default: 'en')
+ * @param variables - Optional variables to replace in the message template
+ * @returns Formatted user-facing message with variables replaced
+ *
+ * @example
+ * ```ts
+ * const message = formatDeclineMessage('insufficient_funds', 'en', {
+ *   merchantName: 'Acme Store',
+ *   supportEmail: 'support@acme.com'
+ * });
+ * console.log(message);
+ * // => "Please try again using an alternative payment method."
+ * ```
+ */
+export function formatDeclineMessage(
+  declineCode: string,
+  locale: Locale = 'en',
+  variables?: Record<string, string>,
+): string | undefined {
+  const baseMessage = getDeclineMessage(declineCode, locale);
+
+  if (!baseMessage) {
+    return undefined;
+  }
+
+  if (!variables) {
+    return baseMessage;
+  }
+
+  // Replace variables in the format {{variableName}}
+  let formattedMessage = baseMessage;
+  for (const [key, value] of Object.entries(variables)) {
+    const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+    formattedMessage = formattedMessage.replace(placeholder, value);
+  }
+
+  return formattedMessage;
+}
+
 // Export data for advanced use cases
 export { DECLINE_CODES, DOC_VERSION } from './data/decline-codes';
 // Export types
