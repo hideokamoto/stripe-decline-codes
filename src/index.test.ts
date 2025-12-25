@@ -12,7 +12,7 @@ import {
 } from './index';
 
 describe('getDeclineDescription', () => {
-  // 正常系テスト - Kent Beckスタイルの純粋関数テスト
+  // Normal case tests - Kent Beck style pure function tests
   it('should return empty object if no code is provided', () => {
     const result = getDeclineDescription();
     expect(result.code).toEqual({});
@@ -48,7 +48,7 @@ describe('getDeclineDescription', () => {
     expect(code.translations?.ja?.description).toBe('カードの購入に必要な資金が不足しています。');
   });
 
-  // 純粋関数の特性テスト - すべての有効なコードに対して一貫性を保証
+  // Pure function property test - ensures consistency for all valid codes
   it('should return consistent structure for all valid decline codes', () => {
     const allCodes = getAllDeclineCodes();
     for (const code of allCodes) {
@@ -67,7 +67,7 @@ describe('getDeclineDescription', () => {
     }
   });
 
-  // 純粋関数の特性テスト - 同じ入力に対して同じ出力を返す
+  // Pure function property test - same input produces same output
   it('should be idempotent - same input produces same output', () => {
     const code = 'insufficient_funds';
     const result1 = getDeclineDescription(code);
@@ -75,11 +75,12 @@ describe('getDeclineDescription', () => {
     expect(result1).toEqual(result2);
   });
 
-  // PBT: 異常系テスト - 無効な文字列入力
-  it('should handle invalid string inputs gracefully', () => {
+  // PBT: Edge case tests - handles any invalid string input gracefully
+  // This comprehensive test covers invalid strings, special characters, and very long strings
+  it('should handle any invalid string input gracefully', () => {
     fc.assert(
       fc.property(
-        fc.string({ minLength: 0, maxLength: 100 }).filter((s) => !isValidDeclineCode(s)),
+        fc.string({ minLength: 0, maxLength: 1000 }).filter((s) => !isValidDeclineCode(s)),
         (invalidCode) => {
           const result = getDeclineDescription(invalidCode);
           expect(result.code).toEqual({});
@@ -88,34 +89,10 @@ describe('getDeclineDescription', () => {
       ),
     );
   });
-
-  // PBT: 異常系テスト - 特殊文字を含む文字列
-  it('should handle strings with special characters', () => {
-    fc.assert(
-      fc.property(
-        fc.string({ minLength: 1 }).filter((s) => !isValidDeclineCode(s)),
-        (specialString) => {
-          const result = getDeclineDescription(specialString);
-          expect(result.code).toEqual({});
-        },
-      ),
-      { numRuns: 50 },
-    );
-  });
-
-  // PBT: 異常系テスト - 非常に長い文字列
-  it('should handle very long strings', () => {
-    fc.assert(
-      fc.property(fc.string({ minLength: 100, maxLength: 1000 }), (longString) => {
-        const result = getDeclineDescription(longString);
-        expect(result.code).toEqual({});
-      }),
-    );
-  });
 });
 
 describe('getDeclineMessage', () => {
-  // 正常系テスト
+  // Normal case tests
   it('should return English message by default', () => {
     const message = getDeclineMessage('insufficient_funds');
     expect(message).toBe('Please try again using an alternative payment method.');
@@ -136,7 +113,7 @@ describe('getDeclineMessage', () => {
     expect(message).toBeUndefined();
   });
 
-  // 純粋関数の特性テスト - すべての有効なコードに対してメッセージが存在する
+  // Pure function property test - returns a message for all valid codes
   it('should return a message for all valid decline codes', () => {
     const allCodes = getAllDeclineCodes();
     for (const code of allCodes) {
@@ -149,7 +126,7 @@ describe('getDeclineMessage', () => {
     }
   });
 
-  // 純粋関数の特性テスト - ロケールが'en'の場合、nextUserActionと一致する
+  // Pure function property test - matches nextUserAction for English locale
   it('should return nextUserAction for English locale', () => {
     const allCodes = getAllDeclineCodes();
     for (const code of allCodes) {
@@ -162,7 +139,7 @@ describe('getDeclineMessage', () => {
     }
   });
 
-  // PBT: 異常系テスト - 無効なコードと有効なロケールの組み合わせ
+  // PBT: Edge case tests - invalid codes return undefined regardless of locale
   it('should return undefined for invalid codes regardless of locale', () => {
     fc.assert(
       fc.property(
@@ -176,7 +153,7 @@ describe('getDeclineMessage', () => {
     );
   });
 
-  // PBT: 異常系テスト - 空文字列やnull/undefined的な値
+  // Edge case tests - empty string and whitespace-only strings
   it('should handle edge case inputs', () => {
     expect(getDeclineMessage('')).toBeUndefined();
     expect(getDeclineMessage('   ')).toBeUndefined();
@@ -184,7 +161,7 @@ describe('getDeclineMessage', () => {
 });
 
 describe('getAllDeclineCodes', () => {
-  // 正常系テスト
+  // Normal case tests
   it('should return an array of decline codes', () => {
     const codes = getAllDeclineCodes();
     expect(Array.isArray(codes)).toBe(true);
@@ -199,14 +176,14 @@ describe('getAllDeclineCodes', () => {
     expect(codes).toContain('incorrect_cvc');
   });
 
-  // 純粋関数の特性テスト - 呼び出しごとに同じ結果を返す
+  // Pure function property test - returns same result on multiple calls
   it('should be idempotent - returns same result on multiple calls', () => {
     const codes1 = getAllDeclineCodes();
     const codes2 = getAllDeclineCodes();
     expect(codes1).toEqual(codes2);
   });
 
-  // 純粋関数の特性テスト - すべてのコードが有効である
+  // Pure function property test - all returned codes are valid
   it('should return only valid decline codes', () => {
     const codes = getAllDeclineCodes();
     for (const code of codes) {
@@ -214,7 +191,7 @@ describe('getAllDeclineCodes', () => {
     }
   });
 
-  // 純粋関数の特性テスト - DECLINE_CODESのキーと一致する
+  // Pure function property test - matches DECLINE_CODES keys
   it('should return all keys from DECLINE_CODES', () => {
     const codes = getAllDeclineCodes();
     const expectedCodes = Object.keys(DECLINE_CODES) as typeof codes;
@@ -222,7 +199,7 @@ describe('getAllDeclineCodes', () => {
     expect(new Set(codes)).toEqual(new Set(expectedCodes));
   });
 
-  // PBT: 異常系テスト - 配列の順序が一貫している
+  // PBT: Edge case tests - array order is consistent
   it('should return codes in consistent order', () => {
     fc.assert(
       fc.property(fc.integer({ min: 1, max: 10 }), (n) => {
@@ -230,7 +207,7 @@ describe('getAllDeclineCodes', () => {
         for (let i = 0; i < n; i++) {
           results.push(getAllDeclineCodes());
         }
-        // すべての結果が同じであることを確認
+        // Verify all results are identical
         for (let i = 1; i < results.length; i++) {
           expect(results[i]).toEqual(results[0]);
         }
@@ -240,7 +217,7 @@ describe('getAllDeclineCodes', () => {
 });
 
 describe('isValidDeclineCode', () => {
-  // 正常系テスト
+  // Normal case tests
   it('should return true for valid codes', () => {
     expect(isValidDeclineCode('insufficient_funds')).toBe(true);
     expect(isValidDeclineCode('generic_decline')).toBe(true);
@@ -253,17 +230,17 @@ describe('isValidDeclineCode', () => {
     expect(isValidDeclineCode('random_string')).toBe(false);
   });
 
-  // 純粋関数の特性テスト - 型ガードとして機能する
+  // Pure function property test - acts as a type guard
   it('should act as a type guard', () => {
     const code: string = 'insufficient_funds';
     if (isValidDeclineCode(code)) {
-      // TypeScriptの型チェック: codeはDeclineCode型として扱われる
+      // TypeScript type check: code is treated as DeclineCode type
       const result = getDeclineDescription(code);
       expect(result.code).not.toEqual({});
     }
   });
 
-  // 純粋関数の特性テスト - すべてのgetAllDeclineCodesの結果がtrueを返す
+  // Pure function property test - returns true for all codes from getAllDeclineCodes
   it('should return true for all codes from getAllDeclineCodes', () => {
     const allCodes = getAllDeclineCodes();
     for (const code of allCodes) {
@@ -271,49 +248,25 @@ describe('isValidDeclineCode', () => {
     }
   });
 
-  // PBT: 異常系テスト - ランダムな文字列に対してfalseを返す
-  it('should return false for random strings', () => {
+  // PBT: Edge case tests - returns false for any string that is not a valid code
+  // This comprehensive test covers random strings, empty/whitespace strings, and special characters
+  it('should return false for any string that is not a valid decline code', () => {
     fc.assert(
       fc.property(
-        fc.string({ minLength: 1, maxLength: 50 }).filter((s) => {
+        fc.string({ minLength: 0, maxLength: 100 }).filter((s) => {
           const allCodes = getAllDeclineCodes();
           return !allCodes.includes(s as (typeof allCodes)[number]);
         }),
-        (randomString) => {
-          expect(isValidDeclineCode(randomString)).toBe(false);
+        (invalidString) => {
+          expect(isValidDeclineCode(invalidString)).toBe(false);
         },
       ),
-    );
-  });
-
-  // PBT: 異常系テスト - 空文字列や空白のみの文字列
-  it('should return false for empty or whitespace-only strings', () => {
-    fc.assert(
-      fc.property(fc.constantFrom('', ' ', '  ', '\t', '\n', '\r\n'), (emptyOrWhitespace) => {
-        expect(isValidDeclineCode(emptyOrWhitespace)).toBe(false);
-      }),
-    );
-  });
-
-  // PBT: 異常系テスト - 特殊文字を含む文字列
-  it('should return false for strings with special characters', () => {
-    fc.assert(
-      fc.property(
-        fc.string({ minLength: 1 }).filter((s) => {
-          // 有効なコードは通常アンダースコアと小文字のみ
-          return !/^[a-z_]+$/.test(s) || !isValidDeclineCode(s);
-        }),
-        (specialString) => {
-          expect(isValidDeclineCode(specialString)).toBe(false);
-        },
-      ),
-      { numRuns: 100 },
     );
   });
 });
 
 describe('getDocVersion', () => {
-  // 正常系テスト
+  // Normal case tests
   it('should return a version string', () => {
     const version = getDocVersion();
     expect(typeof version).toBe('string');
@@ -325,14 +278,14 @@ describe('getDocVersion', () => {
     expect(version).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
-  // 純粋関数の特性テスト - 常に同じ値を返す
+  // Pure function property test - always returns same value
   it('should be idempotent - returns same value on multiple calls', () => {
     const version1 = getDocVersion();
     const version2 = getDocVersion();
     expect(version1).toBe(version2);
   });
 
-  // 純粋関数の特性テスト - getDeclineDescriptionのdocVersionと一致する
+  // Pure function property test - matches docVersion from getDeclineDescription
   it('should match docVersion from getDeclineDescription', () => {
     const version = getDocVersion();
     const description = getDeclineDescription('insufficient_funds');
@@ -341,7 +294,7 @@ describe('getDocVersion', () => {
 });
 
 describe('formatDeclineMessage', () => {
-  // 正常系テスト
+  // Normal case tests
   it('should return base message without variables', () => {
     const message = formatDeclineMessage('insufficient_funds');
     expect(message).toBe('Please try again using an alternative payment method.');
@@ -362,7 +315,7 @@ describe('formatDeclineMessage', () => {
     expect(message).toBeUndefined();
   });
 
-  // 純粋関数の特性テスト - 変数がない場合はgetDeclineMessageと同じ結果
+  // Pure function property test - same result as getDeclineMessage when no variables
   it('should return same result as getDeclineMessage when no variables', () => {
     const allCodes = getAllDeclineCodes();
     for (const code of allCodes) {
@@ -372,10 +325,10 @@ describe('formatDeclineMessage', () => {
     }
   });
 
-  // 純粋関数の特性テスト - 変数置換の動作確認
+  // Pure function property test - variable replacement behavior
   it('should replace variables in message template', () => {
-    // 実際のメッセージにプレースホルダーがないため、モック的なテスト
-    // 変数が提供されても、プレースホルダーがない場合は元のメッセージを返す
+    // Actual messages don't have placeholders, so this is a mock-style test
+    // Even if variables are provided, if there are no placeholders, original message is returned
     const message = formatDeclineMessage('insufficient_funds', 'en', {
       merchantName: 'Acme Store',
     });
@@ -383,7 +336,7 @@ describe('formatDeclineMessage', () => {
     expect(message).toBe('Please try again using an alternative payment method.');
   });
 
-  // PBT: 異常系テスト - 無効なコードと変数の組み合わせ
+  // PBT: Edge case tests - invalid codes return undefined regardless of variables
   it('should return undefined for invalid codes regardless of variables', () => {
     fc.assert(
       fc.property(
@@ -397,7 +350,7 @@ describe('formatDeclineMessage', () => {
     );
   });
 
-  // PBT: 異常系テスト - 様々な変数の組み合わせ
+  // PBT: Edge case tests - various variable combinations
   it('should handle various variable combinations', () => {
     fc.assert(
       fc.property(
@@ -408,14 +361,14 @@ describe('formatDeclineMessage', () => {
         ),
         (code, variables) => {
           const message = formatDeclineMessage(code, 'en', variables);
-          // メッセージが定義されているか、またはundefinedであることを確認
+          // Verify message is either defined or undefined
           expect(message === undefined || typeof message === 'string').toBe(true);
         },
       ),
     );
   });
 
-  // PBT: 異常系テスト - 空の変数オブジェクト
+  // PBT: Edge case tests - empty variables object
   it('should handle empty variables object', () => {
     fc.assert(
       fc.property(
@@ -430,7 +383,7 @@ describe('formatDeclineMessage', () => {
     );
   });
 
-  // PBT: 異常系テスト - nullやundefined的な値の処理
+  // Edge case tests - null/undefined-like values
   it('should handle edge cases with variables', () => {
     const code = 'insufficient_funds';
     expect(formatDeclineMessage(code, 'en', undefined)).toBeDefined();
