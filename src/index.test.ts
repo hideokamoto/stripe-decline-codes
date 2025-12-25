@@ -1,7 +1,7 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { DECLINE_CODES } from './data/decline-codes';
-import type { DeclineCodeInfo } from './index';
+import type { DeclineCode, DeclineCodeInfo } from './index';
 import {
   formatDeclineMessage,
   getAllDeclineCodes,
@@ -78,9 +78,13 @@ describe('getDeclineDescription', () => {
   // PBT: Edge case tests - handles any invalid string input gracefully
   // This comprehensive test covers invalid strings, special characters, and very long strings
   it('should handle any invalid string input gracefully', () => {
+    // Cache valid codes outside the property to avoid calling getAllDeclineCodes() on every filter iteration
+    const validCodes = new Set<DeclineCode>(getAllDeclineCodes());
     fc.assert(
       fc.property(
-        fc.string({ minLength: 0, maxLength: 1000 }).filter((s) => !isValidDeclineCode(s)),
+        fc
+          .string({ minLength: 0, maxLength: 1000 })
+          .filter((s) => !validCodes.has(s as DeclineCode)),
         (invalidCode) => {
           const result = getDeclineDescription(invalidCode);
           expect(result.code).toEqual({});
@@ -251,12 +255,13 @@ describe('isValidDeclineCode', () => {
   // PBT: Edge case tests - returns false for any string that is not a valid code
   // This comprehensive test covers random strings, empty/whitespace strings, and special characters
   it('should return false for any string that is not a valid decline code', () => {
+    // Cache valid codes outside the property to avoid calling getAllDeclineCodes() on every filter iteration
+    const validCodes = new Set<DeclineCode>(getAllDeclineCodes());
     fc.assert(
       fc.property(
-        fc.string({ minLength: 0, maxLength: 100 }).filter((s) => {
-          const allCodes = getAllDeclineCodes();
-          return !allCodes.includes(s as (typeof allCodes)[number]);
-        }),
+        fc
+          .string({ minLength: 0, maxLength: 100 })
+          .filter((s) => !validCodes.has(s as DeclineCode)),
         (invalidString) => {
           expect(isValidDeclineCode(invalidString)).toBe(false);
         },

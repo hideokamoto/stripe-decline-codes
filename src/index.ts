@@ -135,7 +135,7 @@ export function formatDeclineMessage(
     return undefined;
   }
 
-  if (!variables) {
+  if (!variables || Object.keys(variables).length === 0) {
     return baseMessage;
   }
 
