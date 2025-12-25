@@ -6,7 +6,6 @@ on:
     paths:
       - '.github/workflows/**'
       - 'src/**'
-      - 'tests/**'
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.json'
@@ -17,7 +16,6 @@ on:
     paths:
       - '.github/workflows/**'
       - 'src/**'
-      - 'tests/**'
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.json'
