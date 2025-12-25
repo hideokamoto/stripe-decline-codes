@@ -88,7 +88,7 @@ export function getAllDeclineCodes(): DeclineCode[] {
  * ```
  */
 export function isValidDeclineCode(code: string): code is DeclineCode {
-  return code in DECLINE_CODES;
+  return Object.hasOwn(DECLINE_CODES, code);
 }
 
 /**
@@ -142,7 +142,9 @@ export function formatDeclineMessage(
   // Replace variables in the format {{variableName}}
   let formattedMessage = baseMessage;
   for (const [key, value] of Object.entries(variables)) {
-    const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+    // Escape special regex characters in the key
+    const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const placeholder = new RegExp(`\\{\\{${escapedKey}\\}\\}`, 'g');
     formattedMessage = formattedMessage.replace(placeholder, value);
   }
 
