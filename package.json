@@ -20,6 +20,7 @@
   },
   "files": [
     "dist",
+    "docs-data",
     "README.md",
     "LICENSE"
   ],
@@ -33,7 +34,10 @@
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "release": "np"
+    "release": "np",
+    "docs:generate": "tsx scripts/generate-docs.ts",
+    "docs:api": "typedoc",
+    "docs": "npm run docs:generate && npm run docs:api"
   },
   "repository": {
     "type": "git",
@@ -64,6 +68,8 @@
     "@biomejs/biome": "^2.3.6",
     "@types/node": "^24.10.1",
     "np": "^10.2.0",
+    "tsx": "^4.19.0",
+    "typedoc": "^0.27.0",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
     "vitest": "^4.0.10"

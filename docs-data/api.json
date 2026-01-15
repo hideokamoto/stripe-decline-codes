@@ -1,0 +1,2081 @@
+{
+	"id": 0,
+	"name": "stripe-decline-codes",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 37,
+			"name": "DeclineCodeInfo",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Decline code information including descriptions and recommended actions"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 41,
+					"name": "category",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Category of the decline (soft or hard)"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 30,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": 35,
+						"name": "DeclineCategory",
+						"package": "stripe-decline-codes"
+					}
+				},
+				{
+					"id": 38,
+					"name": "description",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Technical description of why the payment was declined"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 24,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 39,
+					"name": "nextSteps",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Recommended next steps for merchants"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 26,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 40,
+					"name": "nextUserAction",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "User-facing message that can be shown to customers"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 28,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 42,
+					"name": "translations",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Translations for different locales"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 32,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Partial"
+						},
+						"typeArguments": [
+							{
+								"type": "reference",
+								"target": {
+									"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Record"
+								},
+								"typeArguments": [
+									{
+										"type": "reference",
+										"target": 46,
+										"name": "Locale",
+										"package": "stripe-decline-codes"
+									},
+									{
+										"type": "reference",
+										"target": 53,
+										"name": "Translation",
+										"package": "stripe-decline-codes"
+									}
+								],
+								"name": "Record",
+								"package": "typescript"
+							}
+						],
+						"name": "Partial",
+						"package": "typescript"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						41,
+						38,
+						39,
+						40,
+						42
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 22,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 43,
+			"name": "DeclineCodeResult",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Result containing decline code information and metadata"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 45,
+					"name": "code",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Decline code information, or empty object if code not found"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 42,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "reference",
+								"target": 37,
+								"name": "DeclineCodeInfo",
+								"package": "stripe-decline-codes"
+							},
+							{
+								"type": "reference",
+								"target": {
+									"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Record"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "never"
+									}
+								],
+								"name": "Record",
+								"package": "typescript"
+							}
+						]
+					}
+				},
+				{
+					"id": 44,
+					"name": "docVersion",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Stripe API documentation version"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 40,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						45,
+						44
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 38,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 47,
+			"name": "StripeError",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Stripe error object with decline code information"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 49,
+					"name": "decline_code",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 50,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 50,
+					"name": "message",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 51,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 48,
+					"name": "type",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 49,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						49,
+						50,
+						48
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 48,
+					"character": 17
+				}
+			],
+			"indexSignatures": [
+				{
+					"id": 51,
+					"name": "__index",
+					"variant": "signature",
+					"kind": 8192,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 52,
+							"character": 2
+						}
+					],
+					"parameters": [
+						{
+							"id": 52,
+							"name": "key",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "unknown"
+					}
+				}
+			]
+		},
+		{
+			"id": 53,
+			"name": "Translation",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Translation for a specific locale"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 54,
+					"name": "description",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 15,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 55,
+					"name": "nextUserAction",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 16,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						54,
+						55
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 14,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 35,
+			"name": "DeclineCategory",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Decline code categories based on Stripe's classification"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 9,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "SOFT_DECLINE"
+					},
+					{
+						"type": "literal",
+						"value": "HARD_DECLINE"
+					}
+				]
+			}
+		},
+		{
+			"id": 36,
+			"name": "DeclineCode",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "All supported Stripe decline codes"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 58,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "approve_with_id"
+					},
+					{
+						"type": "literal",
+						"value": "call_issuer"
+					},
+					{
+						"type": "literal",
+						"value": "card_not_supported"
+					},
+					{
+						"type": "literal",
+						"value": "card_velocity_exceeded"
+					},
+					{
+						"type": "literal",
+						"value": "currency_not_supported"
+					},
+					{
+						"type": "literal",
+						"value": "do_not_honor"
+					},
+					{
+						"type": "literal",
+						"value": "do_not_try_again"
+					},
+					{
+						"type": "literal",
+						"value": "duplicate_transaction"
+					},
+					{
+						"type": "literal",
+						"value": "expired_card"
+					},
+					{
+						"type": "literal",
+						"value": "fraudulent"
+					},
+					{
+						"type": "literal",
+						"value": "generic_decline"
+					},
+					{
+						"type": "literal",
+						"value": "incorrect_number"
+					},
+					{
+						"type": "literal",
+						"value": "incorrect_cvc"
+					},
+					{
+						"type": "literal",
+						"value": "incorrect_pin"
+					},
+					{
+						"type": "literal",
+						"value": "incorrect_zip"
+					},
+					{
+						"type": "literal",
+						"value": "insufficient_funds"
+					},
+					{
+						"type": "literal",
+						"value": "invalid_account"
+					},
+					{
+						"type": "literal",
+						"value": "invalid_amount"
+					},
+					{
+						"type": "literal",
+						"value": "invalid_cvc"
+					},
+					{
+						"type": "literal",
+						"value": "invalid_expiry_year"
+					},
+					{
+						"type": "literal",
+						"value": "invalid_number"
+					},
+					{
+						"type": "literal",
+						"value": "invalid_pin"
+					},
+					{
+						"type": "literal",
+						"value": "issuer_not_available"
+					},
+					{
+						"type": "literal",
+						"value": "lost_card"
+					},
+					{
+						"type": "literal",
+						"value": "merchant_blacklist"
+					},
+					{
+						"type": "literal",
+						"value": "new_account_information_available"
+					},
+					{
+						"type": "literal",
+						"value": "no_action_taken"
+					},
+					{
+						"type": "literal",
+						"value": "not_permitted"
+					},
+					{
+						"type": "literal",
+						"value": "pickup_card"
+					},
+					{
+						"type": "literal",
+						"value": "pin_try_exceeded"
+					},
+					{
+						"type": "literal",
+						"value": "processing_error"
+					},
+					{
+						"type": "literal",
+						"value": "reenter_transaction"
+					},
+					{
+						"type": "literal",
+						"value": "restricted_card"
+					},
+					{
+						"type": "literal",
+						"value": "revocation_of_all_authorizations"
+					},
+					{
+						"type": "literal",
+						"value": "revocation_of_authorization"
+					},
+					{
+						"type": "literal",
+						"value": "security_violation"
+					},
+					{
+						"type": "literal",
+						"value": "service_not_allowed"
+					},
+					{
+						"type": "literal",
+						"value": "stolen_card"
+					},
+					{
+						"type": "literal",
+						"value": "stop_payment_order"
+					},
+					{
+						"type": "literal",
+						"value": "testmode_decline"
+					},
+					{
+						"type": "literal",
+						"value": "transaction_not_allowed"
+					},
+					{
+						"type": "literal",
+						"value": "try_again_later"
+					},
+					{
+						"type": "literal",
+						"value": "withdrawal_count_limit_exceeded"
+					}
+				]
+			}
+		},
+		{
+			"id": 46,
+			"name": "Locale",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Supported locale codes for decline code translations"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 4,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "en"
+					},
+					{
+						"type": "literal",
+						"value": "ja"
+					}
+				]
+			}
+		},
+		{
+			"id": 33,
+			"name": "DECLINE_CODES",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Complete database of Stripe decline codes with descriptions and recommended actions\nIncludes English and Japanese translations"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "data/decline-codes.ts",
+					"line": 14,
+					"character": 13
+				}
+			],
+			"type": {
+				"type": "reference",
+				"target": {
+					"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+					"qualifiedName": "Record"
+				},
+				"typeArguments": [
+					{
+						"type": "reference",
+						"target": 36,
+						"name": "DeclineCode",
+						"package": "stripe-decline-codes"
+					},
+					{
+						"type": "reference",
+						"target": 37,
+						"name": "DeclineCodeInfo",
+						"package": "stripe-decline-codes"
+					}
+				],
+				"name": "Record",
+				"package": "typescript"
+			},
+			"defaultValue": "..."
+		},
+		{
+			"id": 34,
+			"name": "DOC_VERSION",
+			"variant": "declaration",
+			"kind": 32,
+			"flags": {
+				"isConst": true
+			},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Stripe API documentation version for decline codes\nLast updated: 2024-12\nReference: https://docs.stripe.com/declines/codes"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "data/decline-codes.ts",
+					"line": 8,
+					"character": 13
+				}
+			],
+			"type": {
+				"type": "literal",
+				"value": "2024-12-18"
+			},
+			"defaultValue": "'2024-12-18'"
+		},
+		{
+			"id": 15,
+			"name": "formatDeclineMessage",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 127,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 16,
+					"name": "formatDeclineMessage",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Format a decline message with custom template variables"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Formatted user-facing message with variables replaced"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nconst message = formatDeclineMessage('insufficient_funds', 'en', {\n  merchantName: 'Acme Store',\n  supportEmail: 'support@acme.com'\n});\nconsole.log(message);\n// => \"Please try again using an alternative payment method.\"\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 127,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 17,
+							"name": "declineCode",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The Stripe decline code"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 18,
+							"name": "locale",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The locale to use (default: 'en')"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": 46,
+								"name": "Locale",
+								"package": "stripe-decline-codes"
+							},
+							"defaultValue": "'en'"
+						},
+						{
+							"id": 19,
+							"name": "variables",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional variables to replace in the message template"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+									"qualifiedName": "Record"
+								},
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "string"
+									}
+								],
+								"name": "Record",
+								"package": "typescript"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 8,
+			"name": "getAllDeclineCodes",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 74,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 9,
+					"name": "getAllDeclineCodes",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Get all available decline codes"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array of all supported decline code strings"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nconst codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 44\nconsole.log(codes.includes('insufficient_funds')); // => true\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 74,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": 36,
+							"name": "DeclineCode",
+							"package": "stripe-decline-codes"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 20,
+			"name": "getDeclineCategory",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 164,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 21,
+					"name": "getDeclineCategory",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Get the category of a decline code (SOFT_DECLINE or HARD_DECLINE)"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The category of the decline code, or undefined if invalid"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ngetDeclineCategory('insufficient_funds'); // => 'SOFT_DECLINE'\ngetDeclineCategory('fraudulent'); // => 'HARD_DECLINE'\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 164,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 22,
+							"name": "code",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The decline code to categorize"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "reference",
+								"target": 35,
+								"name": "DeclineCategory",
+								"package": "stripe-decline-codes"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "getDeclineDescription",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 19,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 2,
+					"name": "getDeclineDescription",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Get decline code information with description and recommended actions"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Object containing the decline code information and documentation version"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nconst result = getDeclineDescription('insufficient_funds');\nconsole.log(result.code.description);\n// => \"The card has insufficient funds to complete the purchase.\"\nconsole.log(result.code.nextUserAction);\n// => \"Please try again using an alternative payment method.\"\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 19,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 3,
+							"name": "declineCode",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The Stripe decline code to look up"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": 43,
+						"name": "DeclineCodeResult",
+						"package": "stripe-decline-codes"
+					}
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "getDeclineMessage",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 48,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 5,
+					"name": "getDeclineMessage",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Get localized decline code message for end users"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "User-facing message in the specified locale, or undefined if not found"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nconst message = getDeclineMessage('insufficient_funds', 'ja');\nconsole.log(message);\n// => \"別のお支払い方法を使用してもう一度お試しください。\"\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 48,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 6,
+							"name": "declineCode",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The Stripe decline code"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 7,
+							"name": "locale",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The locale to use (default: 'en')"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": 46,
+								"name": "Locale",
+								"package": "stripe-decline-codes"
+							},
+							"defaultValue": "'en'"
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 13,
+			"name": "getDocVersion",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 105,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 14,
+					"name": "getDocVersion",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Get the documentation version for the decline codes data"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The Stripe API documentation version string"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nconst version = getDocVersion();\nconsole.log(version); // => \"2024-12-18\"\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 105,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 29,
+			"name": "getMessageFromStripeError",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 223,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 30,
+					"name": "getMessageFromStripeError",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Extract localized message from a Stripe error object"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "User-facing message in the specified locale, or undefined if not found"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nconst stripeError = {\n  type: 'StripeCardError',\n  decline_code: 'insufficient_funds',\n  message: 'Your card has insufficient funds.'\n};\nconst message = getMessageFromStripeError(stripeError, 'ja');\nconsole.log(message);\n// => \"別のお支払い方法を使用してもう一度お試しください。\"\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 223,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 31,
+							"name": "error",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The Stripe error object"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": 47,
+								"name": "StripeError",
+								"package": "stripe-decline-codes"
+							}
+						},
+						{
+							"id": 32,
+							"name": "locale",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The locale to use (default: 'en')"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": 46,
+								"name": "Locale",
+								"package": "stripe-decline-codes"
+							},
+							"defaultValue": "'en'"
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 23,
+			"name": "isHardDecline",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 184,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 24,
+					"name": "isHardDecline",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Check if a decline code is a hard decline (permanent, should not retry)"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the code is a hard decline"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nisHardDecline('fraudulent'); // => true\nisHardDecline('insufficient_funds'); // => false\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 184,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 25,
+							"name": "code",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The decline code to check"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 26,
+			"name": "isSoftDecline",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 200,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 27,
+					"name": "isSoftDecline",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Check if a decline code is a soft decline (temporary, can retry)"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the code is a soft decline"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nisSoftDecline('insufficient_funds'); // => true\nisSoftDecline('fraudulent'); // => false\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 200,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 28,
+							"name": "code",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The decline code to check"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 10,
+			"name": "isValidDeclineCode",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 90,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 11,
+					"name": "isValidDeclineCode",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Check if a decline code is valid"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the code exists in the database"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nisValidDeclineCode('insufficient_funds'); // => true\nisValidDeclineCode('invalid_code'); // => false\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 90,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 12,
+							"name": "code",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The code to validate"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "predicate",
+						"name": "code",
+						"asserts": false,
+						"targetType": {
+							"type": "reference",
+							"target": 36,
+							"name": "DeclineCode",
+							"package": "stripe-decline-codes"
+						}
+					}
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				37,
+				43,
+				47,
+				53
+			]
+		},
+		{
+			"title": "Type Aliases",
+			"children": [
+				35,
+				36,
+				46
+			]
+		},
+		{
+			"title": "Variables",
+			"children": [
+				33,
+				34
+			]
+		},
+		{
+			"title": "Functions",
+			"children": [
+				15,
+				8,
+				20,
+				1,
+				4,
+				13,
+				29,
+				23,
+				26,
+				10
+			]
+		}
+	],
+	"packageName": "stripe-decline-codes",
+	"packageVersion": "0.1.0",
+	"symbolIdMap": {
+		"0": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": ""
+		},
+		"1": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDeclineDescription"
+		},
+		"2": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDeclineDescription"
+		},
+		"3": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "declineCode"
+		},
+		"4": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDeclineMessage"
+		},
+		"5": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDeclineMessage"
+		},
+		"6": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "declineCode"
+		},
+		"7": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "locale"
+		},
+		"8": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getAllDeclineCodes"
+		},
+		"9": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getAllDeclineCodes"
+		},
+		"10": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "isValidDeclineCode"
+		},
+		"11": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "isValidDeclineCode"
+		},
+		"12": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "code"
+		},
+		"13": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDocVersion"
+		},
+		"14": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDocVersion"
+		},
+		"15": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "formatDeclineMessage"
+		},
+		"16": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "formatDeclineMessage"
+		},
+		"17": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "declineCode"
+		},
+		"18": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "locale"
+		},
+		"19": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "variables"
+		},
+		"20": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDeclineCategory"
+		},
+		"21": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getDeclineCategory"
+		},
+		"22": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "code"
+		},
+		"23": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "isHardDecline"
+		},
+		"24": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "isHardDecline"
+		},
+		"25": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "code"
+		},
+		"26": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "isSoftDecline"
+		},
+		"27": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "isSoftDecline"
+		},
+		"28": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "code"
+		},
+		"29": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getMessageFromStripeError"
+		},
+		"30": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "getMessageFromStripeError"
+		},
+		"31": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "error"
+		},
+		"32": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": "locale"
+		},
+		"33": {
+			"sourceFileName": "src/data/decline-codes.ts",
+			"qualifiedName": "DECLINE_CODES"
+		},
+		"34": {
+			"sourceFileName": "src/data/decline-codes.ts",
+			"qualifiedName": "DOC_VERSION"
+		},
+		"35": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCategory"
+		},
+		"36": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCode"
+		},
+		"37": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo"
+		},
+		"38": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.description"
+		},
+		"39": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.nextSteps"
+		},
+		"40": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.nextUserAction"
+		},
+		"41": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.category"
+		},
+		"42": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.translations"
+		},
+		"43": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeResult"
+		},
+		"44": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeResult.docVersion"
+		},
+		"45": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "DeclineCodeResult.code"
+		},
+		"46": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "Locale"
+		},
+		"47": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "StripeError"
+		},
+		"48": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "StripeError.type"
+		},
+		"49": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "StripeError.decline_code"
+		},
+		"50": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "StripeError.message"
+		},
+		"51": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "StripeError.__index"
+		},
+		"53": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "Translation"
+		},
+		"54": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "Translation.description"
+		},
+		"55": {
+			"sourceFileName": "src/types.ts",
+			"qualifiedName": "Translation.nextUserAction"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "src/index.ts"
+		},
+		"reflections": {
+			"1": 0
+		}
+	}
+}

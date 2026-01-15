@@ -25,3 +25,6 @@ test.json
 
 # Logs
 *.log
+
+# TypeDoc HTML output (keep JSON only)
+docs-data/api/

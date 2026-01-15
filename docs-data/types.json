@@ -1,0 +1,170 @@
+{
+  "$schema": "./schemas/types.schema.json",
+  "version": "2024-12-18",
+  "generatedAt": "2026-01-15T22:42:07.271Z",
+  "types": [
+    {
+      "name": "Locale",
+      "kind": "type-alias",
+      "description": "Supported locale codes for decline code translations",
+      "definition": "'en' | 'ja'",
+      "values": [
+        "en",
+        "ja"
+      ]
+    },
+    {
+      "name": "DeclineCategory",
+      "kind": "type-alias",
+      "description": "Decline code categories based on Stripe's classification",
+      "definition": "'SOFT_DECLINE' | 'HARD_DECLINE'",
+      "values": [
+        "SOFT_DECLINE",
+        "HARD_DECLINE"
+      ]
+    },
+    {
+      "name": "DeclineCode",
+      "kind": "type-alias",
+      "description": "All supported Stripe decline codes",
+      "definition": "Union of all decline code string literals",
+      "values": [
+        "approve_with_id",
+        "call_issuer",
+        "card_not_supported",
+        "card_velocity_exceeded",
+        "currency_not_supported",
+        "do_not_honor",
+        "do_not_try_again",
+        "duplicate_transaction",
+        "expired_card",
+        "fraudulent",
+        "generic_decline",
+        "incorrect_number",
+        "incorrect_cvc",
+        "incorrect_pin",
+        "incorrect_zip",
+        "insufficient_funds",
+        "invalid_account",
+        "invalid_amount",
+        "invalid_cvc",
+        "invalid_expiry_year",
+        "invalid_number",
+        "invalid_pin",
+        "issuer_not_available",
+        "lost_card",
+        "merchant_blacklist",
+        "new_account_information_available",
+        "no_action_taken",
+        "not_permitted",
+        "pickup_card",
+        "pin_try_exceeded",
+        "processing_error",
+        "reenter_transaction",
+        "restricted_card",
+        "revocation_of_all_authorizations",
+        "revocation_of_authorization",
+        "security_violation",
+        "service_not_allowed",
+        "stolen_card",
+        "stop_payment_order",
+        "testmode_decline",
+        "transaction_not_allowed",
+        "try_again_later",
+        "withdrawal_count_limit_exceeded"
+      ]
+    },
+    {
+      "name": "Translation",
+      "kind": "interface",
+      "description": "Translation for a specific locale",
+      "properties": [
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Translated description"
+        },
+        {
+          "name": "nextUserAction",
+          "type": "string",
+          "description": "Translated user action message"
+        }
+      ]
+    },
+    {
+      "name": "DeclineCodeInfo",
+      "kind": "interface",
+      "description": "Decline code information including descriptions and recommended actions",
+      "properties": [
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Technical description of why the payment was declined"
+        },
+        {
+          "name": "nextSteps",
+          "type": "string",
+          "description": "Recommended next steps for merchants"
+        },
+        {
+          "name": "nextUserAction",
+          "type": "string",
+          "description": "User-facing message that can be shown to customers"
+        },
+        {
+          "name": "category",
+          "type": "DeclineCategory",
+          "description": "Category of the decline (soft or hard)"
+        },
+        {
+          "name": "translations",
+          "type": "Partial<Record<Locale, Translation>>",
+          "description": "Translations for different locales",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "DeclineCodeResult",
+      "kind": "interface",
+      "description": "Result containing decline code information and metadata",
+      "properties": [
+        {
+          "name": "docVersion",
+          "type": "string",
+          "description": "Stripe API documentation version"
+        },
+        {
+          "name": "code",
+          "type": "DeclineCodeInfo | {}",
+          "description": "Decline code information, or empty object if code not found"
+        }
+      ]
+    },
+    {
+      "name": "StripeError",
+      "kind": "interface",
+      "description": "Stripe error object with decline code information",
+      "properties": [
+        {
+          "name": "type",
+          "type": "string",
+          "description": "Error type",
+          "optional": true
+        },
+        {
+          "name": "decline_code",
+          "type": "string",
+          "description": "The decline code from Stripe",
+          "optional": true
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "description": "Error message from Stripe",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}
