@@ -110,10 +110,10 @@ try {
     currency: 'usd',
     source: 'tok_chargeDeclined',
   });
-} catch (error) {
-  if (error.type === 'StripeCardError') {
-    const declineCode = error.decline_code;
-    const userMessage = getDeclineMessage(declineCode, 'en');
+} catch (err) {
+  const error = err as Stripe.StripeCardError;
+  if (error.type === 'card_error' && error.decline_code) {
+    const userMessage = getDeclineMessage(error.decline_code, 'en');
     console.log(userMessage);
     // Display this message to your user
   }
@@ -158,13 +158,14 @@ try {
     currency: 'usd',
     source: 'tok_chargeDeclined',
   });
-} catch (error) {
-  if (error.type === 'StripeCardError') {
+} catch (err) {
+  const error = err as Stripe.StripeCardError;
+  if (error.type === 'card_error' && error.decline_code) {
     // Get localized message directly from error object
     const userMessage = getMessageFromStripeError(error, 'ja');
 
     // Check if retry is recommended
-    if (error.decline_code && isHardDecline(error.decline_code)) {
+    if (isHardDecline(error.decline_code)) {
       // Ask for a different payment method
       console.log('Please use a different card');
     } else {
