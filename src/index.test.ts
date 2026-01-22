@@ -5,9 +5,13 @@ import type { DeclineCode, DeclineCodeInfo } from './index';
 import {
   formatDeclineMessage,
   getAllDeclineCodes,
+  getDeclineCategory,
   getDeclineDescription,
   getDeclineMessage,
   getDocVersion,
+  getMessageFromStripeError,
+  isHardDecline,
+  isSoftDecline,
   isValidDeclineCode,
 } from './index';
 
@@ -393,5 +397,247 @@ describe('formatDeclineMessage', () => {
     const code = 'insufficient_funds';
     expect(formatDeclineMessage(code, 'en', undefined)).toBeDefined();
     expect(formatDeclineMessage(code, 'en', {})).toBeDefined();
+  });
+});
+
+describe('getDeclineCategory', () => {
+  // Normal case tests
+  it('should return SOFT_DECLINE for soft decline codes', () => {
+    expect(getDeclineCategory('insufficient_funds')).toBe('SOFT_DECLINE');
+    expect(getDeclineCategory('generic_decline')).toBe('SOFT_DECLINE');
+    expect(getDeclineCategory('do_not_honor')).toBe('SOFT_DECLINE');
+    expect(getDeclineCategory('try_again_later')).toBe('SOFT_DECLINE');
+  });
+
+  it('should return HARD_DECLINE for hard decline codes', () => {
+    expect(getDeclineCategory('fraudulent')).toBe('HARD_DECLINE');
+    expect(getDeclineCategory('stolen_card')).toBe('HARD_DECLINE');
+    expect(getDeclineCategory('lost_card')).toBe('HARD_DECLINE');
+    expect(getDeclineCategory('expired_card')).toBe('HARD_DECLINE');
+    expect(getDeclineCategory('incorrect_cvc')).toBe('HARD_DECLINE');
+    expect(getDeclineCategory('invalid_number')).toBe('HARD_DECLINE');
+  });
+
+  it('should return undefined for invalid code', () => {
+    expect(getDeclineCategory('invalid_code')).toBeUndefined();
+  });
+
+  // Pure function property test - all valid codes have a category
+  it('should return a category for all valid decline codes', () => {
+    const allCodes = getAllDeclineCodes();
+    for (const code of allCodes) {
+      const category = getDeclineCategory(code);
+      expect(category).toBeDefined();
+      expect(['SOFT_DECLINE', 'HARD_DECLINE']).toContain(category);
+    }
+  });
+
+  // Pure function property test - idempotent
+  it('should be idempotent - same input produces same output', () => {
+    const code = 'insufficient_funds';
+    const result1 = getDeclineCategory(code);
+    const result2 = getDeclineCategory(code);
+    expect(result1).toBe(result2);
+  });
+
+  // PBT: Edge case tests - returns undefined for any invalid string
+  it('should return undefined for any invalid string', () => {
+    const validCodes = new Set<DeclineCode>(getAllDeclineCodes());
+    fc.assert(
+      fc.property(
+        fc
+          .string({ minLength: 0, maxLength: 100 })
+          .filter((s) => !validCodes.has(s as DeclineCode)),
+        (invalidCode) => {
+          const result = getDeclineCategory(invalidCode);
+          expect(result).toBeUndefined();
+        },
+      ),
+    );
+  });
+});
+
+describe('isHardDecline', () => {
+  // Normal case tests
+  it('should return true for hard decline codes', () => {
+    expect(isHardDecline('fraudulent')).toBe(true);
+    expect(isHardDecline('stolen_card')).toBe(true);
+    expect(isHardDecline('expired_card')).toBe(true);
+    expect(isHardDecline('incorrect_cvc')).toBe(true);
+  });
+
+  it('should return false for soft decline codes', () => {
+    expect(isHardDecline('insufficient_funds')).toBe(false);
+    expect(isHardDecline('generic_decline')).toBe(false);
+    expect(isHardDecline('try_again_later')).toBe(false);
+  });
+
+  it('should return false for invalid code', () => {
+    expect(isHardDecline('invalid_code')).toBe(false);
+  });
+
+  // Pure function property test - consistent with getDeclineCategory
+  it('should be consistent with getDeclineCategory', () => {
+    const allCodes = getAllDeclineCodes();
+    for (const code of allCodes) {
+      const isHard = isHardDecline(code);
+      const category = getDeclineCategory(code);
+      expect(isHard).toBe(category === 'HARD_DECLINE');
+    }
+  });
+
+  // PBT: Edge case tests
+  it('should return false for any invalid string', () => {
+    const validCodes = new Set<DeclineCode>(getAllDeclineCodes());
+    fc.assert(
+      fc.property(
+        fc
+          .string({ minLength: 0, maxLength: 100 })
+          .filter((s) => !validCodes.has(s as DeclineCode)),
+        (invalidCode) => {
+          expect(isHardDecline(invalidCode)).toBe(false);
+        },
+      ),
+    );
+  });
+});
+
+describe('isSoftDecline', () => {
+  // Normal case tests
+  it('should return true for soft decline codes', () => {
+    expect(isSoftDecline('insufficient_funds')).toBe(true);
+    expect(isSoftDecline('generic_decline')).toBe(true);
+    expect(isSoftDecline('do_not_honor')).toBe(true);
+  });
+
+  it('should return false for hard decline codes', () => {
+    expect(isSoftDecline('fraudulent')).toBe(false);
+    expect(isSoftDecline('stolen_card')).toBe(false);
+    expect(isSoftDecline('expired_card')).toBe(false);
+  });
+
+  it('should return false for invalid code', () => {
+    expect(isSoftDecline('invalid_code')).toBe(false);
+  });
+
+  // Pure function property test - consistent with getDeclineCategory
+  it('should be consistent with getDeclineCategory', () => {
+    const allCodes = getAllDeclineCodes();
+    for (const code of allCodes) {
+      const isSoft = isSoftDecline(code);
+      const category = getDeclineCategory(code);
+      expect(isSoft).toBe(category === 'SOFT_DECLINE');
+    }
+  });
+
+  // Pure function property test - complementary to isHardDecline for valid codes
+  it('should be complementary to isHardDecline for valid codes', () => {
+    const allCodes = getAllDeclineCodes();
+    for (const code of allCodes) {
+      const isSoft = isSoftDecline(code);
+      const isHard = isHardDecline(code);
+      // For valid codes, exactly one should be true
+      expect(isSoft !== isHard).toBe(true);
+    }
+  });
+
+  // PBT: Edge case tests
+  it('should return false for any invalid string', () => {
+    const validCodes = new Set<DeclineCode>(getAllDeclineCodes());
+    fc.assert(
+      fc.property(
+        fc
+          .string({ minLength: 0, maxLength: 100 })
+          .filter((s) => !validCodes.has(s as DeclineCode)),
+        (invalidCode) => {
+          expect(isSoftDecline(invalidCode)).toBe(false);
+        },
+      ),
+    );
+  });
+});
+
+describe('getMessageFromStripeError', () => {
+  // Normal case tests
+  it('should extract message from Stripe card error object', () => {
+    const stripeError = {
+      type: 'StripeCardError',
+      decline_code: 'insufficient_funds',
+      message: 'Your card has insufficient funds.',
+    };
+    const message = getMessageFromStripeError(stripeError);
+    expect(message).toBe('Please try again using an alternative payment method.');
+  });
+
+  it('should extract Japanese message from Stripe card error object', () => {
+    const stripeError = {
+      type: 'StripeCardError',
+      decline_code: 'insufficient_funds',
+      message: 'Your card has insufficient funds.',
+    };
+    const message = getMessageFromStripeError(stripeError, 'ja');
+    expect(message).toBe('別のお支払い方法を使用してもう一度お試しください。');
+  });
+
+  it('should handle error without decline_code', () => {
+    const stripeError = {
+      type: 'StripeCardError',
+      message: 'An error occurred.',
+    };
+    const message = getMessageFromStripeError(stripeError);
+    expect(message).toBeUndefined();
+  });
+
+  it('should handle non-card errors', () => {
+    const stripeError = {
+      type: 'StripeAPIError',
+      message: 'API error occurred.',
+    };
+    const message = getMessageFromStripeError(stripeError);
+    expect(message).toBeUndefined();
+  });
+
+  it('should handle invalid decline code in error', () => {
+    const stripeError = {
+      type: 'StripeCardError',
+      decline_code: 'invalid_code',
+      message: 'Some error.',
+    };
+    const message = getMessageFromStripeError(stripeError);
+    expect(message).toBeUndefined();
+  });
+
+  // Pure function property test - consistent with getDeclineMessage
+  it('should be consistent with getDeclineMessage', () => {
+    const allCodes = getAllDeclineCodes();
+    for (const code of allCodes) {
+      const stripeError = { type: 'StripeCardError', decline_code: code };
+      const message1 = getMessageFromStripeError(stripeError, 'en');
+      const message2 = getDeclineMessage(code, 'en');
+      expect(message1).toBe(message2);
+    }
+  });
+
+  // PBT: Edge case tests - empty error object
+  it('should handle edge case error objects', () => {
+    expect(getMessageFromStripeError({})).toBeUndefined();
+    expect(getMessageFromStripeError({ type: 'StripeCardError' })).toBeUndefined();
+    expect(getMessageFromStripeError({ decline_code: '' })).toBeUndefined();
+  });
+
+  // PBT: Error objects with valid decline codes should return messages
+  it('should return messages for all valid decline codes in error objects', () => {
+    fc.assert(
+      fc.property(
+        fc.constantFrom(...getAllDeclineCodes()),
+        fc.constantFrom<'en' | 'ja'>('en', 'ja'),
+        (code, locale) => {
+          const stripeError = { decline_code: code };
+          const message = getMessageFromStripeError(stripeError, locale);
+          expect(message).toBeDefined();
+          expect(typeof message).toBe('string');
+        },
+      ),
+    );
   });
 });

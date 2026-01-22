@@ -16,6 +16,8 @@ A lightweight, zero-dependency TypeScript library providing human-readable descr
 - 🔄 **Up-to-date** - Based on Stripe API documentation (2024-12-18)
 - ✅ **Well Tested** - Comprehensive test coverage
 - 🎨 **Message Formatting** - Customizable message templates with variable substitution
+- 🔍 **Decline Categorization** - Soft/Hard decline classification based on Stripe guidelines
+- ⚡ **Stripe SDK Integration** - Direct error object support for seamless integration
 
 ## About This Project
 
@@ -108,12 +110,68 @@ try {
     currency: 'usd',
     source: 'tok_chargeDeclined',
   });
-} catch (error) {
-  if (error.type === 'StripeCardError') {
-    const declineCode = error.decline_code;
-    const userMessage = getDeclineMessage(declineCode, 'en');
+} catch (err) {
+  const error = err as Stripe.StripeCardError;
+  if (error.type === 'card_error' && error.decline_code) {
+    const userMessage = getDeclineMessage(error.decline_code, 'en');
     console.log(userMessage);
     // Display this message to your user
+  }
+}
+```
+
+### Decline Code Categorization
+
+Understand whether a decline is temporary (soft) or permanent (hard):
+
+```typescript
+import { getDeclineCategory, isSoftDecline, isHardDecline } from 'stripe-decline-codes';
+
+// Get the category
+const category = getDeclineCategory('insufficient_funds');
+console.log(category); // => 'SOFT_DECLINE'
+
+// Check if it's a soft decline (temporary, can retry)
+if (isSoftDecline('insufficient_funds')) {
+  console.log('This is a temporary issue, you can retry the payment');
+}
+
+// Check if it's a hard decline (permanent, should not retry)
+if (isHardDecline('fraudulent')) {
+  console.log('This is a permanent decline, do not retry');
+}
+```
+
+### Extract Message from Stripe Error
+
+Directly extract user-facing messages from Stripe error objects:
+
+```typescript
+import Stripe from 'stripe';
+import { getMessageFromStripeError, isHardDecline } from 'stripe-decline-codes';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+try {
+  const charge = await stripe.charges.create({
+    amount: 2000,
+    currency: 'usd',
+    source: 'tok_chargeDeclined',
+  });
+} catch (err) {
+  const error = err as Stripe.StripeCardError;
+  if (error.type === 'card_error' && error.decline_code) {
+    // Get localized message directly from error object
+    const userMessage = getMessageFromStripeError(error, 'ja');
+
+    // Check if retry is recommended
+    if (isHardDecline(error.decline_code)) {
+      // Ask for a different payment method
+      console.log('Please use a different card');
+    } else {
+      // Retry is possible
+      console.log('You may retry this payment');
+    }
   }
 }
 ```
@@ -180,6 +238,41 @@ const message = formatDeclineMessage('insufficient_funds', 'en', {
 });
 ```
 
+### Decline Categorization Functions
+
+#### `getDeclineCategory(code: string): DeclineCategory | undefined`
+
+Returns the category of a decline code ('SOFT_DECLINE' or 'HARD_DECLINE').
+
+**Parameters:**
+- `code` - The Stripe decline code
+
+**Returns:** `'SOFT_DECLINE' | 'HARD_DECLINE' | undefined`
+
+#### `isHardDecline(code: string): boolean`
+
+Checks if a decline code is a hard decline (permanent, should not retry).
+
+**Returns:** `true` if the code is a hard decline, `false` otherwise
+
+#### `isSoftDecline(code: string): boolean`
+
+Checks if a decline code is a soft decline (temporary, can retry).
+
+**Returns:** `true` if the code is a soft decline, `false` otherwise
+
+### Stripe Error Integration
+
+#### `getMessageFromStripeError(error: StripeError, locale?: Locale): string | undefined`
+
+Extracts a localized user-facing message directly from a Stripe error object.
+
+**Parameters:**
+- `error` - The Stripe error object
+- `locale` - The locale to use (`'en'` or `'ja'`, default: `'en'`)
+
+**Returns:** User-facing message in the specified locale, or undefined if no decline code is present
+
 ## Supported Decline Codes
 
 This library includes all 44 Stripe decline codes:
@@ -239,6 +332,8 @@ import type {
   DeclineCodeResult,
   Locale,
   Translation,
+  DeclineCategory,
+  StripeError,
 } from 'stripe-decline-codes';
 ```
 

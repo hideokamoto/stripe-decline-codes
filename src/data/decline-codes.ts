@@ -18,6 +18,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.',
     nextUserAction:
       'Please try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: '支払いは承認できません。',
@@ -30,6 +31,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -43,6 +45,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The customer needs to contact their card issuer to make sure their card can be used to make this type of purchase.',
     nextUserAction:
       'Your card issuer may not support this type of purchase, please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードはこのタイプの購入をサポートしません。',
@@ -55,6 +58,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The customer has exceeded the balance or credit limit available on their card.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'このカードの残高またはクレジット制限を超えました。',
@@ -68,6 +72,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The customer needs to check with the issuer whether the card can be used for the type of currency specified.',
     nextUserAction:
       'Please contact your card issuer to verify this type of currency can be used for this payment.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは指定された通貨をサポートしていません。',
@@ -80,6 +85,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -91,6 +97,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -103,6 +110,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'A transaction with identical amount and credit card information was submitted very recently.',
     nextSteps: 'Check to see if a recent payment already exists.',
     nextUserAction: 'Check to see if a recent payment already exists.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'ごく最近、同一の金額とクレジットカード情報を使用した取引が送信されました。',
@@ -114,6 +122,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has expired.',
     nextSteps: 'The customer should use another card.',
     nextUserAction: 'Please use another card.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは期限切れです。',
@@ -126,6 +135,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'Do not report more detailed information to your customer. Instead, present as you would the generic_decline described below.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: '不正と思われるため、支払いは拒否されました。',
@@ -137,6 +147,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -149,6 +160,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps: 'The customer should try again using the correct card number.',
     nextUserAction:
       'Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カード番号が正しくありません。',
@@ -162,6 +174,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps: 'The customer should try again using the correct CVC.',
     nextUserAction:
       'Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'CVC番号が正しくありません。',
@@ -176,6 +189,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps: 'The customer should try again using the correct PIN.',
     nextUserAction:
       'Please check your PIN and try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'PINコードが正しくありません。',
@@ -188,6 +202,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The ZIP/postal code is incorrect.',
     nextSteps: 'The customer should try again using the correct billing ZIP/postal code.',
     nextUserAction: 'Please try again using the correct ZIP/postal code.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: '郵便番号が正しくありません。',
@@ -199,6 +214,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has insufficient funds to complete the purchase.',
     nextSteps: 'The customer should use an alternative payment method.',
     nextUserAction: 'Please try again using an alternative payment method.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードの購入に必要な資金が不足しています。',
@@ -211,6 +227,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The customer needs to contact their card issuer to check that the card is working correctly.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カード、またはカードが接続されているアカウントが無効です。',
@@ -223,6 +240,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'If the amount appears to be correct, the customer needs to check with their card issuer that they can make purchases of that amount.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: '支払い金額が無効であるか、許可されている金額を超えています。',
@@ -234,6 +252,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The CVC number is incorrect.',
     nextSteps: 'The customer should try again using the correct CVC.',
     nextUserAction: 'Please try again using the correct CVC.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'CVC番号が正しくありません。',
@@ -245,6 +264,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The expiration year invalid.',
     nextSteps: 'The customer should try again using the correct expiration date.',
     nextUserAction: 'Please try again using the correct expiration date.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: '有効期限が無効です。',
@@ -256,6 +276,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card number is incorrect.',
     nextSteps: 'The customer should try again using the correct card number.',
     nextUserAction: 'Please try again using the correct card number.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カード番号が正しくありません。',
@@ -268,6 +289,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The PIN entered is incorrect. This decline code only applies to payments made with a card reader.',
     nextSteps: 'The customer should try again using the correct PIN.',
     nextUserAction: 'Please try again using the correct card PIN.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'PINコードが正しくありません。',
@@ -281,6 +303,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.',
     nextUserAction:
       'Please try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カード発行者に連絡できなかったため、支払いを承認できませんでした。',
@@ -294,6 +317,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -307,6 +331,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'Do not report more detailed information to your customer. Instead, present as you would the generic_decline described above.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -318,6 +343,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card, or account the card is connected to, is invalid.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カード、またはカードが接続されているアカウントが無効です。',
@@ -329,6 +355,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -340,6 +367,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The payment is not permitted.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: '支払いは許可されていません。',
@@ -352,6 +380,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The card cannot be used to make this payment (it is possible it has been reported lost or stolen).',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description:
@@ -364,6 +393,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The allowable number of PIN tries has been exceeded.',
     nextSteps: 'The customer must use another card or method of payment.',
     nextUserAction: 'Please use another card or method of payment.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'PIN試行回数の上限を超えました。',
@@ -377,6 +407,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The payment should be attempted again. If it still cannot be processed, try again later.',
     nextUserAction:
       'Please try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードの処理中にエラーが発生しました。',
@@ -391,6 +422,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.',
     nextUserAction:
       'Please try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: '原因不明のため、発行者が支払いを処理できませんでした。',
@@ -404,6 +436,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The card cannot be used to make this payment (it is possible it has been reported lost or stolen).',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description:
@@ -416,6 +449,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -427,6 +461,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -438,6 +473,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -449,6 +485,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -461,6 +498,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -472,6 +510,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -483,6 +522,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'A Stripe test card number was used.',
     nextSteps: 'A genuine card must be used to make a payment.',
     nextUserAction: 'A genuine card must be used to make a payment.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'Stripeテストカード番号を使用しました。',
@@ -494,6 +534,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card has been declined for an unknown reason.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
+    category: 'HARD_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -507,6 +548,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'Ask the customer to attempt the payment again. If subsequent payments are declined, the customer should contact their card issuer for more information.',
     nextUserAction:
       'Please try again. If it still cannot be processed, the please contact your card issuer.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -519,6 +561,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The customer has exceeded the balance or credit limit available on their card.',
     nextSteps: 'The customer should use an alternative payment method.',
     nextUserAction: 'Please use another card or contact your card issuer for more information.',
+    category: 'SOFT_DECLINE',
     translations: {
       ja: {
         description: 'このカードの残高またはクレジット制限を超えました。',

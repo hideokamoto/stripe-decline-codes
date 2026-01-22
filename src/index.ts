@@ -1,5 +1,5 @@
 import { DECLINE_CODES, DOC_VERSION } from './data/decline-codes';
-import type { DeclineCode, DeclineCodeResult, Locale } from './types';
+import type { DeclineCategory, DeclineCode, DeclineCodeResult, Locale, StripeError } from './types';
 
 /**
  * Get decline code information with description and recommended actions
@@ -151,13 +151,97 @@ export function formatDeclineMessage(
   return formattedMessage;
 }
 
+/**
+ * Get the category of a decline code (SOFT_DECLINE or HARD_DECLINE)
+ *
+ * @param code - The decline code to categorize
+ * @returns The category of the decline code, or undefined if invalid
+ *
+ * @example
+ * ```ts
+ * getDeclineCategory('insufficient_funds'); // => 'SOFT_DECLINE'
+ * getDeclineCategory('fraudulent'); // => 'HARD_DECLINE'
+ * ```
+ */
+export function getDeclineCategory(code: string): DeclineCategory | undefined {
+  if (!isValidDeclineCode(code)) {
+    return undefined;
+  }
+
+  return DECLINE_CODES[code].category;
+}
+
+/**
+ * Check if a decline code is a hard decline (permanent, should not retry)
+ *
+ * @param code - The decline code to check
+ * @returns True if the code is a hard decline
+ *
+ * @example
+ * ```ts
+ * isHardDecline('fraudulent'); // => true
+ * isHardDecline('insufficient_funds'); // => false
+ * ```
+ */
+export function isHardDecline(code: string): boolean {
+  return getDeclineCategory(code) === 'HARD_DECLINE';
+}
+
+/**
+ * Check if a decline code is a soft decline (temporary, can retry)
+ *
+ * @param code - The decline code to check
+ * @returns True if the code is a soft decline
+ *
+ * @example
+ * ```ts
+ * isSoftDecline('insufficient_funds'); // => true
+ * isSoftDecline('fraudulent'); // => false
+ * ```
+ */
+export function isSoftDecline(code: string): boolean {
+  return getDeclineCategory(code) === 'SOFT_DECLINE';
+}
+
+/**
+ * Extract localized message from a Stripe error object
+ *
+ * @param error - The Stripe error object
+ * @param locale - The locale to use (default: 'en')
+ * @returns User-facing message in the specified locale, or undefined if not found
+ *
+ * @example
+ * ```ts
+ * const stripeError = {
+ *   type: 'StripeCardError',
+ *   decline_code: 'insufficient_funds',
+ *   message: 'Your card has insufficient funds.'
+ * };
+ * const message = getMessageFromStripeError(stripeError, 'ja');
+ * console.log(message);
+ * // => "別のお支払い方法を使用してもう一度お試しください。"
+ * ```
+ */
+export function getMessageFromStripeError(
+  error: StripeError,
+  locale: Locale = 'en',
+): string | undefined {
+  if (!error.decline_code) {
+    return undefined;
+  }
+
+  return getDeclineMessage(error.decline_code, locale);
+}
+
 // Export data for advanced use cases
 export { DECLINE_CODES, DOC_VERSION } from './data/decline-codes';
 // Export types
 export type {
+  DeclineCategory,
   DeclineCode,
   DeclineCodeInfo,
   DeclineCodeResult,
   Locale,
+  StripeError,
   Translation,
 } from './types';

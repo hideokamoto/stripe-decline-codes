@@ -4,6 +4,11 @@
 export type Locale = 'en' | 'ja';
 
 /**
+ * Decline code categories based on Stripe's classification
+ */
+export type DeclineCategory = 'SOFT_DECLINE' | 'HARD_DECLINE';
+
+/**
  * Translation for a specific locale
  */
 export interface Translation {
@@ -21,6 +26,8 @@ export interface DeclineCodeInfo {
   nextSteps: string;
   /** User-facing message that can be shown to customers */
   nextUserAction: string;
+  /** Category of the decline (soft or hard) */
+  category: DeclineCategory;
   /** Translations for different locales */
   translations?: Partial<Record<Locale, Translation>>;
 }
@@ -33,6 +40,16 @@ export interface DeclineCodeResult {
   docVersion: string;
   /** Decline code information, or empty object if code not found */
   code: DeclineCodeInfo | Record<string, never>;
+}
+
+/**
+ * Stripe error object with decline code information
+ */
+export interface StripeError {
+  type?: string;
+  decline_code?: string;
+  message?: string;
+  [key: string]: unknown;
 }
 
 /**
