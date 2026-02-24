@@ -1,0 +1,19 @@
+{
+  "name": "stripe-decline-codes-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typedoc": "typedoc"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.32.5",
+    "astro": "^5.6.1",
+    "starlight-typedoc": "^0.21.5",
+    "typedoc": "^0.28.17",
+    "typedoc-plugin-markdown": "^4.10.0"
+  }
+}

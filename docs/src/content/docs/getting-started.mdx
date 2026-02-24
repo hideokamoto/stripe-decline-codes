@@ -1,0 +1,131 @@
+---
+title: Getting Started
+description: How to install and use stripe-decline-codes in your project
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+## Installation
+
+<Tabs>
+  <TabItem label="npm">
+    ```sh
+    npm install stripe-decline-codes
+    ```
+  </TabItem>
+  <TabItem label="pnpm">
+    ```sh
+    pnpm add stripe-decline-codes
+    ```
+  </TabItem>
+  <TabItem label="yarn">
+    ```sh
+    yarn add stripe-decline-codes
+    ```
+  </TabItem>
+</Tabs>
+
+## Basic Usage
+
+### Look up a decline code
+
+Use `getDeclineDescription` to get the full technical information about a decline code:
+
+```ts
+import { getDeclineDescription } from 'stripe-decline-codes';
+
+const result = getDeclineDescription('insufficient_funds');
+
+console.log(result.code.description);
+// => "The card has insufficient funds to complete the purchase."
+
+console.log(result.code.nextSteps);
+// => "The payment should be attempted again using a different payment method."
+
+console.log(result.code.nextUserAction);
+// => "Please try again using an alternative payment method."
+```
+
+### Get a localized message
+
+Use `getDeclineMessage` to get a user-facing message in the appropriate locale:
+
+```ts
+import { getDeclineMessage } from 'stripe-decline-codes';
+
+// English (default)
+const enMessage = getDeclineMessage('insufficient_funds');
+// => "Please try again using an alternative payment method."
+
+// Japanese
+const jaMessage = getDeclineMessage('insufficient_funds', 'ja');
+// => "別のお支払い方法を使用してもう一度お試しください。"
+```
+
+### Handle a Stripe error object
+
+When Stripe returns an error, use `getMessageFromStripeError` to extract the localized message directly:
+
+```ts
+import Stripe from 'stripe';
+import { getMessageFromStripeError } from 'stripe-decline-codes';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+try {
+  await stripe.paymentIntents.create({ ... });
+} catch (err) {
+  if (err instanceof Stripe.errors.StripeCardError) {
+    const userMessage = getMessageFromStripeError(err, 'ja');
+    // Show userMessage to the customer
+  }
+}
+```
+
+## Checking Decline Categories
+
+Stripe decline codes are classified as either **soft declines** (temporary, safe to retry) or **hard declines** (permanent, should not retry automatically).
+
+```ts
+import { isHardDecline, isSoftDecline, getDeclineCategory } from 'stripe-decline-codes';
+
+// Soft decline — can retry with a different payment method
+isSoftDecline('insufficient_funds'); // => true
+isHardDecline('insufficient_funds'); // => false
+
+// Hard decline — do not retry automatically
+isHardDecline('fraudulent');  // => true
+isSoftDecline('fraudulent');  // => false
+
+// Get the category directly
+getDeclineCategory('insufficient_funds'); // => 'SOFT_DECLINE'
+getDeclineCategory('fraudulent');         // => 'HARD_DECLINE'
+```
+
+## Validating Decline Codes
+
+```ts
+import { isValidDeclineCode } from 'stripe-decline-codes';
+
+isValidDeclineCode('insufficient_funds'); // => true
+isValidDeclineCode('not_a_real_code');    // => false
+```
+
+## Listing All Codes
+
+```ts
+import { getAllDeclineCodes } from 'stripe-decline-codes';
+
+const codes = getAllDeclineCodes();
+console.log(codes.length); // => 44
+```
+
+## Checking the Data Version
+
+The library tracks which version of the Stripe API documentation the decline codes data was sourced from:
+
+```ts
+import { getDocVersion } from 'stripe-decline-codes';
+
+console.log(getDocVersion()); // => "2024-12-18"
+```
