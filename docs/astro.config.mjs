@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { defineConfig } from 'astro/config';
 import starlightTypeDoc from 'starlight-typedoc';
 
 // https://astro.build/config
@@ -9,7 +9,8 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Stripe Decline Codes',
-      description: 'Complete database of Stripe decline codes with descriptions and localized messages',
+      description:
+        'Complete database of Stripe decline codes with descriptions and localized messages',
       social: {
         github: 'https://github.com/hideokamoto/stripe-decline-codes',
       },
