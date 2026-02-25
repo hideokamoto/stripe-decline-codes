@@ -1,0 +1,61 @@
+---
+title: Supported Locales
+description: Available locales for localized decline code messages
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+## Available Locales
+
+| Locale Code | Language | Status |
+|-------------|----------|--------|
+| `en` | English | <Badge text="Supported" variant="success" /> |
+| `ja` | Japanese | <Badge text="Supported" variant="success" /> |
+
+## Usage
+
+Pass the locale code as the second argument to `getDeclineMessage` or `formatDeclineMessage`:
+
+```ts
+import { getDeclineMessage, formatDeclineMessage } from 'stripe-decline-codes';
+
+getDeclineMessage('insufficient_funds', 'en'); // English (default)
+getDeclineMessage('insufficient_funds', 'ja'); // Japanese
+
+// formatDeclineMessage accepts the same locale argument plus optional template variables
+formatDeclineMessage('insufficient_funds', 'ja');
+// => "別のお支払い方法を使用してもう一度お試しください。"
+
+formatDeclineMessage('insufficient_funds', 'en', { supportEmail: 'support@example.com' });
+// => "Please try again using an alternative payment method."
+```
+
+When a locale is not specified, `'en'` is used as the default.
+
+## Fallback Behavior
+
+If a translation is not available for the requested locale, `getDeclineMessage` returns `undefined`. Use the English message as a fallback when needed:
+
+```ts
+import { getDeclineMessage, type Locale } from 'stripe-decline-codes';
+
+function getLocalizedMessage(code: string, locale: Locale | string): string {
+  return (
+    getDeclineMessage(code, locale as Locale) ??
+    getDeclineMessage(code, 'en') ??
+    'An error occurred with your payment.'
+  );
+}
+```
+
+## Accessing Raw Translations
+
+For advanced use cases, you can access the underlying data directly:
+
+```ts
+import { DECLINE_CODES } from 'stripe-decline-codes';
+
+const info = DECLINE_CODES['insufficient_funds'];
+console.log(info.translations?.ja?.nextUserAction);
+// => "別のお支払い方法を使用してもう一度お試しください。"
+```

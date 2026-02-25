@@ -1,0 +1,34 @@
+---
+title: Stripe Decline Codes
+description: Complete database of Stripe decline codes with descriptions and localized messages
+template: splash
+hero:
+  tagline: Complete database of Stripe decline codes with descriptions and localized messages for TypeScript/JavaScript projects.
+  actions:
+    - text: Get Started
+      link: /stripe-decline-codes/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: API Reference
+      link: /stripe-decline-codes/api/
+      icon: open-book
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Features
+
+<CardGrid stagger>
+  <Card title="44+ Decline Codes" icon="approve-check">
+    Full coverage of all Stripe decline codes with technical descriptions and merchant guidance.
+  </Card>
+  <Card title="Localization Support" icon="translate">
+    Built-in English and Japanese translations for user-facing messages.
+  </Card>
+  <Card title="TypeScript First" icon="puzzle">
+    Fully typed API with JSDoc comments and type exports for a great developer experience.
+  </Card>
+  <Card title="Soft vs Hard Declines" icon="warning">
+    Distinguish between temporary soft declines and permanent hard declines to decide whether to retry.
+  </Card>
+</CardGrid>

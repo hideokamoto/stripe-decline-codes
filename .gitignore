@@ -6,6 +6,9 @@ example.json
 # Build output
 dist
 coverage
+docs/dist
+docs/.astro
+docs/src/content/docs/api
 
 # Serverless directories
 .serverless
