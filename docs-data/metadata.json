@@ -1,0 +1,23 @@
+{
+  "$schema": "./schemas/metadata.schema.json",
+  "package": {
+    "name": "stripe-decline-codes",
+    "version": "0.1.0",
+    "description": "Complete database of Stripe decline codes with descriptions and localized messages",
+    "repository": "git+https://github.com/hideokamoto/stripe-decline-codes.git",
+    "license": "MIT"
+  },
+  "stripeDocVersion": "2024-12-18",
+  "generatedAt": "2026-01-15T22:42:07.278Z",
+  "supportedLocales": [
+    "en",
+    "ja"
+  ],
+  "stats": {
+    "totalDeclineCodes": 43,
+    "softDeclineCodes": 16,
+    "hardDeclineCodes": 27,
+    "totalFunctions": 10,
+    "totalTypes": 7
+  }
+}

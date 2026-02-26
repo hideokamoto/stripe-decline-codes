@@ -1,0 +1,622 @@
+{
+  "$schema": "./schemas/decline-codes.schema.json",
+  "version": "2024-12-18",
+  "generatedAt": "2026-01-15T22:42:07.269Z",
+  "totalCodes": 43,
+  "categories": {
+    "SOFT_DECLINE": {
+      "description": "Temporary declines that may succeed if retried",
+      "codes": [
+        "approve_with_id",
+        "call_issuer",
+        "card_velocity_exceeded",
+        "do_not_honor",
+        "duplicate_transaction",
+        "generic_decline",
+        "insufficient_funds",
+        "invalid_amount",
+        "issuer_not_available",
+        "new_account_information_available",
+        "no_action_taken",
+        "pin_try_exceeded",
+        "processing_error",
+        "reenter_transaction",
+        "try_again_later",
+        "withdrawal_count_limit_exceeded"
+      ]
+    },
+    "HARD_DECLINE": {
+      "description": "Permanent declines that should not be retried",
+      "codes": [
+        "card_not_supported",
+        "currency_not_supported",
+        "do_not_try_again",
+        "expired_card",
+        "fraudulent",
+        "incorrect_number",
+        "incorrect_cvc",
+        "incorrect_pin",
+        "incorrect_zip",
+        "invalid_account",
+        "invalid_cvc",
+        "invalid_expiry_year",
+        "invalid_number",
+        "invalid_pin",
+        "lost_card",
+        "merchant_blacklist",
+        "not_permitted",
+        "pickup_card",
+        "restricted_card",
+        "revocation_of_all_authorizations",
+        "revocation_of_authorization",
+        "security_violation",
+        "service_not_allowed",
+        "stolen_card",
+        "stop_payment_order",
+        "testmode_decline",
+        "transaction_not_allowed"
+      ]
+    }
+  },
+  "codes": [
+    {
+      "code": "approve_with_id",
+      "category": "SOFT_DECLINE",
+      "description": "The payment cannot be authorized.",
+      "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "支払いは承認できません。",
+          "nextUserAction": "もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "call_issuer",
+      "category": "SOFT_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "card_not_supported",
+      "category": "HARD_DECLINE",
+      "description": "The card does not support this type of purchase.",
+      "nextSteps": "The customer needs to contact their card issuer to make sure their card can be used to make this type of purchase.",
+      "nextUserAction": "Your card issuer may not support this type of purchase, please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードはこのタイプの購入をサポートしません。",
+          "nextUserAction": "カード発行者はこのタイプの購入をサポートしていない可能性があります。詳細については、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "card_velocity_exceeded",
+      "category": "SOFT_DECLINE",
+      "description": "The customer has exceeded the balance or credit limit available on their card.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "このカードの残高またはクレジット制限を超えました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "currency_not_supported",
+      "category": "HARD_DECLINE",
+      "description": "The card does not support the specified currency.",
+      "nextSteps": "The customer needs to check with the issuer whether the card can be used for the type of currency specified.",
+      "nextUserAction": "Please contact your card issuer to verify this type of currency can be used for this payment.",
+      "translations": {
+        "ja": {
+          "description": "カードは指定された通貨をサポートしていません。",
+          "nextUserAction": "この支払いにこのタイプの通貨が使用できることを確認するには、カード発行会社に連絡してください。"
+        }
+      }
+    },
+    {
+      "code": "do_not_honor",
+      "category": "SOFT_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "do_not_try_again",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "duplicate_transaction",
+      "category": "SOFT_DECLINE",
+      "description": "A transaction with identical amount and credit card information was submitted very recently.",
+      "nextSteps": "Check to see if a recent payment already exists.",
+      "nextUserAction": "Check to see if a recent payment already exists.",
+      "translations": {
+        "ja": {
+          "description": "ごく最近、同一の金額とクレジットカード情報を使用した取引が送信されました。",
+          "nextUserAction": "最近の支払いが既に存在するかどうかを確認してください。"
+        }
+      }
+    },
+    {
+      "code": "expired_card",
+      "category": "HARD_DECLINE",
+      "description": "The card has expired.",
+      "nextSteps": "The customer should use another card.",
+      "nextUserAction": "Please use another card.",
+      "translations": {
+        "ja": {
+          "description": "カードは期限切れです。",
+          "nextUserAction": "別のカードを使用してください。"
+        }
+      }
+    },
+    {
+      "code": "fraudulent",
+      "category": "HARD_DECLINE",
+      "description": "The payment has been declined as Stripe suspects it is fraudulent.",
+      "nextSteps": "Do not report more detailed information to your customer. Instead, present as you would the generic_decline described below.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "不正と思われるため、支払いは拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "generic_decline",
+      "category": "SOFT_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "incorrect_number",
+      "category": "HARD_DECLINE",
+      "description": "The card number is incorrect.",
+      "nextSteps": "The customer should try again using the correct card number.",
+      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "カード番号が正しくありません。",
+          "nextUserAction": "カード番号を確認してもう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "incorrect_cvc",
+      "category": "HARD_DECLINE",
+      "description": "The CVC number is incorrect.",
+      "nextSteps": "The customer should try again using the correct CVC.",
+      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "CVC番号が正しくありません。",
+          "nextUserAction": "CSC番号を確認してもう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "incorrect_pin",
+      "category": "HARD_DECLINE",
+      "description": "The PIN entered is incorrect. This decline code only applies to payments made with a card reader.",
+      "nextSteps": "The customer should try again using the correct PIN.",
+      "nextUserAction": "Please check your PIN and try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "PINコードが正しくありません。",
+          "nextUserAction": "PINコードを確認してもう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "incorrect_zip",
+      "category": "HARD_DECLINE",
+      "description": "The ZIP/postal code is incorrect.",
+      "nextSteps": "The customer should try again using the correct billing ZIP/postal code.",
+      "nextUserAction": "Please try again using the correct ZIP/postal code.",
+      "translations": {
+        "ja": {
+          "description": "郵便番号が正しくありません。",
+          "nextUserAction": "正しい郵便番号を使用してもう一度お試しください。"
+        }
+      }
+    },
+    {
+      "code": "insufficient_funds",
+      "category": "SOFT_DECLINE",
+      "description": "The card has insufficient funds to complete the purchase.",
+      "nextSteps": "The customer should use an alternative payment method.",
+      "nextUserAction": "Please try again using an alternative payment method.",
+      "translations": {
+        "ja": {
+          "description": "カードの購入に必要な資金が不足しています。",
+          "nextUserAction": "別のお支払い方法を使用してもう一度お試しください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_account",
+      "category": "HARD_DECLINE",
+      "description": "The card, or account the card is connected to, is invalid.",
+      "nextSteps": "The customer needs to contact their card issuer to check that the card is working correctly.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カード、またはカードが接続されているアカウントが無効です。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_amount",
+      "category": "SOFT_DECLINE",
+      "description": "The payment amount is invalid, or exceeds the amount that is allowed.",
+      "nextSteps": "If the amount appears to be correct, the customer needs to check with their card issuer that they can make purchases of that amount.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "支払い金額が無効であるか、許可されている金額を超えています。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_cvc",
+      "category": "HARD_DECLINE",
+      "description": "The CVC number is incorrect.",
+      "nextSteps": "The customer should try again using the correct CVC.",
+      "nextUserAction": "Please try again using the correct CVC.",
+      "translations": {
+        "ja": {
+          "description": "CVC番号が正しくありません。",
+          "nextUserAction": "正しいCVCを使用してもう一度やり直してください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_expiry_year",
+      "category": "HARD_DECLINE",
+      "description": "The expiration year invalid.",
+      "nextSteps": "The customer should try again using the correct expiration date.",
+      "nextUserAction": "Please try again using the correct expiration date.",
+      "translations": {
+        "ja": {
+          "description": "有効期限が無効です。",
+          "nextUserAction": "正しい有効期限を入力してもう一度お試しください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_number",
+      "category": "HARD_DECLINE",
+      "description": "The card number is incorrect.",
+      "nextSteps": "The customer should try again using the correct card number.",
+      "nextUserAction": "Please try again using the correct card number.",
+      "translations": {
+        "ja": {
+          "description": "カード番号が正しくありません。",
+          "nextUserAction": "正しいカード番号を使用してもう一度やり直してください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_pin",
+      "category": "HARD_DECLINE",
+      "description": "The PIN entered is incorrect. This decline code only applies to payments made with a card reader.",
+      "nextSteps": "The customer should try again using the correct PIN.",
+      "nextUserAction": "Please try again using the correct card PIN.",
+      "translations": {
+        "ja": {
+          "description": "PINコードが正しくありません。",
+          "nextUserAction": "正しいPINコードを使用してもう一度やり直してください。"
+        }
+      }
+    },
+    {
+      "code": "issuer_not_available",
+      "category": "SOFT_DECLINE",
+      "description": "The card issuer could not be reached, so the payment could not be authorized.",
+      "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "カード発行者に連絡できなかったため、支払いを承認できませんでした。",
+          "nextUserAction": "もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "lost_card",
+      "category": "HARD_DECLINE",
+      "description": "The payment has been declined because the card is reported lost.",
+      "nextSteps": "The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "merchant_blacklist",
+      "category": "HARD_DECLINE",
+      "description": "The payment has been declined because it matches a value on the Stripe user's blocklist.",
+      "nextSteps": "Do not report more detailed information to your customer. Instead, present as you would the generic_decline described above.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "new_account_information_available",
+      "category": "SOFT_DECLINE",
+      "description": "The card, or account the card is connected to, is invalid.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カード、またはカードが接続されているアカウントが無効です。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "no_action_taken",
+      "category": "SOFT_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "not_permitted",
+      "category": "HARD_DECLINE",
+      "description": "The payment is not permitted.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "支払いは許可されていません。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "pickup_card",
+      "category": "HARD_DECLINE",
+      "description": "The card cannot be used to make this payment (it is possible it has been reported lost or stolen).",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードでこの支払いを行うことはできません（紛失または盗難にあったと報告されている可能性があります）。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "pin_try_exceeded",
+      "category": "SOFT_DECLINE",
+      "description": "The allowable number of PIN tries has been exceeded.",
+      "nextSteps": "The customer must use another card or method of payment.",
+      "nextUserAction": "Please use another card or method of payment.",
+      "translations": {
+        "ja": {
+          "description": "PIN試行回数の上限を超えました。",
+          "nextUserAction": "別のカードまたはお支払い方法をご利用ください。"
+        }
+      }
+    },
+    {
+      "code": "processing_error",
+      "category": "SOFT_DECLINE",
+      "description": "An error occurred while processing the card.",
+      "nextSteps": "The payment should be attempted again. If it still cannot be processed, try again later.",
+      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "カードの処理中にエラーが発生しました。",
+          "nextUserAction": "もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "reenter_transaction",
+      "category": "SOFT_DECLINE",
+      "description": "The payment could not be processed by the issuer for an unknown reason.",
+      "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "原因不明のため、発行者が支払いを処理できませんでした。",
+          "nextUserAction": "もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "restricted_card",
+      "category": "HARD_DECLINE",
+      "description": "The card cannot be used to make this payment (it is possible it has been reported lost or stolen).",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードでこの支払いを行うことはできません（紛失または盗難にあったと報告されている可能性があります）。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "revocation_of_all_authorizations",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "revocation_of_authorization",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "security_violation",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "service_not_allowed",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "stolen_card",
+      "category": "HARD_DECLINE",
+      "description": "The payment has been declined because the card is reported stolen.",
+      "nextSteps": "The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "stop_payment_order",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer should contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "testmode_decline",
+      "category": "HARD_DECLINE",
+      "description": "A Stripe test card number was used.",
+      "nextSteps": "A genuine card must be used to make a payment.",
+      "nextUserAction": "A genuine card must be used to make a payment.",
+      "translations": {
+        "ja": {
+          "description": "Stripeテストカード番号を使用しました。",
+          "nextUserAction": "支払いには本物のカードを使用する必要があります。"
+        }
+      }
+    },
+    {
+      "code": "transaction_not_allowed",
+      "category": "HARD_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "The customer needs to contact their card issuer for more information.",
+      "nextUserAction": "Please contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "try_again_later",
+      "category": "SOFT_DECLINE",
+      "description": "The card has been declined for an unknown reason.",
+      "nextSteps": "Ask the customer to attempt the payment again. If subsequent payments are declined, the customer should contact their card issuer for more information.",
+      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "translations": {
+        "ja": {
+          "description": "カードは未知の理由で拒否されました。",
+          "nextUserAction": "もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "withdrawal_count_limit_exceeded",
+      "category": "SOFT_DECLINE",
+      "description": "The customer has exceeded the balance or credit limit available on their card.",
+      "nextSteps": "The customer should use an alternative payment method.",
+      "nextUserAction": "Please use another card or contact your card issuer for more information.",
+      "translations": {
+        "ja": {
+          "description": "このカードの残高またはクレジット制限を超えました。",
+          "nextUserAction": "別のカードを使用するか、カード発行会社にお問い合わせください。"
+        }
+      }
+    }
+  ]
+}
