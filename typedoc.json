@@ -1,0 +1,14 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/index.ts"],
+  "out": "./docs-data/api",
+  "json": "./docs-data/api.json",
+  "pretty": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "includeVersion": true,
+  "readme": "none",
+  "name": "stripe-decline-codes",
+  "tsconfig": "./tsconfig.json"
+}
