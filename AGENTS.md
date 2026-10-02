@@ -37,26 +37,30 @@ For the docs site, use npm inside `docs/` (`cd docs && npm ci && npm run build`)
 Every push to `main` triggers the CircleCI pipeline **"npm publish"**:
 
 - Config source: `hideokamoto/circleci-configurations`,
-  `workflows/publish/npm-polyrepo-release-please.yaml` (no release YAML lives here)
-- Flow: `test` job -> `release` job runs release-please (version bump commit, `v*` tag,
-  GitHub Release from Conventional Commits), then publishes via npm Trusted
-  Publishing (OIDC) in the same job.
+  `workflows/publish/npm-polyrepo-semantic-release.yaml` (no release YAML lives here)
+- Flow: `test` job -> `release` job runs semantic-release: decides the next version from
+  Conventional Commits since the latest `v*` tag, verifies npm OIDC + git push access,
+  pushes the `v*` tag, publishes via npm Trusted Publishing (OIDC), and creates the
+  GitHub Release. No Release PR; nothing is committed back to `main`.
+- Config: `.releaserc.json` (preset `conventionalcommits`, so `feat!:` is a major bump)
 - Trigger preset: `default-branch-pushes`
 
 ### Commit convention (required)
 
-release-please only sees Conventional Commits. **PR titles must be `feat:`, `fix:`,
-`feat!:`, etc., and PRs should be squash-merged** so the merge subject is conventional.
-`chore:` / `docs:` / `ci:` / `test:` merges do not release.
+semantic-release reads **every commit** reachable since the last tag, including the
+individual commits inside a merged PR branch (not just the merge subject).
+`feat:` -> minor, `fix:` / `perf:` -> patch, `feat!:` or a `BREAKING CHANGE:` footer -> major.
+`chore:` / `docs:` / `ci:` / `test:` / merge commits do not release.
+Do not write `BREAKING CHANGE:` in a commit body unless you mean a major release.
 
 ### Do NOT
 
-- Edit `package.json` `version` by hand (release-please owns it)
-- Edit `CHANGELOG.md` by hand (release-please generates it)
-- Run `git tag`, `npm version`, `npm publish`, or `np` — np was removed when this
-  automation was introduced; the old `.npmrc` np config and `release` script are gone
-- Touch `.release-please-manifest.json` — it is the source of truth for the last
-  released version
+- Edit `package.json` `version` — it stays at its last hand-set value; the published
+  version comes from the git tag and is written only inside the CI job
+- Run `git tag`, `npm version`, `npm publish`, or `np`
+- Delete or move `v*` tags — they are the source of truth for the last released version
+
+Release notes live in GitHub Releases; `CHANGELOG.md` is frozen at 0.1.0.
 
 ## CI layout
 
@@ -70,8 +74,9 @@ release-please only sees Conventional Commits. **PR titles must be `feat:`, `fix
 
 | Symptom | Check |
 | --- | --- |
-| No publish after merge | Was the merged commit `feat:`/`fix:`? Does `.release-please-manifest.json` match the latest tag? |
-| release-please GitHub 403 | `github` context `GITHUB_TOKEN` (fine-grained PAT) needs `contents:write` + `pull_requests:read` and this repo in scope |
+| No publish after merge | Did the merged commits include `feat:`/`fix:`/`perf:`? Check the CircleCI `release` job log (`There are no relevant changes` = nothing to release) |
+| semantic-release `EGITNOPERMISSION` / GitHub 403 | `github` context `GITHUB_TOKEN` (fine-grained PAT) needs `contents:write` and this repo in scope |
+| Tag pushed but npm publish failed | Delete that `v*` tag (and its GitHub Release if created), then rerun the pipeline |
 | `ENEEDAUTH` on publish | npm Trusted Publisher (CircleCI) registration: Org/Project/Pipeline-definition IDs and Context IDs (`npm-publish-guard`). CircleCI needs npm >= 11.11.0 (cimg/node:24.21 is fine) |
 
 ## Setup reference (for re-provisioning)
