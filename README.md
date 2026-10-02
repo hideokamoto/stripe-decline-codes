@@ -339,36 +339,46 @@ import type {
 
 ## Development
 
+This project uses [pnpm](https://pnpm.io/) (`packageManager` is pinned in `package.json`).
+
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm run test:watch
+pnpm run test:watch
 
 # Build
-npm run build
+pnpm run build
 
 # Lint
-npm run lint
+pnpm run lint
 
 # Format code
-npm run format
+pnpm run format
 
 # Type check
-npm run typecheck
+pnpm run typecheck
 ```
+
+The `docs/` directory is a separate npm project (Starlight site) and keeps using `npm`.
 
 ## Publishing
 
-This package uses [`np`](https://github.com/sindresorhus/np) for releases:
+Releases are automated by CircleCI. Merge a PR with a
+[Conventional Commits](https://www.conventionalcommits.org/) title (`feat:`, `fix:`, …)
+into `main`, and [release-please](https://github.com/googleapis/release-please)
+creates the version bump commit, git tag, and GitHub Release, then publishes to npm
+via Trusted Publishing (OIDC). Do not bump `version`, edit `CHANGELOG.md`, create tags,
+or run `npm publish` / `np` manually.
 
-```bash
-npm run release
-```
+The pipeline definition is shared via
+[`circleci-configurations`](https://github.com/hideokamoto/circleci-configurations)
+(`workflows/publish/npm-polyrepo-release-please.yaml`); see its
+`workflows/publish/docs/release.md` for operational details.
 
 ## Contributing
 
