@@ -49,6 +49,15 @@ release-please only sees Conventional Commits. **PR titles must be `feat:`, `fix
 `feat!:`, etc., and PRs should be squash-merged** so the merge subject is conventional.
 `chore:` / `docs:` / `ci:` / `test:` merges do not release.
 
+Agents MUST write Conventional Commit messages and must never bypass the hook
+(`--no-verify`):
+
+- Local: husky `commit-msg` hook runs commitlint with
+  `@commitlint/config-conventional` (`commitlint.config.js`). Active after
+  `pnpm install` (husky `prepare` script sets `core.hooksPath`).
+- `.github/pull_request_template.md` reminds human contributors that the PR
+  title must be conventional.
+
 ### Do NOT
 
 - Edit `package.json` `version` by hand (release-please owns it)
