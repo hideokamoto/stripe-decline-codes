@@ -368,17 +368,17 @@ The `docs/` directory is a separate npm project (Starlight site) and keeps using
 
 ## Publishing
 
-Releases are automated by CircleCI. Merge a PR with a
-[Conventional Commits](https://www.conventionalcommits.org/) title (`feat:`, `fix:`, …)
-into `main`, and [release-please](https://github.com/googleapis/release-please)
-creates the version bump commit, git tag, and GitHub Release, then publishes to npm
-via Trusted Publishing (OIDC). Do not bump `version`, edit `CHANGELOG.md`, create tags,
-or run `npm publish` / `np` manually.
+Releases are automated by CircleCI. Merge a PR whose commits follow
+[Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, …)
+into `main`, and [semantic-release](https://github.com/semantic-release/semantic-release)
+pushes the git tag, publishes to npm via Trusted Publishing (OIDC), and creates the
+GitHub Release. Release notes are published on
+[GitHub Releases](https://github.com/hideokamoto/stripe-decline-codes/releases).
+Do not bump `version`, create tags, or run `npm publish` / `np` manually.
 
 The pipeline definition is shared via
 [`circleci-configurations`](https://github.com/hideokamoto/circleci-configurations)
-(`workflows/publish/npm-polyrepo-release-please.yaml`); see its
-`workflows/publish/docs/release.md` for operational details.
+(`workflows/publish/npm-polyrepo-semantic-release.yaml`).
 
 ## Contributing
 
