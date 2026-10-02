@@ -1,4 +1,4 @@
-import type { DeclineCode, DeclineCodeInfo } from '../types';
+import type { DeclineCode, DeclineCodeInfo } from '../types.js';
 
 /**
  * Stripe API documentation version for decline codes

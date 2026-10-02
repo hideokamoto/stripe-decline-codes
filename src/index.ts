@@ -1,5 +1,11 @@
-import { DECLINE_CODES, DOC_VERSION } from './data/decline-codes';
-import type { DeclineCategory, DeclineCode, DeclineCodeResult, Locale, StripeError } from './types';
+import { DECLINE_CODES, DOC_VERSION } from './data/decline-codes.js';
+import type {
+  DeclineCategory,
+  DeclineCode,
+  DeclineCodeResult,
+  Locale,
+  StripeError,
+} from './types.js';
 
 /**
  * Get decline code information with description and recommended actions
@@ -234,7 +240,7 @@ export function getMessageFromStripeError(
 }
 
 // Export data for advanced use cases
-export { DECLINE_CODES, DOC_VERSION } from './data/decline-codes';
+export { DECLINE_CODES, DOC_VERSION } from './data/decline-codes.js';
 // Export types
 export type {
   DeclineCategory,
@@ -244,4 +250,4 @@ export type {
   Locale,
   StripeError,
   Translation,
-} from './types';
+} from './types.js';
