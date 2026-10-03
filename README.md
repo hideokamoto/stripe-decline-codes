@@ -291,12 +291,12 @@ Checks if a decline code is a soft decline (temporary, can retry).
 
 ### Stripe Error Integration
 
-#### `getMessageFromStripeError(error: StripeError, locale?: Locale): string | undefined`
+#### `getMessageFromStripeError(error: unknown, locale?: Locale): string | undefined`
 
-Extracts a localized user-facing message directly from a Stripe error object.
+Extracts a localized user-facing message directly from a Stripe error object. Accepts any caught value; returns `undefined` for non-object inputs or missing/unknown decline codes.
 
 **Parameters:**
-- `error` - The Stripe error object
+- `error` - The Stripe error object (or any caught value)
 - `locale` - The locale to use (`'en'` or `'ja'`, default: `'en'`)
 
 **Returns:** User-facing message in the specified locale, or undefined if no decline code is present

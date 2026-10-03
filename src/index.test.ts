@@ -627,6 +627,13 @@ describe('getMessageFromStripeError', () => {
     expect(getMessageFromStripeError({ decline_code: '' })).toBeUndefined();
   });
 
+  it('should return undefined for non-object inputs instead of throwing', () => {
+    expect(getMessageFromStripeError(null)).toBeUndefined();
+    expect(getMessageFromStripeError(undefined)).toBeUndefined();
+    expect(getMessageFromStripeError('insufficient_funds')).toBeUndefined();
+    expect(getMessageFromStripeError(42)).toBeUndefined();
+  });
+
   // PBT: Error objects with valid decline codes should return messages
   it('should return messages for all valid decline codes in error objects', () => {
     fc.assert(

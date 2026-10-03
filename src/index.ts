@@ -213,7 +213,7 @@ export function isSoftDecline(code: string): boolean {
 /**
  * Extract localized message from a Stripe error object
  *
- * @param error - The Stripe error object
+ * @param error - The Stripe error object (or any caught value)
  * @param locale - The locale to use (default: 'en')
  * @returns User-facing message in the specified locale, or undefined if not found
  *
@@ -230,10 +230,10 @@ export function isSoftDecline(code: string): boolean {
  * ```
  */
 export function getMessageFromStripeError(
-  error: StripeError,
+  error: unknown,
   locale: Locale = 'en',
 ): string | undefined {
-  if (!error.decline_code) {
+  if (!isStripeDeclineError(error)) {
     return undefined;
   }
 
