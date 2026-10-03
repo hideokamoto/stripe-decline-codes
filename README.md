@@ -9,7 +9,7 @@ A lightweight, zero-dependency TypeScript library providing human-readable descr
 
 ## Features
 
-- 🎯 **Complete Coverage** - All 44 Stripe decline codes included
+- 🎯 **Complete Coverage** - All 43 Stripe decline codes included
 - 🌐 **Localization** - Built-in English and Japanese translations
 - 📘 **TypeScript Support** - Full type definitions included
 - 🪶 **Zero Dependencies** - Lightweight and fast
@@ -89,7 +89,7 @@ isValidDeclineCode('invalid_code'); // => false
 import { getAllDeclineCodes } from 'stripe-decline-codes';
 
 const codes = getAllDeclineCodes();
-console.log(codes.length); // => 44
+console.log(codes.length); // => 43
 console.log(codes);
 // => ['approve_with_id', 'call_issuer', 'card_not_supported', ...]
 ```
@@ -315,7 +315,7 @@ Extracts a validated decline code from any caught value. Returns `undefined` whe
 
 ## Supported Decline Codes
 
-This library includes all 44 Stripe decline codes:
+This library includes all 43 Stripe decline codes:
 
 - `approve_with_id` - Payment cannot be authorized
 - `call_issuer` - Card declined for unknown reason
@@ -360,6 +360,29 @@ This library includes all 44 Stripe decline codes:
 - `transaction_not_allowed` - Card declined
 - `try_again_later` - Card declined, try again later
 - `withdrawal_count_limit_exceeded` - Credit limit exceeded
+
+## Compatibility
+
+| Environment | Support |
+| --- | --- |
+| Node.js | >= 18 (tested on 18.x / 20.x / 22.x in CI) |
+| Cloudflare Workers (workerd) | Verified via [@cloudflare/vitest-plugin](https://developers.cloudflare.com/workers/testing/vitest-integration/) runtime tests |
+| Other edge runtimes (Deno, Bun) | Should work (pure TypeScript, zero dependencies) but not CI-verified |
+| Module formats | ESM (`index.mjs`), CJS (`index.cjs`), TypeScript types (`index.d.ts`) |
+
+### Stripe SDK compatibility
+
+This package has **no dependency** on the `stripe` package. The `StripeError`
+type accepted by `getMessageFromStripeError` is a structural interface, so it
+works with error objects from any `stripe-node` version — and with plain
+objects such as `JSON.parse`d API responses.
+
+The helpers are designed against the `stripe-node` **>= 18** error shape, in
+which `StripeCardError.decline_code` is a required `string`. On `stripe-node`
+**<= 17** (where `decline_code` is optional) errors still type-check and run
+correctly via the structural fallback — the only difference is that
+`decline_code` may be `undefined`, which the helpers already handle by
+returning `undefined`.
 
 ## TypeScript
 
