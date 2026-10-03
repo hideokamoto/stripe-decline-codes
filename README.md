@@ -176,6 +176,34 @@ try {
 }
 ```
 
+### Typed Error Narrowing
+
+Narrow an unknown caught error to one carrying a known `DeclineCode`:
+
+```typescript
+import { isStripeDeclineError, getDeclineCodeFromError, isSoftDecline } from 'stripe-decline-codes';
+
+try {
+  const charge = await stripe.charges.create({ ... });
+} catch (err) {
+  // Type guard — inside this block err.decline_code is typed as DeclineCode
+  if (isStripeDeclineError(err)) {
+    console.log(err.decline_code); // DeclineCode (not just string)
+  }
+
+  // Or extract the validated code directly from any caught value
+  const code = getDeclineCodeFromError(err); // DeclineCode | undefined
+  if (code && isSoftDecline(code)) {
+    // safe to retry
+  }
+}
+```
+
+The narrowing assumes the `stripe-node` >= 18 error shape, where
+`StripeCardError.decline_code` is a required `string`. Errors from
+`stripe-node` <= 17 or plain objects fall back to the same runtime check, so
+they work identically — only `decline_code` may be absent.
+
 ## API Reference
 
 ### Core Functions
@@ -263,15 +291,27 @@ Checks if a decline code is a soft decline (temporary, can retry).
 
 ### Stripe Error Integration
 
-#### `getMessageFromStripeError(error: StripeError, locale?: Locale): string | undefined`
+#### `getMessageFromStripeError(error: unknown, locale?: Locale): string | undefined`
 
-Extracts a localized user-facing message directly from a Stripe error object.
+Extracts a localized user-facing message directly from a Stripe error object. Accepts any caught value; returns `undefined` for non-object inputs or missing/unknown decline codes.
 
 **Parameters:**
-- `error` - The Stripe error object
+- `error` - The Stripe error object (or any caught value)
 - `locale` - The locale to use (`'en'` or `'ja'`, default: `'en'`)
 
 **Returns:** User-facing message in the specified locale, or undefined if no decline code is present
+
+#### `isStripeDeclineError(error: unknown): error is StripeDeclineError`
+
+Type guard that checks whether an unknown value is an object carrying a known decline code. Inside the guarded block, `error.decline_code` is typed as `DeclineCode`.
+
+**Returns:** `true` if the value has a `decline_code` matching a known `DeclineCode`, `false` otherwise
+
+#### `getDeclineCodeFromError(error: unknown): DeclineCode | undefined`
+
+Extracts a validated decline code from any caught value. Returns `undefined` when the value has no decline code or an unrecognized one (e.g. a code newly added by Stripe).
+
+**Returns:** The decline code typed as `DeclineCode`, or `undefined`
 
 ## Supported Decline Codes
 
@@ -334,6 +374,7 @@ import type {
   Translation,
   DeclineCategory,
   StripeError,
+  StripeDeclineError,
 } from 'stripe-decline-codes';
 ```
 

@@ -53,6 +53,18 @@ export interface StripeError {
 }
 
 /**
+ * A Stripe error known to carry a valid decline code.
+ *
+ * Matches the stripe-node >= 18 `StripeCardError` shape, where `decline_code`
+ * is a required string, narrowed further to the {@link DeclineCode} union.
+ * Errors from stripe-node <= 17 (where `decline_code` is optional) or plain
+ * objects can be narrowed to this type with `isStripeDeclineError`.
+ */
+export interface StripeDeclineError extends StripeError {
+  decline_code: DeclineCode;
+}
+
+/**
  * All supported Stripe decline codes
  */
 export type DeclineCode =

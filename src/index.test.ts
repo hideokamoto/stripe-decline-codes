@@ -6,12 +6,14 @@ import {
   formatDeclineMessage,
   getAllDeclineCodes,
   getDeclineCategory,
+  getDeclineCodeFromError,
   getDeclineDescription,
   getDeclineMessage,
   getDocVersion,
   getMessageFromStripeError,
   isHardDecline,
   isSoftDecline,
+  isStripeDeclineError,
   isValidDeclineCode,
 } from './index';
 
@@ -625,6 +627,13 @@ describe('getMessageFromStripeError', () => {
     expect(getMessageFromStripeError({ decline_code: '' })).toBeUndefined();
   });
 
+  it('should return undefined for non-object inputs instead of throwing', () => {
+    expect(getMessageFromStripeError(null)).toBeUndefined();
+    expect(getMessageFromStripeError(undefined)).toBeUndefined();
+    expect(getMessageFromStripeError('insufficient_funds')).toBeUndefined();
+    expect(getMessageFromStripeError(42)).toBeUndefined();
+  });
+
   // PBT: Error objects with valid decline codes should return messages
   it('should return messages for all valid decline codes in error objects', () => {
     fc.assert(
@@ -638,6 +647,66 @@ describe('getMessageFromStripeError', () => {
           expect(typeof message).toBe('string');
         },
       ),
+    );
+  });
+});
+
+describe('isStripeDeclineError', () => {
+  it('narrows a stripe-node >= 18 style card error', () => {
+    // stripe >= 18: StripeCardError.decline_code is a required string
+    const error: unknown = {
+      type: 'StripeCardError',
+      decline_code: 'insufficient_funds',
+      message: 'Your card has insufficient funds.',
+    };
+    expect(isStripeDeclineError(error)).toBe(true);
+    if (isStripeDeclineError(error)) {
+      expect(error.decline_code).toBe('insufficient_funds');
+    }
+  });
+
+  it('accepts stripe <= 17 style errors and plain objects when the code is known', () => {
+    expect(isStripeDeclineError({ decline_code: 'fraudulent' })).toBe(true);
+    expect(isStripeDeclineError({ type: 'card_error', decline_code: 'expired_card' })).toBe(true);
+  });
+
+  it('returns false for errors without a decline code', () => {
+    expect(isStripeDeclineError({ type: 'StripeAPIError' })).toBe(false);
+    expect(isStripeDeclineError({ type: 'StripeCardError' })).toBe(false);
+    expect(isStripeDeclineError({})).toBe(false);
+  });
+
+  it('returns false for unknown decline codes', () => {
+    expect(isStripeDeclineError({ decline_code: 'brand_new_code' })).toBe(false);
+    expect(isStripeDeclineError({ decline_code: '' })).toBe(false);
+  });
+
+  it('returns false for non-string decline codes and non-objects', () => {
+    expect(isStripeDeclineError({ decline_code: 42 })).toBe(false);
+    expect(isStripeDeclineError(null)).toBe(false);
+    expect(isStripeDeclineError(undefined)).toBe(false);
+    expect(isStripeDeclineError('insufficient_funds')).toBe(false);
+  });
+});
+
+describe('getDeclineCodeFromError', () => {
+  it('returns the decline code as a DeclineCode', () => {
+    const code = getDeclineCodeFromError({ decline_code: 'insufficient_funds' });
+    expect(code).toBe('insufficient_funds');
+  });
+
+  it('returns undefined for errors without a known decline code', () => {
+    expect(getDeclineCodeFromError({ type: 'StripeAPIError' })).toBeUndefined();
+    expect(getDeclineCodeFromError({ decline_code: 'unknown_code' })).toBeUndefined();
+    expect(getDeclineCodeFromError(null)).toBeUndefined();
+    expect(getDeclineCodeFromError(undefined)).toBeUndefined();
+  });
+
+  it('round-trips every known code', () => {
+    fc.assert(
+      fc.property(fc.constantFrom(...getAllDeclineCodes()), (code) => {
+        expect(getDeclineCodeFromError({ decline_code: code })).toBe(code);
+      }),
     );
   });
 });
