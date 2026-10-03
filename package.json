@@ -36,7 +36,8 @@
     "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
     "docs:generate": "tsx scripts/generate-docs.ts",
     "docs:api": "typedoc",
-    "docs": "npm run docs:generate && npm run docs:api"
+    "docs": "npm run docs:generate && npm run docs:api",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -62,8 +63,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.6",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "@types/node": "^24.10.1",
     "fast-check": "^4.5.2",
+    "husky": "^9.1.7",
     "tsx": "^4.19.0",
     "typedoc": "^0.28.20",
     "typescript": "^5.9.3",

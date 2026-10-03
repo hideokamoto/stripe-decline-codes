@@ -53,6 +53,15 @@ individual commits inside a merged PR branch (not just the merge subject).
 `chore:` / `docs:` / `ci:` / `test:` / merge commits do not release.
 Do not write `BREAKING CHANGE:` in a commit body unless you mean a major release.
 
+Agents MUST write Conventional Commit messages and must never bypass the hook
+(`--no-verify`):
+
+- Local: husky `commit-msg` hook runs commitlint with
+  `@commitlint/config-conventional` (`commitlint.config.js`). Active after
+  `pnpm install` (husky `prepare` script sets `core.hooksPath`).
+- `.github/pull_request_template.md` reminds human contributors that the PR
+  title must be conventional.
+
 ### Do NOT
 
 - Edit `package.json` `version` — it stays at its last hand-set value; the published
