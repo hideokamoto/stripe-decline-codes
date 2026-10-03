@@ -14,21 +14,27 @@ Published to npm as `stripe-decline-codes`.
 
 ## Commands
 
-The root package uses **pnpm** (`packageManager: pnpm@11.27.1`). Use pnpm, not npm.
+The root package uses **pnpm** (`packageManager: pnpm@10.34.5`). Use pnpm, not npm.
 
 ```bash
 pnpm install
-pnpm test            # vitest
+pnpm test            # vitest (Node)
+pnpm run test:workers  # vitest in real workerd via @cloudflare/vitest-plugin
 pnpm run lint        # biome check
 pnpm run lint:fix    # biome check --write
 pnpm run format      # biome format --write
-pnpm run typecheck   # tsc --noEmit
+pnpm run typecheck   # tsc --noEmit + tests/workers
 pnpm run build       # tsc && vite build -> dist/
 ```
 
 `pnpm-workspace.yaml` sets `onlyBuiltDependencies`/`allowBuilds` for `esbuild`
-(vite/vitest need its install script). Do not remove it — `pnpm install` fails with
-`ERR_PNPM_IGNORED_BUILDS` without it.
+(vite/vitest need its install script) and `workerd` (the Workers runtime binary).
+Do not remove them — `pnpm install` fails with `ERR_PNPM_IGNORED_BUILDS` without it.
+
+Workerd tests live in `tests/workers/` and run through `vitest.workers.config.ts`
+(the `cloudflareTest()` plugin from `@cloudflare/vitest-plugin`, which requires
+vitest ^4.1). The main `vite.config.ts` suite only includes `src/**/*.test.ts`,
+so Workers tests never run in the Node suite.
 
 For the docs site, use npm inside `docs/` (`cd docs && npm ci && npm run build`).
 

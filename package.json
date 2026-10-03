@@ -33,7 +33,7 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tests/workers/tsconfig.json",
     "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
     "docs:generate": "tsx scripts/generate-docs.ts",
     "docs:api": "typedoc",
@@ -76,8 +76,7 @@
     "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
-    "vitest": "^4.1.0",
-    "wrangler": "^4.147.0"
+    "vitest": "^4.1.0"
   },
   "packageManager": "pnpm@10.34.5",
   "publishConfig": {
