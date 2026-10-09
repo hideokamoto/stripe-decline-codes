@@ -1,0 +1,56 @@
+name: Docs data freshness
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'docs-data/**'
+      - 'package.json'
+      - '.github/workflows/docs-data.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'docs-data/**'
+      - 'package.json'
+      - '.github/workflows/docs-data.yml'
+
+jobs:
+  docs-data:
+    name: Check docs-data is up to date
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Regenerate docs data
+        run: |
+          pnpm run docs:generate
+          pnpm run docs:api
+
+      - name: Verify docs-data is fresh
+        run: |
+          if [ -n "$(git status --porcelain docs-data/)" ]; then
+            echo "docs-data/ is stale. Run 'pnpm run docs:generate && pnpm run docs:api' and commit the result."
+            git status --porcelain docs-data/
+            git diff docs-data/ | head -100
+            exit 1
+          fi

@@ -1,7 +1,5 @@
 {
-  "$schema": "./schemas/functions.schema.json",
   "version": "2024-12-18",
-  "generatedAt": "2026-10-09T14:27:34.284Z",
   "functions": [
     {
       "name": "getDeclineDescription",
@@ -54,7 +52,7 @@
         "type": "DeclineCode[]",
         "description": "Array of all supported decline code strings"
       },
-      "example": "const codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 44"
+      "example": "const codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 43"
     },
     {
       "name": "isValidDeclineCode",
@@ -172,13 +170,13 @@
     {
       "name": "getMessageFromStripeError",
       "description": "Extract localized message from a Stripe error object",
-      "signature": "getMessageFromStripeError(error: StripeError, locale?: Locale): string | undefined",
+      "signature": "getMessageFromStripeError(error: unknown, locale?: Locale): string | undefined",
       "parameters": [
         {
           "name": "error",
-          "type": "StripeError",
+          "type": "unknown",
           "optional": false,
-          "description": "The Stripe error object"
+          "description": "The Stripe error object (or any caught value)"
         },
         {
           "name": "locale",
@@ -192,6 +190,42 @@
         "description": "User-facing message in the specified locale, or undefined if not found"
       },
       "example": "const stripeError = {\n  type: 'StripeCardError',\n  decline_code: 'insufficient_funds',\n  message: 'Your card has insufficient funds.'\n};\nconst message = getMessageFromStripeError(stripeError, 'ja');\n// => \"別のお支払い方法を使用してもう一度お試しください。\""
+    },
+    {
+      "name": "isStripeDeclineError",
+      "description": "Type guard that narrows an unknown error to one carrying a known Stripe decline code",
+      "signature": "isStripeDeclineError(error: unknown): error is StripeDeclineError",
+      "parameters": [
+        {
+          "name": "error",
+          "type": "unknown",
+          "optional": false,
+          "description": "The value to check (e.g. a caught Stripe error)"
+        }
+      ],
+      "returns": {
+        "type": "boolean",
+        "description": "True if the error carries a known decline code"
+      },
+      "example": "try {\n  await stripe.charges.create({ ... });\n} catch (err) {\n  if (isStripeDeclineError(err)) {\n    // err.decline_code is typed as DeclineCode here\n    console.log(getDeclineMessage(err.decline_code, 'ja'));\n  }\n}"
+    },
+    {
+      "name": "getDeclineCodeFromError",
+      "description": "Extract a validated decline code from a Stripe error object",
+      "signature": "getDeclineCodeFromError(error: unknown): DeclineCode | undefined",
+      "parameters": [
+        {
+          "name": "error",
+          "type": "unknown",
+          "optional": false,
+          "description": "The Stripe error object (or any caught value)"
+        }
+      ],
+      "returns": {
+        "type": "DeclineCode | undefined",
+        "description": "The decline code, or undefined if absent or unknown"
+      },
+      "example": "try {\n  await stripe.charges.create({ ... });\n} catch (err) {\n  const code = getDeclineCodeFromError(err);\n  if (code && isSoftDecline(code)) {\n    // safe to retry\n  }\n}"
     }
   ]
 }
