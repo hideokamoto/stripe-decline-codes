@@ -10,9 +10,17 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig.json'
+      - 'tsconfig.build.json'
+      - 'tsconfig.typedoc.json'
+      - 'typedoc.json'
       - 'vite.config.ts'
       - 'vitest.workers.config.ts'
       - 'biome.json'
+      - 'pnpm-workspace.yaml'
+      - 'scripts/**'
+      - '.releaserc.json'
+      - 'commitlint.config.js'
+      - '.husky/**'
   pull_request:
     branches: [main, master]
     paths:
@@ -22,9 +30,17 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig.json'
+      - 'tsconfig.build.json'
+      - 'tsconfig.typedoc.json'
+      - 'typedoc.json'
       - 'vite.config.ts'
       - 'vitest.workers.config.ts'
       - 'biome.json'
+      - 'pnpm-workspace.yaml'
+      - 'scripts/**'
+      - '.releaserc.json'
+      - 'commitlint.config.js'
+      - '.husky/**'
 
 jobs:
   test:
