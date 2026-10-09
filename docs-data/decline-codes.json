@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/decline-codes.schema.json",
   "version": "2024-12-18",
-  "generatedAt": "2026-01-15T22:42:07.269Z",
+  "generatedAt": "2026-10-05T14:19:34.590Z",
   "totalCodes": 43,
   "categories": {
     "SOFT_DECLINE": {
@@ -64,7 +64,7 @@
       "category": "SOFT_DECLINE",
       "description": "The payment cannot be authorized.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
-      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "支払いは承認できません。",
@@ -207,7 +207,7 @@
       "category": "HARD_DECLINE",
       "description": "The card number is incorrect.",
       "nextSteps": "The customer should try again using the correct card number.",
-      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "カード番号が正しくありません。",
@@ -220,7 +220,7 @@
       "category": "HARD_DECLINE",
       "description": "The CVC number is incorrect.",
       "nextSteps": "The customer should try again using the correct CVC.",
-      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "CVC番号が正しくありません。",
@@ -233,7 +233,7 @@
       "category": "HARD_DECLINE",
       "description": "The PIN entered is incorrect. This decline code only applies to payments made with a card reader.",
       "nextSteps": "The customer should try again using the correct PIN.",
-      "nextUserAction": "Please check your PIN and try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please check your PIN and try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "PINコードが正しくありません。",
@@ -350,7 +350,7 @@
       "category": "SOFT_DECLINE",
       "description": "The card issuer could not be reached, so the payment could not be authorized.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
-      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "カード発行者に連絡できなかったため、支払いを承認できませんでした。",
@@ -454,7 +454,7 @@
       "category": "SOFT_DECLINE",
       "description": "An error occurred while processing the card.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, try again later.",
-      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "カードの処理中にエラーが発生しました。",
@@ -467,7 +467,7 @@
       "category": "SOFT_DECLINE",
       "description": "The payment could not be processed by the issuer for an unknown reason.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
-      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "原因不明のため、発行者が支払いを処理できませんでした。",
@@ -597,7 +597,7 @@
       "category": "SOFT_DECLINE",
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "Ask the customer to attempt the payment again. If subsequent payments are declined, the customer should contact their card issuer for more information.",
-      "nextUserAction": "Please try again. If it still cannot be processed, the please contact your card issuer.",
+      "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",

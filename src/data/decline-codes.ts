@@ -17,7 +17,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.',
     nextUserAction:
-      'Please try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please try again. If it still cannot be processed, please contact your card issuer.',
     category: 'SOFT_DECLINE',
     translations: {
       ja: {
@@ -159,7 +159,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card number is incorrect.',
     nextSteps: 'The customer should try again using the correct card number.',
     nextUserAction:
-      'Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.',
     category: 'HARD_DECLINE',
     translations: {
       ja: {
@@ -173,7 +173,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The CVC number is incorrect.',
     nextSteps: 'The customer should try again using the correct CVC.',
     nextUserAction:
-      'Please check your card numbers and try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.',
     category: 'HARD_DECLINE',
     translations: {
       ja: {
@@ -188,7 +188,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       'The PIN entered is incorrect. This decline code only applies to payments made with a card reader.',
     nextSteps: 'The customer should try again using the correct PIN.',
     nextUserAction:
-      'Please check your PIN and try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please check your PIN and try again. If it still cannot be processed, please contact your card issuer.',
     category: 'HARD_DECLINE',
     translations: {
       ja: {
@@ -302,7 +302,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.',
     nextUserAction:
-      'Please try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please try again. If it still cannot be processed, please contact your card issuer.',
     category: 'SOFT_DECLINE',
     translations: {
       ja: {
@@ -406,7 +406,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The payment should be attempted again. If it still cannot be processed, try again later.',
     nextUserAction:
-      'Please try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please try again. If it still cannot be processed, please contact your card issuer.',
     category: 'SOFT_DECLINE',
     translations: {
       ja: {
@@ -421,7 +421,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.',
     nextUserAction:
-      'Please try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please try again. If it still cannot be processed, please contact your card issuer.',
     category: 'SOFT_DECLINE',
     translations: {
       ja: {
@@ -547,7 +547,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'Ask the customer to attempt the payment again. If subsequent payments are declined, the customer should contact their card issuer for more information.',
     nextUserAction:
-      'Please try again. If it still cannot be processed, the please contact your card issuer.',
+      'Please try again. If it still cannot be processed, please contact your card issuer.',
     category: 'SOFT_DECLINE',
     translations: {
       ja: {
