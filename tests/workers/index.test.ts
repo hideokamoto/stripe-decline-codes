@@ -46,8 +46,8 @@ describe('getDeclineMessage', () => {
 });
 
 describe('getAllDeclineCodes', () => {
-  it('returns all 43 decline codes', () => {
-    expect(getAllDeclineCodes()).toHaveLength(43);
+  it('returns all 50 decline codes', () => {
+    expect(getAllDeclineCodes()).toHaveLength(50);
   });
 });
 
@@ -60,7 +60,7 @@ describe('isValidDeclineCode', () => {
 
 describe('getDocVersion', () => {
   it('returns the documentation version', () => {
-    expect(getDocVersion()).toBe('2024-12-18');
+    expect(getDocVersion()).toBe('2026-10-09');
   });
 });
 
@@ -96,6 +96,6 @@ describe('getMessageFromStripeError', () => {
 
 describe('DECLINE_CODES data', () => {
   it('exposes the full database', () => {
-    expect(Object.keys(DECLINE_CODES)).toHaveLength(43);
+    expect(Object.keys(DECLINE_CODES)).toHaveLength(50);
   });
 });

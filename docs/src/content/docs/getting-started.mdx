@@ -119,7 +119,7 @@ isValidDeclineCode('not_a_real_code');    // => false
 import { getAllDeclineCodes } from 'stripe-decline-codes';
 
 const codes = getAllDeclineCodes();
-console.log(codes.length); // => 44
+console.log(codes.length); // => 50
 ```
 
 ## Checking the Data Version
@@ -129,5 +129,5 @@ The library tracks which version of the Stripe API documentation the decline cod
 ```ts
 import { getDocVersion } from 'stripe-decline-codes';
 
-console.log(getDocVersion()); // => "2024-12-18"
+console.log(getDocVersion()); // => "2026-10-09"
 ```

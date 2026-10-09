@@ -185,6 +185,19 @@ describe('getAllDeclineCodes', () => {
     expect(codes).toContain('incorrect_cvc');
   });
 
+  it('should include all 50 documented Stripe decline codes', () => {
+    const codes = getAllDeclineCodes();
+    expect(codes).toHaveLength(50);
+    // Codes added in the 2026-10-09 documentation sync
+    expect(codes).toContain('authentication_required');
+    expect(codes).toContain('authentication_not_handled');
+    expect(codes).toContain('incorrect_address');
+    expect(codes).toContain('invalid_expiry_month');
+    expect(codes).toContain('offline_pin_required');
+    expect(codes).toContain('online_or_offline_pin_required');
+    expect(codes).toContain('mobile_device_authentication_required');
+  });
+
   // Pure function property test - returns same result on multiple calls
   it('should be idempotent - returns same result on multiple calls', () => {
     const codes1 = getAllDeclineCodes();
@@ -272,6 +285,27 @@ describe('isValidDeclineCode', () => {
         },
       ),
     );
+  });
+});
+
+describe('deprecated decline codes', () => {
+  it('should mark codes deprecated upstream as deprecated', () => {
+    const codes = DECLINE_CODES;
+    expect(codes.do_not_try_again.deprecated).toBe(true);
+    expect(codes.try_again_later.deprecated).toBe(true);
+  });
+
+  it('should not mark active codes as deprecated', () => {
+    const deprecatedCodes = getAllDeclineCodes().filter(
+      (code) => DECLINE_CODES[code].deprecated === true,
+    );
+    expect(deprecatedCodes).toEqual(['do_not_try_again', 'try_again_later']);
+  });
+
+  it('should expose the deprecated flag through getDeclineDescription', () => {
+    const result = getDeclineDescription('do_not_try_again');
+    const code = result.code as DeclineCodeInfo;
+    expect(code.deprecated).toBe(true);
   });
 });
 

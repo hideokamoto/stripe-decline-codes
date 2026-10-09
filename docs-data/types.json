@@ -1,5 +1,5 @@
 {
-  "version": "2024-12-18",
+  "version": "2026-10-09",
   "types": [
     {
       "name": "Locale",
@@ -28,6 +28,8 @@
       "definition": "Union of all decline code string literals",
       "values": [
         "approve_with_id",
+        "authentication_not_handled",
+        "authentication_required",
         "call_issuer",
         "card_not_supported",
         "card_velocity_exceeded",
@@ -38,6 +40,7 @@
         "expired_card",
         "fraudulent",
         "generic_decline",
+        "incorrect_address",
         "incorrect_number",
         "incorrect_cvc",
         "incorrect_pin",
@@ -46,15 +49,19 @@
         "invalid_account",
         "invalid_amount",
         "invalid_cvc",
+        "invalid_expiry_month",
         "invalid_expiry_year",
         "invalid_number",
         "invalid_pin",
         "issuer_not_available",
         "lost_card",
         "merchant_blacklist",
+        "mobile_device_authentication_required",
         "new_account_information_available",
         "no_action_taken",
         "not_permitted",
+        "offline_pin_required",
+        "online_or_offline_pin_required",
         "pickup_card",
         "pin_try_exceeded",
         "processing_error",
@@ -113,6 +120,12 @@
           "name": "category",
           "type": "DeclineCategory",
           "description": "Category of the decline (soft or hard)"
+        },
+        {
+          "name": "deprecated",
+          "type": "boolean",
+          "description": "Whether Stripe has deprecated this decline code",
+          "optional": true
         },
         {
           "name": "translations",
