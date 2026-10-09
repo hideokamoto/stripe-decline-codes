@@ -365,7 +365,7 @@ This library includes all 43 Stripe decline codes:
 
 | Environment | Support |
 | --- | --- |
-| Node.js | >= 18 (tested on 18.x / 20.x / 22.x in CI) |
+| Node.js | >= 18 (tested on 20.x / 22.x in CI; the built output is ES2020 syntax + `Object.hasOwn`, so it works on 18.x but is not CI-verified) |
 | Cloudflare Workers (workerd) | Verified via [@cloudflare/vitest-plugin](https://developers.cloudflare.com/workers/testing/vitest-integration/) runtime tests |
 | Other edge runtimes (Deno, Bun) | Should work (pure TypeScript, zero dependencies) but not CI-verified |
 | Module formats | ESM (`index.mjs`), CJS (`index.cjs`), TypeScript types (`index.d.ts`) |
