@@ -1,0 +1,3 @@
+# TypeDoc HTML output is generated locally by `pnpm run docs:api` and
+# must never be published to npm (CI publishes do not generate it).
+api/
