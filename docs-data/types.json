@@ -1,7 +1,5 @@
 {
-  "$schema": "./schemas/types.schema.json",
   "version": "2024-12-18",
-  "generatedAt": "2026-10-09T14:27:34.284Z",
   "types": [
     {
       "name": "Locale",
@@ -163,6 +161,20 @@
           "type": "string",
           "description": "Error message from Stripe",
           "optional": true
+        }
+      ]
+    },
+    {
+      "name": "StripeDeclineError",
+      "kind": "interface",
+      "description": "A Stripe error known to carry a valid decline code (matches stripe-node >= 18 StripeCardError shape)",
+      "extends": "StripeError",
+      "properties": [
+        {
+          "name": "decline_code",
+          "type": "DeclineCode",
+          "description": "The decline code from Stripe, narrowed to the DeclineCode union",
+          "optional": false
         }
       ]
     }

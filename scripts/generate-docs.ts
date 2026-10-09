@@ -47,9 +47,7 @@ async function main() {
   });
 
   const declineCodesData = {
-    $schema: './schemas/decline-codes.schema.json',
     version: DOC_VERSION,
-    generatedAt: new Date().toISOString(),
     totalCodes: getAllDeclineCodes().length,
     categories: {
       SOFT_DECLINE: {
@@ -69,9 +67,7 @@ async function main() {
 
   // Generate types.json
   const typesData = {
-    $schema: './schemas/types.schema.json',
     version: DOC_VERSION,
-    generatedAt: new Date().toISOString(),
     types: [
       {
         name: 'Locale',
@@ -169,6 +165,21 @@ async function main() {
           },
         ],
       },
+      {
+        name: 'StripeDeclineError',
+        kind: 'interface',
+        description:
+          'A Stripe error known to carry a valid decline code (matches stripe-node >= 18 StripeCardError shape)',
+        extends: 'StripeError',
+        properties: [
+          {
+            name: 'decline_code',
+            type: 'DeclineCode',
+            description: 'The decline code from Stripe, narrowed to the DeclineCode union',
+            optional: false,
+          },
+        ],
+      },
     ],
   };
 
@@ -177,9 +188,7 @@ async function main() {
 
   // Generate functions.json (API reference)
   const functionsData = {
-    $schema: './schemas/functions.schema.json',
     version: DOC_VERSION,
-    generatedAt: new Date().toISOString(),
     functions: [
       {
         name: 'getDeclineDescription',
@@ -237,7 +246,7 @@ console.log(message);
           description: 'Array of all supported decline code strings',
         },
         example: `const codes = getAllDeclineCodes();
-console.log(codes.length); // => 44`,
+console.log(codes.length); // => ${getAllDeclineCodes().length}`,
       },
       {
         name: 'isValidDeclineCode',
@@ -346,14 +355,13 @@ isSoftDecline('fraudulent'); // => false`,
       {
         name: 'getMessageFromStripeError',
         description: 'Extract localized message from a Stripe error object',
-        signature:
-          'getMessageFromStripeError(error: StripeError, locale?: Locale): string | undefined',
+        signature: 'getMessageFromStripeError(error: unknown, locale?: Locale): string | undefined',
         parameters: [
           {
             name: 'error',
-            type: 'StripeError',
+            type: 'unknown',
             optional: false,
-            description: 'The Stripe error object',
+            description: 'The Stripe error object (or any caught value)',
           },
           {
             name: 'locale',
@@ -374,6 +382,57 @@ isSoftDecline('fraudulent'); // => false`,
 const message = getMessageFromStripeError(stripeError, 'ja');
 // => "別のお支払い方法を使用してもう一度お試しください。"`,
       },
+      {
+        name: 'isStripeDeclineError',
+        description:
+          'Type guard that narrows an unknown error to one carrying a known Stripe decline code',
+        signature: 'isStripeDeclineError(error: unknown): error is StripeDeclineError',
+        parameters: [
+          {
+            name: 'error',
+            type: 'unknown',
+            optional: false,
+            description: 'The value to check (e.g. a caught Stripe error)',
+          },
+        ],
+        returns: {
+          type: 'boolean',
+          description: 'True if the error carries a known decline code',
+        },
+        example: `try {
+  await stripe.charges.create({ ... });
+} catch (err) {
+  if (isStripeDeclineError(err)) {
+    // err.decline_code is typed as DeclineCode here
+    console.log(getDeclineMessage(err.decline_code, 'ja'));
+  }
+}`,
+      },
+      {
+        name: 'getDeclineCodeFromError',
+        description: 'Extract a validated decline code from a Stripe error object',
+        signature: 'getDeclineCodeFromError(error: unknown): DeclineCode | undefined',
+        parameters: [
+          {
+            name: 'error',
+            type: 'unknown',
+            optional: false,
+            description: 'The Stripe error object (or any caught value)',
+          },
+        ],
+        returns: {
+          type: 'DeclineCode | undefined',
+          description: 'The decline code, or undefined if absent or unknown',
+        },
+        example: `try {
+  await stripe.charges.create({ ... });
+} catch (err) {
+  const code = getDeclineCodeFromError(err);
+  if (code && isSoftDecline(code)) {
+    // safe to retry
+  }
+}`,
+      },
     ],
   };
 
@@ -383,16 +442,13 @@ const message = getMessageFromStripeError(stripeError, 'ja');
   // Generate metadata.json
   const packageJson = await import('../package.json', { with: { type: 'json' } });
   const metadataData = {
-    $schema: './schemas/metadata.schema.json',
     package: {
       name: packageJson.default.name,
-      version: packageJson.default.version,
       description: packageJson.default.description,
       repository: packageJson.default.repository?.url || '',
       license: packageJson.default.license,
     },
     stripeDocVersion: DOC_VERSION,
-    generatedAt: new Date().toISOString(),
     supportedLocales: ['en', 'ja'],
     stats: {
       totalDeclineCodes: getAllDeclineCodes().length,

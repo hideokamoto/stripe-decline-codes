@@ -1,4 +1,5 @@
 {
+	"schemaVersion": "2.0",
 	"id": 0,
 	"name": "stripe-decline-codes",
 	"variant": "project",
@@ -6,7 +7,7 @@
 	"flags": {},
 	"children": [
 		{
-			"id": 37,
+			"id": 43,
 			"name": "DeclineCodeInfo",
 			"variant": "declaration",
 			"kind": 256,
@@ -21,7 +22,7 @@
 			},
 			"children": [
 				{
-					"id": 41,
+					"id": 47,
 					"name": "category",
 					"variant": "declaration",
 					"kind": 1024,
@@ -38,18 +39,19 @@
 						{
 							"fileName": "types.ts",
 							"line": 30,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L30"
 						}
 					],
 					"type": {
 						"type": "reference",
-						"target": 35,
+						"target": 41,
 						"name": "DeclineCategory",
 						"package": "stripe-decline-codes"
 					}
 				},
 				{
-					"id": 38,
+					"id": 44,
 					"name": "description",
 					"variant": "declaration",
 					"kind": 1024,
@@ -66,7 +68,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 24,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L24"
 						}
 					],
 					"type": {
@@ -75,7 +78,7 @@
 					}
 				},
 				{
-					"id": 39,
+					"id": 45,
 					"name": "nextSteps",
 					"variant": "declaration",
 					"kind": 1024,
@@ -92,7 +95,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 26,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L26"
 						}
 					],
 					"type": {
@@ -101,7 +105,7 @@
 					}
 				},
 				{
-					"id": 40,
+					"id": 46,
 					"name": "nextUserAction",
 					"variant": "declaration",
 					"kind": 1024,
@@ -118,7 +122,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 28,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L28"
 						}
 					],
 					"type": {
@@ -127,7 +132,7 @@
 					}
 				},
 				{
-					"id": 42,
+					"id": 48,
 					"name": "translations",
 					"variant": "declaration",
 					"kind": 1024,
@@ -146,32 +151,35 @@
 						{
 							"fileName": "types.ts",
 							"line": 32,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L32"
 						}
 					],
 					"type": {
 						"type": "reference",
 						"target": {
-							"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+							"packageName": "typescript",
+							"packagePath": "lib/lib.es5.d.ts",
 							"qualifiedName": "Partial"
 						},
 						"typeArguments": [
 							{
 								"type": "reference",
 								"target": {
-									"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+									"packageName": "typescript",
+									"packagePath": "lib/lib.es5.d.ts",
 									"qualifiedName": "Record"
 								},
 								"typeArguments": [
 									{
 										"type": "reference",
-										"target": 46,
+										"target": 52,
 										"name": "Locale",
 										"package": "stripe-decline-codes"
 									},
 									{
 										"type": "reference",
-										"target": 53,
+										"target": 65,
 										"name": "Translation",
 										"package": "stripe-decline-codes"
 									}
@@ -189,11 +197,11 @@
 				{
 					"title": "Properties",
 					"children": [
-						41,
-						38,
-						39,
-						40,
-						42
+						47,
+						44,
+						45,
+						46,
+						48
 					]
 				}
 			],
@@ -201,12 +209,13 @@
 				{
 					"fileName": "types.ts",
 					"line": 22,
-					"character": 17
+					"character": 17,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L22"
 				}
 			]
 		},
 		{
-			"id": 43,
+			"id": 49,
 			"name": "DeclineCodeResult",
 			"variant": "declaration",
 			"kind": 256,
@@ -221,7 +230,7 @@
 			},
 			"children": [
 				{
-					"id": 45,
+					"id": 51,
 					"name": "code",
 					"variant": "declaration",
 					"kind": 1024,
@@ -238,7 +247,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 42,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L42"
 						}
 					],
 					"type": {
@@ -246,14 +256,15 @@
 						"types": [
 							{
 								"type": "reference",
-								"target": 37,
+								"target": 43,
 								"name": "DeclineCodeInfo",
 								"package": "stripe-decline-codes"
 							},
 							{
 								"type": "reference",
 								"target": {
-									"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+									"packageName": "typescript",
+									"packagePath": "lib/lib.es5.d.ts",
 									"qualifiedName": "Record"
 								},
 								"typeArguments": [
@@ -273,7 +284,7 @@
 					}
 				},
 				{
-					"id": 44,
+					"id": 50,
 					"name": "docVersion",
 					"variant": "declaration",
 					"kind": 1024,
@@ -290,7 +301,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 40,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L40"
 						}
 					],
 					"type": {
@@ -303,8 +315,8 @@
 				{
 					"title": "Properties",
 					"children": [
-						45,
-						44
+						51,
+						50
 					]
 				}
 			],
@@ -312,13 +324,14 @@
 				{
 					"fileName": "types.ts",
 					"line": 38,
-					"character": 17
+					"character": 17,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L38"
 				}
 			]
 		},
 		{
-			"id": 47,
-			"name": "StripeError",
+			"id": 53,
+			"name": "StripeDeclineError",
 			"variant": "declaration",
 			"kind": 256,
 			"flags": {},
@@ -326,69 +339,131 @@
 				"summary": [
 					{
 						"kind": "text",
-						"text": "Stripe error object with decline code information"
+						"text": "A Stripe error known to carry a valid decline code.\n\nMatches the stripe-node >= 18 "
+					},
+					{
+						"kind": "code",
+						"text": "`StripeCardError`"
+					},
+					{
+						"kind": "text",
+						"text": " shape, where "
+					},
+					{
+						"kind": "code",
+						"text": "`decline_code`"
+					},
+					{
+						"kind": "text",
+						"text": "\nis a required string, narrowed further to the "
+					},
+					{
+						"kind": "inline-tag",
+						"tag": "@link",
+						"text": "DeclineCode",
+						"target": 42
+					},
+					{
+						"kind": "text",
+						"text": " union.\nErrors from stripe-node <= 17 (where "
+					},
+					{
+						"kind": "code",
+						"text": "`decline_code`"
+					},
+					{
+						"kind": "text",
+						"text": " is optional) or plain\nobjects can be narrowed to this type with "
+					},
+					{
+						"kind": "code",
+						"text": "`isStripeDeclineError`"
+					},
+					{
+						"kind": "text",
+						"text": "."
 					}
 				]
 			},
 			"children": [
 				{
-					"id": 49,
+					"id": 54,
 					"name": "decline_code",
 					"variant": "declaration",
 					"kind": 1024,
-					"flags": {
-						"isOptional": true
-					},
+					"flags": {},
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 50,
-							"character": 2
+							"line": 64,
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L64"
 						}
 					],
 					"type": {
-						"type": "intrinsic",
-						"name": "string"
+						"type": "reference",
+						"target": 42,
+						"name": "DeclineCode",
+						"package": "stripe-decline-codes"
+					},
+					"overwrites": {
+						"type": "reference",
+						"target": 61,
+						"name": "StripeError.decline_code"
 					}
 				},
 				{
-					"id": 50,
+					"id": 56,
 					"name": "message",
 					"variant": "declaration",
 					"kind": 1024,
 					"flags": {
-						"isOptional": true
+						"isOptional": true,
+						"isInherited": true
 					},
 					"sources": [
 						{
 							"fileName": "types.ts",
 							"line": 51,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L51"
 						}
 					],
 					"type": {
 						"type": "intrinsic",
 						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"target": 62,
+						"name": "StripeError.message"
 					}
 				},
 				{
-					"id": 48,
+					"id": 55,
 					"name": "type",
 					"variant": "declaration",
 					"kind": 1024,
 					"flags": {
-						"isOptional": true
+						"isOptional": true,
+						"isInherited": true
 					},
 					"sources": [
 						{
 							"fileName": "types.ts",
 							"line": 49,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L49"
 						}
 					],
 					"type": {
 						"type": "intrinsic",
 						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"target": 60,
+						"name": "StripeError.type"
 					}
 				}
 			],
@@ -396,22 +471,23 @@
 				{
 					"title": "Properties",
 					"children": [
-						49,
-						50,
-						48
+						54,
+						56,
+						55
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "types.ts",
-					"line": 48,
-					"character": 17
+					"line": 63,
+					"character": 17,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L63"
 				}
 			],
 			"indexSignatures": [
 				{
-					"id": 51,
+					"id": 57,
 					"name": "__index",
 					"variant": "signature",
 					"kind": 8192,
@@ -419,13 +495,14 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 52,
-							"character": 2
+							"line": 63,
+							"character": 17,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L63"
 						}
 					],
 					"parameters": [
 						{
-							"id": 52,
+							"id": 58,
 							"name": "key",
 							"variant": "param",
 							"kind": 32768,
@@ -441,10 +518,157 @@
 						"name": "unknown"
 					}
 				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"target": 59,
+					"name": "StripeError",
+					"package": "stripe-decline-codes"
+				}
 			]
 		},
 		{
-			"id": 53,
+			"id": 59,
+			"name": "StripeError",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Stripe error object with decline code information"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 61,
+					"name": "decline_code",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 50,
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L50"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 62,
+					"name": "message",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 51,
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L51"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 60,
+					"name": "type",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 49,
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L49"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						61,
+						62,
+						60
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 48,
+					"character": 17,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L48"
+				}
+			],
+			"indexSignatures": [
+				{
+					"id": 63,
+					"name": "__index",
+					"variant": "signature",
+					"kind": 8192,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 52,
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L52"
+						}
+					],
+					"parameters": [
+						{
+							"id": 64,
+							"name": "key",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "unknown"
+					}
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"target": 53,
+					"name": "StripeDeclineError"
+				}
+			]
+		},
+		{
+			"id": 65,
 			"name": "Translation",
 			"variant": "declaration",
 			"kind": 256,
@@ -459,7 +683,7 @@
 			},
 			"children": [
 				{
-					"id": 54,
+					"id": 66,
 					"name": "description",
 					"variant": "declaration",
 					"kind": 1024,
@@ -468,7 +692,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 15,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L15"
 						}
 					],
 					"type": {
@@ -477,7 +702,7 @@
 					}
 				},
 				{
-					"id": 55,
+					"id": 67,
 					"name": "nextUserAction",
 					"variant": "declaration",
 					"kind": 1024,
@@ -486,7 +711,8 @@
 						{
 							"fileName": "types.ts",
 							"line": 16,
-							"character": 2
+							"character": 2,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L16"
 						}
 					],
 					"type": {
@@ -499,8 +725,8 @@
 				{
 					"title": "Properties",
 					"children": [
-						54,
-						55
+						66,
+						67
 					]
 				}
 			],
@@ -508,12 +734,13 @@
 				{
 					"fileName": "types.ts",
 					"line": 14,
-					"character": 17
+					"character": 17,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L14"
 				}
 			]
 		},
 		{
-			"id": 35,
+			"id": 41,
 			"name": "DeclineCategory",
 			"variant": "declaration",
 			"kind": 2097152,
@@ -530,7 +757,8 @@
 				{
 					"fileName": "types.ts",
 					"line": 9,
-					"character": 12
+					"character": 12,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L9"
 				}
 			],
 			"type": {
@@ -548,7 +776,7 @@
 			}
 		},
 		{
-			"id": 36,
+			"id": 42,
 			"name": "DeclineCode",
 			"variant": "declaration",
 			"kind": 2097152,
@@ -564,8 +792,9 @@
 			"sources": [
 				{
 					"fileName": "types.ts",
-					"line": 58,
-					"character": 12
+					"line": 70,
+					"character": 12,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L70"
 				}
 			],
 			"type": {
@@ -747,7 +976,7 @@
 			}
 		},
 		{
-			"id": 46,
+			"id": 52,
 			"name": "Locale",
 			"variant": "declaration",
 			"kind": 2097152,
@@ -764,7 +993,8 @@
 				{
 					"fileName": "types.ts",
 					"line": 4,
-					"character": 12
+					"character": 12,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/types.ts#L4"
 				}
 			],
 			"type": {
@@ -782,7 +1012,7 @@
 			}
 		},
 		{
-			"id": 33,
+			"id": 39,
 			"name": "DECLINE_CODES",
 			"variant": "declaration",
 			"kind": 32,
@@ -801,25 +1031,27 @@
 				{
 					"fileName": "data/decline-codes.ts",
 					"line": 14,
-					"character": 13
+					"character": 13,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/data/decline-codes.ts#L14"
 				}
 			],
 			"type": {
 				"type": "reference",
 				"target": {
-					"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+					"packageName": "typescript",
+					"packagePath": "lib/lib.es5.d.ts",
 					"qualifiedName": "Record"
 				},
 				"typeArguments": [
 					{
 						"type": "reference",
-						"target": 36,
+						"target": 42,
 						"name": "DeclineCode",
 						"package": "stripe-decline-codes"
 					},
 					{
 						"type": "reference",
-						"target": 37,
+						"target": 43,
 						"name": "DeclineCodeInfo",
 						"package": "stripe-decline-codes"
 					}
@@ -830,7 +1062,7 @@
 			"defaultValue": "..."
 		},
 		{
-			"id": 34,
+			"id": 40,
 			"name": "DOC_VERSION",
 			"variant": "declaration",
 			"kind": 32,
@@ -849,7 +1081,8 @@
 				{
 					"fileName": "data/decline-codes.ts",
 					"line": 8,
-					"character": 13
+					"character": 13,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/data/decline-codes.ts#L8"
 				}
 			],
 			"type": {
@@ -867,8 +1100,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 127,
-					"character": 16
+					"line": 134,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L134"
 				}
 			],
 			"signatures": [
@@ -909,8 +1143,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 127,
-							"character": 16
+							"line": 134,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L134"
 						}
 					],
 					"parameters": [
@@ -949,7 +1184,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"target": 46,
+								"target": 52,
 								"name": "Locale",
 								"package": "stripe-decline-codes"
 							},
@@ -974,7 +1209,8 @@
 							"type": {
 								"type": "reference",
 								"target": {
-									"sourceFileName": "node_modules/typescript/lib/lib.es5.d.ts",
+									"packageName": "typescript",
+									"packagePath": "lib/lib.es5.d.ts",
 									"qualifiedName": "Record"
 								},
 								"typeArguments": [
@@ -997,11 +1233,11 @@
 						"types": [
 							{
 								"type": "intrinsic",
-								"name": "undefined"
+								"name": "string"
 							},
 							{
 								"type": "intrinsic",
-								"name": "string"
+								"name": "undefined"
 							}
 						]
 					}
@@ -1017,8 +1253,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 74,
-					"character": 16
+					"line": 81,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L81"
 				}
 			],
 			"signatures": [
@@ -1059,15 +1296,16 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 74,
-							"character": 16
+							"line": 81,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L81"
 						}
 					],
 					"type": {
 						"type": "array",
 						"elementType": {
 							"type": "reference",
-							"target": 36,
+							"target": 42,
 							"name": "DeclineCode",
 							"package": "stripe-decline-codes"
 						}
@@ -1084,8 +1322,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 164,
-					"character": 16
+					"line": 173,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L173"
 				}
 			],
 			"signatures": [
@@ -1126,8 +1365,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 164,
-							"character": 16
+							"line": 173,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L173"
 						}
 					],
 					"parameters": [
@@ -1155,14 +1395,136 @@
 						"type": "union",
 						"types": [
 							{
-								"type": "intrinsic",
-								"name": "undefined"
-							},
-							{
 								"type": "reference",
-								"target": 35,
+								"target": 41,
 								"name": "DeclineCategory",
 								"package": "stripe-decline-codes"
+							},
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 36,
+			"name": "getDeclineCodeFromError",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 299,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L299"
+				}
+			],
+			"signatures": [
+				{
+					"id": 37,
+					"name": "getDeclineCodeFromError",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Extract a validated decline code from a Stripe error object\n\nUnlike "
+							},
+							{
+								"kind": "code",
+								"text": "`getMessageFromStripeError`"
+							},
+							{
+								"kind": "text",
+								"text": ", this returns the decline code itself\n(typed as "
+							},
+							{
+								"kind": "inline-tag",
+								"tag": "@link",
+								"text": "DeclineCode",
+								"target": 42
+							},
+							{
+								"kind": "text",
+								"text": ") so it can be passed to any other helper in\nthis library. Accepts "
+							},
+							{
+								"kind": "code",
+								"text": "`unknown`"
+							},
+							{
+								"kind": "text",
+								"text": " so caught errors can be passed directly."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The decline code, or undefined if absent or unknown"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ntry {\n  await stripe.charges.create({ ... });\n} catch (err) {\n  const code = getDeclineCodeFromError(err);\n  if (code && isSoftDecline(code)) {\n    // safe to retry\n  }\n}\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 299,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L299"
+						}
+					],
+					"parameters": [
+						{
+							"id": 38,
+							"name": "error",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The Stripe error object (or any caught value)"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "unknown"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "reference",
+								"target": 42,
+								"name": "DeclineCode",
+								"package": "stripe-decline-codes"
+							},
+							{
+								"type": "intrinsic",
+								"name": "undefined"
 							}
 						]
 					}
@@ -1178,8 +1540,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 19,
-					"character": 16
+					"line": 26,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L26"
 				}
 			],
 			"signatures": [
@@ -1220,8 +1583,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 19,
-							"character": 16
+							"line": 26,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L26"
 						}
 					],
 					"parameters": [
@@ -1249,7 +1613,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"target": 43,
+						"target": 49,
 						"name": "DeclineCodeResult",
 						"package": "stripe-decline-codes"
 					}
@@ -1265,8 +1629,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 48,
-					"character": 16
+					"line": 55,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L55"
 				}
 			],
 			"signatures": [
@@ -1307,8 +1672,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 48,
-							"character": 16
+							"line": 55,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L55"
 						}
 					],
 					"parameters": [
@@ -1347,7 +1713,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"target": 46,
+								"target": 52,
 								"name": "Locale",
 								"package": "stripe-decline-codes"
 							},
@@ -1359,11 +1725,11 @@
 						"types": [
 							{
 								"type": "intrinsic",
-								"name": "undefined"
+								"name": "string"
 							},
 							{
 								"type": "intrinsic",
-								"name": "string"
+								"name": "undefined"
 							}
 						]
 					}
@@ -1379,8 +1745,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 105,
-					"character": 16
+					"line": 112,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L112"
 				}
 			],
 			"signatures": [
@@ -1421,8 +1788,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 105,
-							"character": 16
+							"line": 112,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L112"
 						}
 					],
 					"type": {
@@ -1441,8 +1809,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 223,
-					"character": 16
+					"line": 232,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L232"
 				}
 			],
 			"signatures": [
@@ -1483,8 +1852,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 223,
-							"character": 16
+							"line": 232,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L232"
 						}
 					],
 					"parameters": [
@@ -1498,15 +1868,13 @@
 								"summary": [
 									{
 										"kind": "text",
-										"text": "The Stripe error object"
+										"text": "The Stripe error object (or any caught value)"
 									}
 								]
 							},
 							"type": {
-								"type": "reference",
-								"target": 47,
-								"name": "StripeError",
-								"package": "stripe-decline-codes"
+								"type": "intrinsic",
+								"name": "unknown"
 							}
 						},
 						{
@@ -1525,7 +1893,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"target": 46,
+								"target": 52,
 								"name": "Locale",
 								"package": "stripe-decline-codes"
 							},
@@ -1537,11 +1905,11 @@
 						"types": [
 							{
 								"type": "intrinsic",
-								"name": "undefined"
+								"name": "string"
 							},
 							{
 								"type": "intrinsic",
-								"name": "string"
+								"name": "undefined"
 							}
 						]
 					}
@@ -1557,8 +1925,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 184,
-					"character": 16
+					"line": 193,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L193"
 				}
 			],
 			"signatures": [
@@ -1599,8 +1968,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 184,
-							"character": 16
+							"line": 193,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L193"
 						}
 					],
 					"parameters": [
@@ -1640,8 +2010,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 200,
-					"character": 16
+					"line": 209,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L209"
 				}
 			],
 			"signatures": [
@@ -1682,8 +2053,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 200,
-							"character": 16
+							"line": 209,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L209"
 						}
 					],
 					"parameters": [
@@ -1715,6 +2087,166 @@
 			]
 		},
 		{
+			"id": 33,
+			"name": "isStripeDeclineError",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 267,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L267"
+				}
+			],
+			"signatures": [
+				{
+					"id": 34,
+					"name": "isStripeDeclineError",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Type guard that narrows an unknown error to one carrying a known Stripe decline code\n\nReturns true when "
+							},
+							{
+								"kind": "code",
+								"text": "`error`"
+							},
+							{
+								"kind": "text",
+								"text": " is an object whose "
+							},
+							{
+								"kind": "code",
+								"text": "`decline_code`"
+							},
+							{
+								"kind": "text",
+								"text": " is a valid\n"
+							},
+							{
+								"kind": "inline-tag",
+								"tag": "@link",
+								"text": "DeclineCode",
+								"target": 42
+							},
+							{
+								"kind": "text",
+								"text": ". Designed for "
+							},
+							{
+								"kind": "code",
+								"text": "`catch`"
+							},
+							{
+								"kind": "text",
+								"text": " blocks: a "
+							},
+							{
+								"kind": "code",
+								"text": "`StripeCardError`"
+							},
+							{
+								"kind": "text",
+								"text": " from\nstripe-node >= 18 (where "
+							},
+							{
+								"kind": "code",
+								"text": "`decline_code`"
+							},
+							{
+								"kind": "text",
+								"text": " is a required "
+							},
+							{
+								"kind": "code",
+								"text": "`string`"
+							},
+							{
+								"kind": "text",
+								"text": ") narrows\nstraight to "
+							},
+							{
+								"kind": "inline-tag",
+								"tag": "@link",
+								"text": "StripeDeclineError",
+								"target": 53
+							},
+							{
+								"kind": "text",
+								"text": "; errors from stripe-node <= 17 or\nplain objects fall back through the same runtime check."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the error carries a known decline code"
+									}
+								]
+							},
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ntry {\n  await stripe.charges.create({ ... });\n} catch (err) {\n  if (isStripeDeclineError(err)) {\n    // err.decline_code is typed as DeclineCode here\n    console.log(getDeclineMessage(err.decline_code, 'ja'));\n  }\n}\n```"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 267,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L267"
+						}
+					],
+					"parameters": [
+						{
+							"id": 35,
+							"name": "error",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The value to check (e.g. a caught Stripe error)"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "unknown"
+							}
+						}
+					],
+					"type": {
+						"type": "predicate",
+						"name": "error",
+						"asserts": false,
+						"targetType": {
+							"type": "reference",
+							"target": 53,
+							"name": "StripeDeclineError",
+							"package": "stripe-decline-codes"
+						}
+					}
+				}
+			]
+		},
+		{
 			"id": 10,
 			"name": "isValidDeclineCode",
 			"variant": "declaration",
@@ -1723,8 +2255,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 90,
-					"character": 16
+					"line": 97,
+					"character": 16,
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L97"
 				}
 			],
 			"signatures": [
@@ -1765,8 +2298,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 90,
-							"character": 16
+							"line": 97,
+							"character": 16,
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L97"
 						}
 					],
 					"parameters": [
@@ -1796,7 +2330,7 @@
 						"asserts": false,
 						"targetType": {
 							"type": "reference",
-							"target": 36,
+							"target": 42,
 							"name": "DeclineCode",
 							"package": "stripe-decline-codes"
 						}
@@ -1809,25 +2343,26 @@
 		{
 			"title": "Interfaces",
 			"children": [
-				37,
 				43,
-				47,
-				53
+				49,
+				53,
+				59,
+				65
 			]
 		},
 		{
 			"title": "Type Aliases",
 			"children": [
-				35,
-				36,
-				46
+				41,
+				42,
+				52
 			]
 		},
 		{
 			"title": "Variables",
 			"children": [
-				33,
-				34
+				39,
+				40
 			]
 		},
 		{
@@ -1836,12 +2371,14 @@
 				15,
 				8,
 				20,
+				36,
 				1,
 				4,
 				13,
 				29,
 				23,
 				26,
+				33,
 				10
 			]
 		}
@@ -1850,223 +2387,333 @@
 	"packageVersion": "0.1.0",
 	"symbolIdMap": {
 		"0": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": ""
 		},
 		"1": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDeclineDescription"
 		},
 		"2": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDeclineDescription"
 		},
 		"3": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "declineCode"
 		},
 		"4": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDeclineMessage"
 		},
 		"5": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDeclineMessage"
 		},
 		"6": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "declineCode"
 		},
 		"7": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "locale"
 		},
 		"8": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getAllDeclineCodes"
 		},
 		"9": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getAllDeclineCodes"
 		},
 		"10": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "isValidDeclineCode"
 		},
 		"11": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "isValidDeclineCode"
 		},
 		"12": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "code"
 		},
 		"13": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDocVersion"
 		},
 		"14": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDocVersion"
 		},
 		"15": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "formatDeclineMessage"
 		},
 		"16": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "formatDeclineMessage"
 		},
 		"17": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "declineCode"
 		},
 		"18": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "locale"
 		},
 		"19": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "variables"
 		},
 		"20": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDeclineCategory"
 		},
 		"21": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getDeclineCategory"
 		},
 		"22": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "code"
 		},
 		"23": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "isHardDecline"
 		},
 		"24": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "isHardDecline"
 		},
 		"25": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "code"
 		},
 		"26": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "isSoftDecline"
 		},
 		"27": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "isSoftDecline"
 		},
 		"28": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "code"
 		},
 		"29": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getMessageFromStripeError"
 		},
 		"30": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "getMessageFromStripeError"
 		},
 		"31": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "error"
 		},
 		"32": {
-			"sourceFileName": "src/index.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
 			"qualifiedName": "locale"
 		},
 		"33": {
-			"sourceFileName": "src/data/decline-codes.ts",
-			"qualifiedName": "DECLINE_CODES"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
+			"qualifiedName": "isStripeDeclineError"
 		},
 		"34": {
-			"sourceFileName": "src/data/decline-codes.ts",
-			"qualifiedName": "DOC_VERSION"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
+			"qualifiedName": "isStripeDeclineError"
 		},
 		"35": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCategory"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
+			"qualifiedName": "error"
 		},
 		"36": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCode"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
+			"qualifiedName": "getDeclineCodeFromError"
 		},
 		"37": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeInfo"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
+			"qualifiedName": "getDeclineCodeFromError"
 		},
 		"38": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeInfo.description"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/index.ts",
+			"qualifiedName": "error"
 		},
 		"39": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeInfo.nextSteps"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/data/decline-codes.ts",
+			"qualifiedName": "DECLINE_CODES"
 		},
 		"40": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeInfo.nextUserAction"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/data/decline-codes.ts",
+			"qualifiedName": "DOC_VERSION"
 		},
 		"41": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeInfo.category"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCategory"
 		},
 		"42": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeInfo.translations"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCode"
 		},
 		"43": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeResult"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo"
 		},
 		"44": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeResult.docVersion"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.description"
 		},
 		"45": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "DeclineCodeResult.code"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.nextSteps"
 		},
 		"46": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "Locale"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.nextUserAction"
 		},
 		"47": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "StripeError"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.category"
 		},
 		"48": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "StripeError.type"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeInfo.translations"
 		},
 		"49": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "StripeError.decline_code"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeResult"
 		},
 		"50": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "StripeError.message"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeResult.docVersion"
 		},
 		"51": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "StripeError.__index"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "DeclineCodeResult.code"
+		},
+		"52": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "Locale"
 		},
 		"53": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "Translation"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeDeclineError"
 		},
 		"54": {
-			"sourceFileName": "src/types.ts",
-			"qualifiedName": "Translation.description"
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeDeclineError.decline_code"
 		},
 		"55": {
-			"sourceFileName": "src/types.ts",
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.type"
+		},
+		"56": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.message"
+		},
+		"57": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.__index"
+		},
+		"59": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError"
+		},
+		"60": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.type"
+		},
+		"61": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.decline_code"
+		},
+		"62": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.message"
+		},
+		"63": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "StripeError.__index"
+		},
+		"65": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "Translation"
+		},
+		"66": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
+			"qualifiedName": "Translation.description"
+		},
+		"67": {
+			"packageName": "stripe-decline-codes",
+			"packagePath": "src/types.ts",
 			"qualifiedName": "Translation.nextUserAction"
 		}
 	},

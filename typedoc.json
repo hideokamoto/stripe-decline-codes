@@ -8,6 +8,8 @@
   "excludeProtected": true,
   "excludeInternal": true,
   "includeVersion": true,
+  "disableGit": true,
+  "sourceLinkTemplate": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/{path}#L{line}",
   "readme": "none",
   "name": "stripe-decline-codes",
   "tsconfig": "./tsconfig.json"
