@@ -2,10 +2,10 @@ import type { DeclineCode, DeclineCodeInfo } from '../types.js';
 
 /**
  * Stripe API documentation version for decline codes
- * Last updated: 2024-12
+ * Last updated: 2026-10
  * Reference: https://docs.stripe.com/declines/codes
  */
-export const DOC_VERSION = '2024-12-18';
+export const DOC_VERSION = '2026-10-09';
 
 /**
  * Complete database of Stripe decline codes with descriptions and recommended actions
@@ -24,6 +24,36 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
         description: '支払いは承認できません。',
         nextUserAction:
           'もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。',
+      },
+    },
+  },
+  authentication_not_handled: {
+    description:
+      'The customer tried to proceed without performing the required authentication, so the issuer declined again.',
+    nextSteps:
+      'Run the EMV 3D Secure (3DS) or strong customer authentication (SCA) flow. For off-session payments, collect and prepare authentication on-session first, then fall back to on-session if needed.',
+    nextUserAction: 'Please complete the card authentication and try again.',
+    category: 'SOFT_DECLINE',
+    translations: {
+      ja: {
+        description: '必要な認証を行わずに処理が進められたため、カード発行会社が再度拒否しました。',
+        nextUserAction: 'カードの認証を完了してからもう一度お試しください。',
+      },
+    },
+  },
+  authentication_required: {
+    description:
+      'The card was declined because the transaction requires authentication, such as 3D Secure.',
+    nextSteps:
+      'When using Stripe front ends, a soft decline from an issuer usually triggers an authentication flow so the customer can try again and authenticate their card. For off-session payments, the customer may need to retry. If the issuer returns this code despite a successfully authenticated transaction, the customer needs to contact their card issuer.',
+    nextUserAction:
+      'Please authenticate your card and try again. If it still cannot be processed, please contact your card issuer.',
+    category: 'SOFT_DECLINE',
+    translations: {
+      ja: {
+        description: '取引に3Dセキュアなどの認証が必要なため、カードは拒否されました。',
+        nextUserAction:
+          'カードの認証を行ってからもう一度お試しください。それでも処理できない場合は、カード発行会社にお問い合わせください。',
       },
     },
   },
@@ -98,6 +128,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps: 'The customer should contact their card issuer for more information.',
     nextUserAction: 'Please contact your card issuer for more information.',
     category: 'HARD_DECLINE',
+    deprecated: true,
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
@@ -152,6 +183,18 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       ja: {
         description: 'カードは未知の理由で拒否されました。',
         nextUserAction: '詳しくはカード発行会社にお問い合わせください。',
+      },
+    },
+  },
+  incorrect_address: {
+    description: 'The address entered by the customer is incorrect.',
+    nextSteps: 'The customer should try again using the correct address.',
+    nextUserAction: 'Please try again using the correct address.',
+    category: 'HARD_DECLINE',
+    translations: {
+      ja: {
+        description: '入力された住所が正しくありません。',
+        nextUserAction: '正しい住所を使用してもう一度お試しください。',
       },
     },
   },
@@ -260,6 +303,18 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       },
     },
   },
+  invalid_expiry_month: {
+    description: 'The expiration month is invalid.',
+    nextSteps: 'The customer should try again using the correct expiration date.',
+    nextUserAction: 'Please try again using the correct expiration date.',
+    category: 'HARD_DECLINE',
+    translations: {
+      ja: {
+        description: '有効期限の月が無効です。',
+        nextUserAction: '正しい有効期限を入力してもう一度お試しください。',
+      },
+    },
+  },
   invalid_expiry_year: {
     description: 'The expiration year is invalid.',
     nextSteps: 'The customer should try again using the correct expiration date.',
@@ -339,6 +394,18 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       },
     },
   },
+  mobile_device_authentication_required: {
+    description: 'The card was declined because the transaction requires authentication.',
+    nextSteps: 'Ask the customer to retry the payment by tapping their mobile device again.',
+    nextUserAction: 'Please try again by tapping your mobile device.',
+    category: 'SOFT_DECLINE',
+    translations: {
+      ja: {
+        description: '取引に認証が必要なため、カードは拒否されました。',
+        nextUserAction: 'モバイルデバイスをもう一度タップしてお支払いをやり直してください。',
+      },
+    },
+  },
   new_account_information_available: {
     description: 'The card, or account the card is connected to, is invalid.',
     nextSteps: 'The customer needs to contact their card issuer for more information.',
@@ -372,6 +439,31 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
       ja: {
         description: '支払いは許可されていません。',
         nextUserAction: '詳しくはカード発行会社にお問い合わせください。',
+      },
+    },
+  },
+  offline_pin_required: {
+    description: 'The card was declined because it requires a PIN.',
+    nextSteps: 'The customer should try again by inserting their card and entering a PIN.',
+    nextUserAction: 'Please insert your card and enter your PIN to try again.',
+    category: 'HARD_DECLINE',
+    translations: {
+      ja: {
+        description: 'PINコードの入力が必要なため、カードは拒否されました。',
+        nextUserAction: 'カードを挿入してPINコードを入力し、もう一度お試しください。',
+      },
+    },
+  },
+  online_or_offline_pin_required: {
+    description: 'The card was declined because it requires a PIN.',
+    nextSteps:
+      'If the card reader supports Online PIN, prompt the customer for a PIN without creating a new transaction. Otherwise, the customer needs to try again by inserting their card and entering a PIN.',
+    nextUserAction: 'Please try again and enter your PIN when prompted.',
+    category: 'HARD_DECLINE',
+    translations: {
+      ja: {
+        description: 'PINコードの入力が必要なため、カードは拒否されました。',
+        nextUserAction: 'PINコードを入力してもう一度お試しください。',
       },
     },
   },
@@ -549,6 +641,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextUserAction:
       'Please try again. If it still cannot be processed, please contact your card issuer.',
     category: 'SOFT_DECLINE',
+    deprecated: true,
     translations: {
       ja: {
         description: 'カードは未知の理由で拒否されました。',

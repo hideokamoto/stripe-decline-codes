@@ -42,6 +42,7 @@ async function main() {
       description: info.description,
       nextSteps: info.nextSteps,
       nextUserAction: info.nextUserAction,
+      deprecated: info.deprecated ?? false,
       translations: info.translations || {},
     };
   });
@@ -123,6 +124,12 @@ async function main() {
             name: 'category',
             type: 'DeclineCategory',
             description: 'Category of the decline (soft or hard)',
+          },
+          {
+            name: 'deprecated',
+            type: 'boolean',
+            description: 'Whether Stripe has deprecated this decline code',
+            optional: true,
           },
           {
             name: 'translations',
@@ -268,7 +275,7 @@ isValidDeclineCode('invalid_code'); // => false`,
         parameters: [],
         returns: { type: 'string', description: 'The Stripe API documentation version string' },
         example: `const version = getDocVersion();
-console.log(version); // => "2024-12-18"`,
+console.log(version); // => "2026-10-09"`,
       },
       {
         name: 'formatDeclineMessage',

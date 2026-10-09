@@ -1,11 +1,13 @@
 {
-  "version": "2024-12-18",
-  "totalCodes": 43,
+  "version": "2026-10-09",
+  "totalCodes": 50,
   "categories": {
     "SOFT_DECLINE": {
       "description": "Temporary declines that may succeed if retried",
       "codes": [
         "approve_with_id",
+        "authentication_not_handled",
+        "authentication_required",
         "call_issuer",
         "card_velocity_exceeded",
         "do_not_honor",
@@ -14,6 +16,7 @@
         "insufficient_funds",
         "invalid_amount",
         "issuer_not_available",
+        "mobile_device_authentication_required",
         "new_account_information_available",
         "no_action_taken",
         "pin_try_exceeded",
@@ -31,18 +34,22 @@
         "do_not_try_again",
         "expired_card",
         "fraudulent",
+        "incorrect_address",
         "incorrect_number",
         "incorrect_cvc",
         "incorrect_pin",
         "incorrect_zip",
         "invalid_account",
         "invalid_cvc",
+        "invalid_expiry_month",
         "invalid_expiry_year",
         "invalid_number",
         "invalid_pin",
         "lost_card",
         "merchant_blacklist",
         "not_permitted",
+        "offline_pin_required",
+        "online_or_offline_pin_required",
         "pickup_card",
         "restricted_card",
         "revocation_of_all_authorizations",
@@ -63,10 +70,39 @@
       "description": "The payment cannot be authorized.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
       "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "支払いは承認できません。",
           "nextUserAction": "もう一度やり直してください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "authentication_not_handled",
+      "category": "SOFT_DECLINE",
+      "description": "The customer tried to proceed without performing the required authentication, so the issuer declined again.",
+      "nextSteps": "Run the EMV 3D Secure (3DS) or strong customer authentication (SCA) flow. For off-session payments, collect and prepare authentication on-session first, then fall back to on-session if needed.",
+      "nextUserAction": "Please complete the card authentication and try again.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "必要な認証を行わずに処理が進められたため、カード発行会社が再度拒否しました。",
+          "nextUserAction": "カードの認証を完了してからもう一度お試しください。"
+        }
+      }
+    },
+    {
+      "code": "authentication_required",
+      "category": "SOFT_DECLINE",
+      "description": "The card was declined because the transaction requires authentication, such as 3D Secure.",
+      "nextSteps": "When using Stripe front ends, a soft decline from an issuer usually triggers an authentication flow so the customer can try again and authenticate their card. For off-session payments, the customer may need to retry. If the issuer returns this code despite a successfully authenticated transaction, the customer needs to contact their card issuer.",
+      "nextUserAction": "Please authenticate your card and try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "取引に3Dセキュアなどの認証が必要なため、カードは拒否されました。",
+          "nextUserAction": "カードの認証を行ってからもう一度お試しください。それでも処理できない場合は、カード発行会社にお問い合わせください。"
         }
       }
     },
@@ -76,6 +112,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -89,6 +126,7 @@
       "description": "The card does not support this type of purchase.",
       "nextSteps": "The customer needs to contact their card issuer to make sure their card can be used to make this type of purchase.",
       "nextUserAction": "Your card may not support this type of purchase. Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードはこのタイプの購入をサポートしません。",
@@ -102,6 +140,7 @@
       "description": "The customer has exceeded the balance or credit limit available on their card.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "このカードの残高またはクレジット制限を超えました。",
@@ -115,6 +154,7 @@
       "description": "The card does not support the specified currency.",
       "nextSteps": "The customer needs to check with the issuer whether the card can be used for the type of currency specified.",
       "nextUserAction": "Please contact your card issuer to verify this type of currency can be used for this payment.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは指定された通貨をサポートしていません。",
@@ -128,6 +168,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -141,6 +182,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": true,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -154,6 +196,7 @@
       "description": "A transaction with identical amount and credit card information was submitted very recently.",
       "nextSteps": "Check to see if a recent payment already exists.",
       "nextUserAction": "Check to see if a recent payment already exists.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "ごく最近、同一の金額とクレジットカード情報を使用した取引が送信されました。",
@@ -167,6 +210,7 @@
       "description": "The card has expired.",
       "nextSteps": "The customer should use another card.",
       "nextUserAction": "Please use another card.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは期限切れです。",
@@ -180,6 +224,7 @@
       "description": "The payment has been declined as Stripe suspects it is fraudulent.",
       "nextSteps": "Do not report more detailed information to your customer. Instead, present as you would the generic_decline described below.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "不正と思われるため、支払いは拒否されました。",
@@ -193,10 +238,25 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
           "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "incorrect_address",
+      "category": "HARD_DECLINE",
+      "description": "The address entered by the customer is incorrect.",
+      "nextSteps": "The customer should try again using the correct address.",
+      "nextUserAction": "Please try again using the correct address.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "入力された住所が正しくありません。",
+          "nextUserAction": "正しい住所を使用してもう一度お試しください。"
         }
       }
     },
@@ -206,6 +266,7 @@
       "description": "The card number is incorrect.",
       "nextSteps": "The customer should try again using the correct card number.",
       "nextUserAction": "Please check your card number and try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カード番号が正しくありません。",
@@ -219,6 +280,7 @@
       "description": "The CVC number is incorrect.",
       "nextSteps": "The customer should try again using the correct CVC.",
       "nextUserAction": "Please check your card security code (CVC) and try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "CVC番号が正しくありません。",
@@ -232,6 +294,7 @@
       "description": "The PIN entered is incorrect. This decline code only applies to payments made with a card reader.",
       "nextSteps": "The customer should try again using the correct PIN.",
       "nextUserAction": "Please check your PIN and try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "PINコードが正しくありません。",
@@ -245,6 +308,7 @@
       "description": "The ZIP/postal code is incorrect.",
       "nextSteps": "The customer should try again using the correct billing ZIP/postal code.",
       "nextUserAction": "Please try again using the correct ZIP/postal code.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "郵便番号が正しくありません。",
@@ -258,6 +322,7 @@
       "description": "The card has insufficient funds to complete the purchase.",
       "nextSteps": "The customer should use an alternative payment method.",
       "nextUserAction": "Please try again using an alternative payment method.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードの購入に必要な資金が不足しています。",
@@ -271,6 +336,7 @@
       "description": "The card, or account the card is connected to, is invalid.",
       "nextSteps": "The customer needs to contact their card issuer to check that the card is working correctly.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カード、またはカードが接続されているアカウントが無効です。",
@@ -284,6 +350,7 @@
       "description": "The payment amount is invalid, or exceeds the amount that is allowed.",
       "nextSteps": "If the amount appears to be correct, the customer needs to check with their card issuer that they can make purchases of that amount.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "支払い金額が無効であるか、許可されている金額を超えています。",
@@ -297,10 +364,25 @@
       "description": "The CVC number is incorrect.",
       "nextSteps": "The customer should try again using the correct CVC.",
       "nextUserAction": "Please try again using the correct CVC.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "CVC番号が正しくありません。",
           "nextUserAction": "正しいCVCを使用してもう一度やり直してください。"
+        }
+      }
+    },
+    {
+      "code": "invalid_expiry_month",
+      "category": "HARD_DECLINE",
+      "description": "The expiration month is invalid.",
+      "nextSteps": "The customer should try again using the correct expiration date.",
+      "nextUserAction": "Please try again using the correct expiration date.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "有効期限の月が無効です。",
+          "nextUserAction": "正しい有効期限を入力してもう一度お試しください。"
         }
       }
     },
@@ -310,6 +392,7 @@
       "description": "The expiration year is invalid.",
       "nextSteps": "The customer should try again using the correct expiration date.",
       "nextUserAction": "Please try again using the correct expiration date.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "有効期限が無効です。",
@@ -323,6 +406,7 @@
       "description": "The card number is incorrect.",
       "nextSteps": "The customer should try again using the correct card number.",
       "nextUserAction": "Please try again using the correct card number.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カード番号が正しくありません。",
@@ -336,6 +420,7 @@
       "description": "The PIN entered is incorrect. This decline code only applies to payments made with a card reader.",
       "nextSteps": "The customer should try again using the correct PIN.",
       "nextUserAction": "Please try again using the correct card PIN.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "PINコードが正しくありません。",
@@ -349,6 +434,7 @@
       "description": "The card issuer could not be reached, so the payment could not be authorized.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
       "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カード発行者に連絡できなかったため、支払いを承認できませんでした。",
@@ -362,6 +448,7 @@
       "description": "The payment has been declined because the card is reported lost.",
       "nextSteps": "The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -375,10 +462,25 @@
       "description": "The payment has been declined because it matches a value on the Stripe user's blocklist.",
       "nextSteps": "Do not report more detailed information to your customer. Instead, present as you would the generic_decline described above.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
           "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "mobile_device_authentication_required",
+      "category": "SOFT_DECLINE",
+      "description": "The card was declined because the transaction requires authentication.",
+      "nextSteps": "Ask the customer to retry the payment by tapping their mobile device again.",
+      "nextUserAction": "Please try again by tapping your mobile device.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "取引に認証が必要なため、カードは拒否されました。",
+          "nextUserAction": "モバイルデバイスをもう一度タップしてお支払いをやり直してください。"
         }
       }
     },
@@ -388,6 +490,7 @@
       "description": "The card, or account the card is connected to, is invalid.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カード、またはカードが接続されているアカウントが無効です。",
@@ -401,6 +504,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -414,10 +518,39 @@
       "description": "The payment is not permitted.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "支払いは許可されていません。",
           "nextUserAction": "詳しくはカード発行会社にお問い合わせください。"
+        }
+      }
+    },
+    {
+      "code": "offline_pin_required",
+      "category": "HARD_DECLINE",
+      "description": "The card was declined because it requires a PIN.",
+      "nextSteps": "The customer should try again by inserting their card and entering a PIN.",
+      "nextUserAction": "Please insert your card and enter your PIN to try again.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "PINコードの入力が必要なため、カードは拒否されました。",
+          "nextUserAction": "カードを挿入してPINコードを入力し、もう一度お試しください。"
+        }
+      }
+    },
+    {
+      "code": "online_or_offline_pin_required",
+      "category": "HARD_DECLINE",
+      "description": "The card was declined because it requires a PIN.",
+      "nextSteps": "If the card reader supports Online PIN, prompt the customer for a PIN without creating a new transaction. Otherwise, the customer needs to try again by inserting their card and entering a PIN.",
+      "nextUserAction": "Please try again and enter your PIN when prompted.",
+      "deprecated": false,
+      "translations": {
+        "ja": {
+          "description": "PINコードの入力が必要なため、カードは拒否されました。",
+          "nextUserAction": "PINコードを入力してもう一度お試しください。"
         }
       }
     },
@@ -427,6 +560,7 @@
       "description": "The card cannot be used to make this payment (it is possible it has been reported lost or stolen).",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードでこの支払いを行うことはできません（紛失または盗難にあったと報告されている可能性があります）。",
@@ -440,6 +574,7 @@
       "description": "The allowable number of PIN tries has been exceeded.",
       "nextSteps": "The customer must use another card or method of payment.",
       "nextUserAction": "Please use another card or method of payment.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "PIN試行回数の上限を超えました。",
@@ -453,6 +588,7 @@
       "description": "An error occurred while processing the card.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, try again later.",
       "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードの処理中にエラーが発生しました。",
@@ -466,6 +602,7 @@
       "description": "The payment could not be processed by the issuer for an unknown reason.",
       "nextSteps": "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer.",
       "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "原因不明のため、発行者が支払いを処理できませんでした。",
@@ -479,6 +616,7 @@
       "description": "The card cannot be used to make this payment (it is possible it has been reported lost or stolen).",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードでこの支払いを行うことはできません（紛失または盗難にあったと報告されている可能性があります）。",
@@ -492,6 +630,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -505,6 +644,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -518,6 +658,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -531,6 +672,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -544,6 +686,7 @@
       "description": "The payment has been declined because the card is reported stolen.",
       "nextSteps": "The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -557,6 +700,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer should contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -570,6 +714,7 @@
       "description": "A Stripe test card number was used.",
       "nextSteps": "A genuine card must be used to make a payment.",
       "nextUserAction": "A genuine card must be used to make a payment.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "Stripeテストカード番号を使用しました。",
@@ -583,6 +728,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "The customer needs to contact their card issuer for more information.",
       "nextUserAction": "Please contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -596,6 +742,7 @@
       "description": "The card has been declined for an unknown reason.",
       "nextSteps": "Ask the customer to attempt the payment again. If subsequent payments are declined, the customer should contact their card issuer for more information.",
       "nextUserAction": "Please try again. If it still cannot be processed, please contact your card issuer.",
+      "deprecated": true,
       "translations": {
         "ja": {
           "description": "カードは未知の理由で拒否されました。",
@@ -609,6 +756,7 @@
       "description": "The customer has exceeded the balance or credit limit available on their card.",
       "nextSteps": "The customer should use an alternative payment method.",
       "nextUserAction": "Please use another card or contact your card issuer for more information.",
+      "deprecated": false,
       "translations": {
         "ja": {
           "description": "このカードの残高またはクレジット制限を超えました。",

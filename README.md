@@ -9,11 +9,11 @@ A lightweight, zero-dependency TypeScript library providing human-readable descr
 
 ## Features
 
-- 🎯 **Complete Coverage** - All 43 Stripe decline codes included
+- 🎯 **Complete Coverage** - All 50 Stripe decline codes included
 - 🌐 **Localization** - Built-in English and Japanese translations
 - 📘 **TypeScript Support** - Full type definitions included
 - 🪶 **Zero Dependencies** - Lightweight and fast
-- 🔄 **Up-to-date** - Based on Stripe API documentation (2024-12-18)
+- 🔄 **Up-to-date** - Based on Stripe API documentation (2026-10-09)
 - ✅ **Well Tested** - Comprehensive test coverage
 - 🎨 **Message Formatting** - Customizable message templates with variable substitution
 - 🔍 **Decline Categorization** - Soft/Hard decline classification based on Stripe guidelines
@@ -27,7 +27,7 @@ This library is a complete TypeScript rewrite and continuation of the original [
 - **Rewritten** entirely in modern TypeScript with full type safety
 - **Modernized** with current tooling (Vite, Biome, Vitest)
 - **Focused** exclusively on Stripe decline code handling (subscription utilities removed)
-- **Updated** with the latest Stripe decline codes (2024-12-18)
+- **Updated** with the latest Stripe decline codes (2026-10-09)
 
 Credit to the original [stripe-utils project](https://github.com/megumiteam/stripe-utils) for the initial implementation.
 
@@ -55,7 +55,7 @@ if (result.code) {
 }
 
 console.log(result.docVersion);
-// => "2024-12-18"
+// => "2026-10-09"
 ```
 
 ### Localized Messages
@@ -91,7 +91,7 @@ isValidDeclineCode('invalid_code'); // => false
 import { getAllDeclineCodes } from 'stripe-decline-codes';
 
 const codes = getAllDeclineCodes();
-console.log(codes.length); // => 43
+console.log(codes.length); // => 50
 console.log(codes);
 // => ['approve_with_id', 'call_issuer', 'card_not_supported', ...]
 ```
@@ -307,19 +307,22 @@ Extracts a validated decline code from any caught value. Returns `undefined` whe
 
 ## Supported Decline Codes
 
-This library includes all 43 Stripe decline codes:
+This library includes all 50 Stripe decline codes:
 
 - `approve_with_id` - Payment cannot be authorized
+- `authentication_not_handled` - Required authentication was not performed
+- `authentication_required` - Transaction requires authentication such as 3D Secure
 - `call_issuer` - Card declined for unknown reason
 - `card_not_supported` - Card doesn't support this purchase type
 - `card_velocity_exceeded` - Balance or credit limit exceeded
 - `currency_not_supported` - Card doesn't support the currency
 - `do_not_honor` - Card declined for unknown reason
-- `do_not_try_again` - Card declined for unknown reason
+- `do_not_try_again` - Card declined for unknown reason (deprecated)
 - `duplicate_transaction` - Identical transaction submitted recently
 - `expired_card` - Card has expired
 - `fraudulent` - Payment suspected to be fraudulent
 - `generic_decline` - Card declined for unknown reason
+- `incorrect_address` - Address is incorrect
 - `incorrect_number` - Card number is incorrect
 - `incorrect_cvc` - CVC number is incorrect
 - `incorrect_pin` - PIN is incorrect
@@ -328,15 +331,19 @@ This library includes all 43 Stripe decline codes:
 - `invalid_account` - Card or account is invalid
 - `invalid_amount` - Payment amount is invalid or too large
 - `invalid_cvc` - CVC number is incorrect
+- `invalid_expiry_month` - Expiration month is invalid
 - `invalid_expiry_year` - Expiration year is invalid
 - `invalid_number` - Card number is incorrect
 - `invalid_pin` - PIN is incorrect
 - `issuer_not_available` - Card issuer could not be reached
 - `lost_card` - Card reported lost
 - `merchant_blacklist` - Payment matches merchant blocklist
+- `mobile_device_authentication_required` - Transaction requires authentication via mobile device
 - `new_account_information_available` - Card or account is invalid
 - `no_action_taken` - Card declined for unknown reason
 - `not_permitted` - Payment is not permitted
+- `offline_pin_required` - Card requires a PIN
+- `online_or_offline_pin_required` - Card requires a PIN
 - `pickup_card` - Card cannot be used for this payment
 - `pin_try_exceeded` - PIN attempts exceeded
 - `processing_error` - Error processing the card
@@ -350,7 +357,7 @@ This library includes all 43 Stripe decline codes:
 - `stop_payment_order` - Card declined
 - `testmode_decline` - Stripe test card used
 - `transaction_not_allowed` - Card declined
-- `try_again_later` - Card declined, try again later
+- `try_again_later` - Card declined, try again later (deprecated)
 - `withdrawal_count_limit_exceeded` - Credit limit exceeded
 
 ## Compatibility
@@ -457,7 +464,7 @@ MIT © [Hidetaka Okamoto](https://wp-kyoto.net)
 - Complete rewrite in TypeScript
 - Modern build system with Vite + Biome
 - Added comprehensive type definitions
-- Updated to latest Stripe decline codes (2024-12-18)
+- Updated to latest Stripe decline codes (2026-10-09)
 - Zero dependencies
 - Enhanced API with new utility functions
 - Improved documentation

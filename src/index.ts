@@ -76,7 +76,7 @@ export function getDeclineMessage(declineCode: string, locale: Locale = 'en'): s
  * @example
  * ```ts
  * const codes = getAllDeclineCodes();
- * console.log(codes.length); // => 43
+ * console.log(codes.length); // => 50
  * console.log(codes.includes('insufficient_funds')); // => true
  * ```
  */
@@ -108,7 +108,7 @@ export function isValidDeclineCode(code: string): code is DeclineCode {
  * @example
  * ```ts
  * const version = getDocVersion();
- * console.log(version); // => "2024-12-18"
+ * console.log(version); // => "2026-10-09"
  * ```
  */
 export function getDocVersion(): string {

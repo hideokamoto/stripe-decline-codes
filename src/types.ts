@@ -28,6 +28,8 @@ export interface DeclineCodeInfo {
   nextUserAction: string;
   /** Category of the decline (soft or hard) */
   category: DeclineCategory;
+  /** Whether Stripe has deprecated this decline code */
+  deprecated?: boolean;
   /** Translations for different locales */
   translations?: Partial<Record<Locale, Translation>>;
 }
@@ -69,6 +71,8 @@ export interface StripeDeclineError extends StripeError {
  */
 export type DeclineCode =
   | 'approve_with_id'
+  | 'authentication_not_handled'
+  | 'authentication_required'
   | 'call_issuer'
   | 'card_not_supported'
   | 'card_velocity_exceeded'
@@ -79,6 +83,7 @@ export type DeclineCode =
   | 'expired_card'
   | 'fraudulent'
   | 'generic_decline'
+  | 'incorrect_address'
   | 'incorrect_number'
   | 'incorrect_cvc'
   | 'incorrect_pin'
@@ -87,15 +92,19 @@ export type DeclineCode =
   | 'invalid_account'
   | 'invalid_amount'
   | 'invalid_cvc'
+  | 'invalid_expiry_month'
   | 'invalid_expiry_year'
   | 'invalid_number'
   | 'invalid_pin'
   | 'issuer_not_available'
   | 'lost_card'
   | 'merchant_blacklist'
+  | 'mobile_device_authentication_required'
   | 'new_account_information_available'
   | 'no_action_taken'
   | 'not_permitted'
+  | 'offline_pin_required'
+  | 'online_or_offline_pin_required'
   | 'pickup_card'
   | 'pin_try_exceeded'
   | 'processing_error'

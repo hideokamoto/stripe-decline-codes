@@ -1,5 +1,5 @@
 {
-  "version": "2024-12-18",
+  "version": "2026-10-09",
   "functions": [
     {
       "name": "getDeclineDescription",
@@ -52,7 +52,7 @@
         "type": "DeclineCode[]",
         "description": "Array of all supported decline code strings"
       },
-      "example": "const codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 43"
+      "example": "const codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 50"
     },
     {
       "name": "isValidDeclineCode",
@@ -81,7 +81,7 @@
         "type": "string",
         "description": "The Stripe API documentation version string"
       },
-      "example": "const version = getDocVersion();\nconsole.log(version); // => \"2024-12-18\""
+      "example": "const version = getDocVersion();\nconsole.log(version); // => \"2026-10-09\""
     },
     {
       "name": "formatDeclineMessage",
