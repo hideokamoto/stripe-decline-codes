@@ -36,6 +36,7 @@
     "typecheck": "tsc --noEmit && tsc -p tsconfig.tools.json && tsc -p tests/workers/tsconfig.json",
     "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
     "docs:generate": "tsx scripts/generate-docs.ts",
+    "docs:sync-check": "tsx scripts/check-doc-sync.ts",
     "docs:api": "typedoc",
     "docs": "npm run docs:generate && npm run docs:api",
     "prepare": "husky"
