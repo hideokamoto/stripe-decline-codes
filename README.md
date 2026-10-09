@@ -414,6 +414,9 @@ pnpm test
 # Run tests in watch mode
 pnpm run test:watch
 
+# Run tests in a real workerd runtime
+pnpm run test:workers
+
 # Build
 pnpm run build
 
@@ -425,6 +428,9 @@ pnpm run format
 
 # Type check
 pnpm run typecheck
+
+# Check decline codes against Stripe's documentation
+pnpm run docs:sync-check
 ```
 
 The `docs/` directory is a separate npm project (Starlight site) and keeps using `npm`.

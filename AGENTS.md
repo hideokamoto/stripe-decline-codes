@@ -23,8 +23,12 @@ pnpm run test:workers  # vitest in real workerd via @cloudflare/vitest-plugin
 pnpm run lint        # biome check
 pnpm run lint:fix    # biome check --write
 pnpm run format      # biome format --write
-pnpm run typecheck   # tsc --noEmit + tests/workers
+pnpm run typecheck   # tsc --noEmit + tsconfig.tools.json + tests/workers
 pnpm run build       # vite build && tsc -> dist/
+pnpm run docs:generate   # regenerate docs-data/*.json
+pnpm run docs:api        # regenerate docs-data/api.json (typedoc)
+pnpm run docs            # docs:generate + docs:api
+pnpm run docs:sync-check # diff DECLINE_CODES against Stripe docs
 ```
 
 `pnpm-workspace.yaml` sets `onlyBuiltDependencies`/`allowBuilds` for `esbuild`
@@ -82,6 +86,10 @@ Release notes live in GitHub Releases; `CHANGELOG.md` is frozen at 0.1.0.
 - PR/push validation: GitHub Actions `.github/workflows/ci.yml`
   (lint / typecheck / test / build on Node 20/22)
 - Docs site deploy: `.github/workflows/docs.yml` (npm project under `docs/`)
+- docs-data freshness: `.github/workflows/docs-data.yml` — regenerates
+  `docs-data/*.json` + `api.json` on PRs touching `src/`, `scripts/`,
+  `docs-data/`, `package.json` and fails on any diff. Regenerate locally and
+  commit; never hand-edit generated files.
 - Stripe doc drift: `.github/workflows/doc-sync.yml` — weekly schedule +
   `workflow_dispatch`, runs `pnpm run docs:sync-check`
   (`scripts/check-doc-sync.ts`) which diffs `DECLINE_CODES` against the
