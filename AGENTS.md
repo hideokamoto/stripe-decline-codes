@@ -24,7 +24,7 @@ pnpm run lint        # biome check
 pnpm run lint:fix    # biome check --write
 pnpm run format      # biome format --write
 pnpm run typecheck   # tsc --noEmit + tests/workers
-pnpm run build       # tsc && vite build -> dist/
+pnpm run build       # vite build && tsc -> dist/
 ```
 
 `pnpm-workspace.yaml` sets `onlyBuiltDependencies`/`allowBuilds` for `esbuild`
