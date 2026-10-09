@@ -80,7 +80,7 @@ Release notes live in GitHub Releases; `CHANGELOG.md` is frozen at 0.1.0.
 ## CI layout
 
 - PR/push validation: GitHub Actions `.github/workflows/ci.yml`
-  (lint / typecheck / test / build on Node 18/20/22)
+  (lint / typecheck / test / build on Node 20/22)
 - Docs site deploy: `.github/workflows/docs.yml` (npm project under `docs/`)
 - Publish: CircleCI pipeline described above (no provenance badge — known CircleCI
   limitation of npm Trusted Publishing)
