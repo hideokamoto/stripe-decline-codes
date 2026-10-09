@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/decline-codes.schema.json",
   "version": "2024-12-18",
-  "generatedAt": "2026-10-05T14:19:34.590Z",
+  "generatedAt": "2026-10-09T14:27:34.283Z",
   "totalCodes": 43,
   "categories": {
     "SOFT_DECLINE": {
@@ -90,7 +90,7 @@
       "category": "HARD_DECLINE",
       "description": "The card does not support this type of purchase.",
       "nextSteps": "The customer needs to contact their card issuer to make sure their card can be used to make this type of purchase.",
-      "nextUserAction": "Your card issuer may not support this type of purchase, please contact your card issuer for more information.",
+      "nextUserAction": "Your card may not support this type of purchase. Please contact your card issuer for more information.",
       "translations": {
         "ja": {
           "description": "カードはこのタイプの購入をサポートしません。",
@@ -207,7 +207,7 @@
       "category": "HARD_DECLINE",
       "description": "The card number is incorrect.",
       "nextSteps": "The customer should try again using the correct card number.",
-      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.",
+      "nextUserAction": "Please check your card number and try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "カード番号が正しくありません。",
@@ -220,7 +220,7 @@
       "category": "HARD_DECLINE",
       "description": "The CVC number is incorrect.",
       "nextSteps": "The customer should try again using the correct CVC.",
-      "nextUserAction": "Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.",
+      "nextUserAction": "Please check your card security code (CVC) and try again. If it still cannot be processed, please contact your card issuer.",
       "translations": {
         "ja": {
           "description": "CVC番号が正しくありません。",
@@ -309,7 +309,7 @@
     {
       "code": "invalid_expiry_year",
       "category": "HARD_DECLINE",
-      "description": "The expiration year invalid.",
+      "description": "The expiration year is invalid.",
       "nextSteps": "The customer should try again using the correct expiration date.",
       "nextUserAction": "Please try again using the correct expiration date.",
       "translations": {
