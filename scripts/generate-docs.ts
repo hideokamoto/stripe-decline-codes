@@ -140,8 +140,8 @@ async function main() {
           { name: 'docVersion', type: 'string', description: 'Stripe API documentation version' },
           {
             name: 'code',
-            type: 'DeclineCodeInfo | {}',
-            description: 'Decline code information, or empty object if code not found',
+            type: 'DeclineCodeInfo | undefined',
+            description: 'Decline code information, or undefined if code not found',
           },
         ],
       },
@@ -207,7 +207,9 @@ async function main() {
           description: 'Object containing the decline code information and documentation version',
         },
         example: `const result = getDeclineDescription('insufficient_funds');
-console.log(result.code.description);
+if (result.code) {
+  console.log(result.code.description);
+}
 // => "The card has insufficient funds to complete the purchase."`,
       },
       {

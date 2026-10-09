@@ -19,15 +19,15 @@ import {
 
 describe('getDeclineDescription', () => {
   // Normal case tests - Kent Beck style pure function tests
-  it('should return empty object if no code is provided', () => {
+  it('should return undefined if no code is provided', () => {
     const result = getDeclineDescription();
-    expect(result.code).toEqual({});
+    expect(result.code).toBeUndefined();
     expect(result.docVersion).toBeTruthy();
   });
 
-  it('should return empty object for invalid code', () => {
+  it('should return undefined for invalid code', () => {
     const result = getDeclineDescription('invalid_code');
-    expect(result.code).toEqual({});
+    expect(result.code).toBeUndefined();
   });
 
   it('should return correct information for generic_decline', () => {
@@ -35,7 +35,7 @@ describe('getDeclineDescription', () => {
     expect(result.code).toHaveProperty('description');
     expect(result.code).toHaveProperty('nextSteps');
     expect(result.code).toHaveProperty('nextUserAction');
-    if ('description' in result.code) {
+    if (result.code) {
       expect(result.code.description).toBe('The card has been declined for an unknown reason.');
     }
   });
@@ -61,8 +61,8 @@ describe('getDeclineDescription', () => {
       const result = getDeclineDescription(code);
       expect(result).toHaveProperty('docVersion');
       expect(result).toHaveProperty('code');
-      if (Object.keys(result.code).length > 0) {
-        const codeInfo = result.code as DeclineCodeInfo;
+      if (result.code) {
+        const codeInfo = result.code;
         expect(codeInfo).toHaveProperty('description');
         expect(codeInfo).toHaveProperty('nextSteps');
         expect(codeInfo).toHaveProperty('nextUserAction');
@@ -93,7 +93,7 @@ describe('getDeclineDescription', () => {
           .filter((s) => !validCodes.has(s as DeclineCode)),
         (invalidCode) => {
           const result = getDeclineDescription(invalidCode);
-          expect(result.code).toEqual({});
+          expect(result.code).toBeUndefined();
           expect(result.docVersion).toBeTruthy();
         },
       ),
@@ -142,9 +142,8 @@ describe('getDeclineMessage', () => {
     for (const code of allCodes) {
       const message = getDeclineMessage(code, 'en');
       const description = getDeclineDescription(code);
-      if (Object.keys(description.code).length > 0) {
-        const codeInfo = description.code as DeclineCodeInfo;
-        expect(message).toBe(codeInfo.nextUserAction);
+      if (description.code) {
+        expect(message).toBe(description.code.nextUserAction);
       }
     }
   });
@@ -246,7 +245,7 @@ describe('isValidDeclineCode', () => {
     if (isValidDeclineCode(code)) {
       // TypeScript type check: code is treated as DeclineCode type
       const result = getDeclineDescription(code);
-      expect(result.code).not.toEqual({});
+      expect(result.code).toBeDefined();
     }
   });
 

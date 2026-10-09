@@ -17,17 +17,19 @@ import type {
  * @example
  * ```ts
  * const result = getDeclineDescription('insufficient_funds');
- * console.log(result.code.description);
- * // => "The card has insufficient funds to complete the purchase."
- * console.log(result.code.nextUserAction);
- * // => "Please try again using an alternative payment method."
+ * if (result.code) {
+ *   console.log(result.code.description);
+ *   // => "The card has insufficient funds to complete the purchase."
+ *   console.log(result.code.nextUserAction);
+ *   // => "Please try again using an alternative payment method."
+ * }
  * ```
  */
 export function getDeclineDescription(declineCode?: string): DeclineCodeResult {
   if (!declineCode || !isValidDeclineCode(declineCode)) {
     return {
       docVersion: DOC_VERSION,
-      code: {},
+      code: undefined,
     };
   }
 
@@ -74,7 +76,7 @@ export function getDeclineMessage(declineCode: string, locale: Locale = 'en'): s
  * @example
  * ```ts
  * const codes = getAllDeclineCodes();
- * console.log(codes.length); // => 44
+ * console.log(codes.length); // => 43
  * console.log(codes.includes('insufficient_funds')); // => true
  * ```
  */

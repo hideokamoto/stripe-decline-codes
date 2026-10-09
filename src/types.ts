@@ -38,8 +38,8 @@ export interface DeclineCodeInfo {
 export interface DeclineCodeResult {
   /** Stripe API documentation version */
   docVersion: string;
-  /** Decline code information, or empty object if code not found */
-  code: DeclineCodeInfo | Record<string, never>;
+  /** Decline code information, or undefined if code not found */
+  code: DeclineCodeInfo | undefined;
 }
 
 /**

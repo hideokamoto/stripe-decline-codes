@@ -17,7 +17,7 @@
         "type": "DeclineCodeResult",
         "description": "Object containing the decline code information and documentation version"
       },
-      "example": "const result = getDeclineDescription('insufficient_funds');\nconsole.log(result.code.description);\n// => \"The card has insufficient funds to complete the purchase.\""
+      "example": "const result = getDeclineDescription('insufficient_funds');\nif (result.code) {\n  console.log(result.code.description);\n}\n// => \"The card has insufficient funds to complete the purchase.\""
     },
     {
       "name": "getDeclineMessage",
