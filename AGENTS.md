@@ -82,6 +82,13 @@ Release notes live in GitHub Releases; `CHANGELOG.md` is frozen at 0.1.0.
 - PR/push validation: GitHub Actions `.github/workflows/ci.yml`
   (lint / typecheck / test / build on Node 18/20/22)
 - Docs site deploy: `.github/workflows/docs.yml` (npm project under `docs/`)
+- Stripe doc drift: `.github/workflows/doc-sync.yml` — weekly schedule +
+  `workflow_dispatch`, runs `pnpm run docs:sync-check`
+  (`scripts/check-doc-sync.ts`) which diffs `DECLINE_CODES` against the
+  "Card decline codes" table at `docs.stripe.com/declines/codes.md`.
+  Fails when docs-active codes are missing from the library; warns on codes
+  deprecated upstream or absent from the docs table entirely (the library
+  deliberately keeps deprecated-but-still-valid codes).
 - Publish: CircleCI pipeline described above (no provenance badge — known CircleCI
   limitation of npm Trusted Publishing)
 
