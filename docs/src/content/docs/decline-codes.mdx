@@ -1,0 +1,18 @@
+---
+title: Decline Codes
+description: Complete list of Stripe decline codes with descriptions and recommended user-facing actions
+---
+
+import DeclineCodesTable from '../../components/DeclineCodesTable.astro';
+
+The library covers every decline code documented in Stripe's
+[card decline codes](https://docs.stripe.com/declines/codes) table, including
+deprecated codes that Stripe may still return. Deprecated codes are listed at
+the end of the table.
+
+Use the search box to filter by code or description, and the dropdown to filter
+by soft / hard decline category. **Soft declines** are temporary and may succeed
+when retried; **hard declines** are permanent and should not be retried
+automatically.
+
+<DeclineCodesTable />

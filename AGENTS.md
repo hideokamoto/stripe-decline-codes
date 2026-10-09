@@ -9,7 +9,10 @@ Published to npm as `stripe-decline-codes`.
 - `src/` — library source (`index.ts`, `types.ts`, `data/decline-codes.ts`)
 - `tests` live next to sources (`src/index.test.ts`)
 - `docs/` — **separate npm project** (Starlight site for GitHub Pages). It has its own
-  `package.json` / `package-lock.json` and intentionally stays on npm.
+  `package.json` / `package-lock.json` and intentionally stays on npm. The Decline
+  Codes page renders from `docs-data/decline-codes.json` at build time — no
+  generated pages are committed, so `pnpm run docs` + a docs build is enough to
+  refresh the site.
 - `docs-data/` — generated API data shipped in the package (`files` includes it)
 
 ## Commands
@@ -85,7 +88,8 @@ Release notes live in GitHub Releases; `CHANGELOG.md` is frozen at 0.1.0.
 
 - PR/push validation: GitHub Actions `.github/workflows/ci.yml`
   (lint / typecheck / test / build on Node 20/22)
-- Docs site deploy: `.github/workflows/docs.yml` (npm project under `docs/`)
+- Docs site deploy: `.github/workflows/docs.yml` (npm project under `docs/`) —
+  builds on PRs touching `docs/`, `src/`, or `docs-data/`; deploys on push only
 - docs-data freshness: `.github/workflows/docs-data.yml` — regenerates
   `docs-data/*.json` + `api.json` on PRs touching `src/`, `scripts/`,
   `docs-data/`, `package.json` and fails on any diff. Regenerate locally and

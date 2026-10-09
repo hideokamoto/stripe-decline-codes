@@ -6,6 +6,12 @@ import starlightTypeDoc from 'starlight-typedoc';
 export default defineConfig({
   site: 'https://hideokamoto.github.io',
   base: '/stripe-decline-codes',
+  vite: {
+    server: {
+      // Components import ../docs-data/*.json (outside the docs/ workspace root)
+      fs: { allow: ['..'] },
+    },
+  },
   integrations: [
     starlight({
       title: 'Stripe Decline Codes',
@@ -32,6 +38,7 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'Getting Started', link: '/getting-started/' },
+            { label: 'Decline Codes', link: '/decline-codes/' },
             { label: 'Supported Locales', link: '/locales/' },
           ],
         },

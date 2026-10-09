@@ -6,12 +6,19 @@ on:
     paths:
       - 'docs/**'
       - 'src/**'
+      - 'docs-data/**'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'src/**'
+      - 'docs-data/**'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
 # Allow only one concurrent deployment, but do not cancel in-flight deploys
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
@@ -33,6 +40,7 @@ jobs:
           cache-dependency-path: docs/package-lock.json
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         id: pages
         uses: actions/configure-pages@v5
 
@@ -45,13 +53,20 @@ jobs:
         working-directory: docs
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/dist
 
   deploy:
     name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request'
     needs: build
+    concurrency:
+      # Deploys are serialized globally — workflow_dispatch can run from any
+      # ref, so the per-ref workflow group alone is not enough
+      group: pages-deploy
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       pages: write

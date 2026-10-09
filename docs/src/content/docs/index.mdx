@@ -15,11 +15,12 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import declineCodesData from '../../../../docs-data/decline-codes.json';
 
 ## Features
 
 <CardGrid stagger>
-  <Card title="50+ Decline Codes" icon="approve-check">
+  <Card title={`${declineCodesData.totalCodes} Decline Codes`} icon="approve-check">
     Full coverage of all Stripe decline codes with technical descriptions and merchant guidance.
   </Card>
   <Card title="Localization Support" icon="translate">
