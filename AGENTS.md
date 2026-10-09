@@ -34,7 +34,10 @@ Do not remove them — `pnpm install` fails with `ERR_PNPM_IGNORED_BUILDS` witho
 Workerd tests live in `tests/workers/` and run through `vitest.workers.config.ts`
 (the `cloudflareTest()` plugin from `@cloudflare/vitest-plugin`, which requires
 vitest ^4.1). The main `vite.config.ts` suite only includes `src/**/*.test.ts`,
-so Workers tests never run in the Node suite.
+so Workers tests never run in the Node suite. Note: `pnpm run test:workers` is
+currently broken on macOS (upstream
+[workers-sdk#13581](https://github.com/cloudflare/workers-sdk/issues/13581));
+rely on CI (ubuntu) for workerd results — see Troubleshooting.
 
 For the docs site, use npm inside `docs/` (`cd docs && npm ci && npm run build`).
 
@@ -93,6 +96,7 @@ Release notes live in GitHub Releases; `CHANGELOG.md` is frozen at 0.1.0.
 | semantic-release `EGITNOPERMISSION` / GitHub 403 | `github` context `GITHUB_TOKEN` (fine-grained PAT) needs `contents:write` and this repo in scope |
 | Tag pushed but npm publish failed | Delete that `v*` tag (and its GitHub Release if created), then rerun the pipeline |
 | `ENEEDAUTH` on publish | npm Trusted Publisher (CircleCI) registration: Org/Project/Pipeline-definition IDs and Context IDs (`npm-publish-guard`). CircleCI needs npm >= 11.11.0 (cimg/node:24.21 is fine) |
+| `pnpm run test:workers` fails with `filterOutComments` SyntaxError | Known upstream incompatibility ([cloudflare/workers-sdk#13581](https://github.com/cloudflare/workers-sdk/issues/13581)), observed on macOS; CI (ubuntu) is the source of truth for workerd tests |
 
 ## Setup reference (for re-provisioning)
 

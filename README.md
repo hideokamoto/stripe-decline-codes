@@ -370,6 +370,11 @@ This library includes all 43 Stripe decline codes:
 | Other edge runtimes (Deno, Bun) | Should work (pure TypeScript, zero dependencies) but not CI-verified |
 | Module formats | ESM (`index.mjs`), CJS (`index.cjs`), TypeScript types (`index.d.ts`) |
 
+Note: local workerd test runs (`pnpm run test:workers`) currently fail on macOS
+due to an upstream incompatibility
+([cloudflare/workers-sdk#13581](https://github.com/cloudflare/workers-sdk/issues/13581));
+CI verifies workerd on ubuntu.
+
 ### Stripe SDK compatibility
 
 This package has **no dependency** on the `stripe` package. The `StripeError`
