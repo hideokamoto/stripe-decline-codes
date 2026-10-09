@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/functions.schema.json",
   "version": "2024-12-18",
-  "generatedAt": "2026-10-05T14:19:34.600Z",
+  "generatedAt": "2026-10-09T14:27:34.284Z",
   "functions": [
     {
       "name": "getDeclineDescription",

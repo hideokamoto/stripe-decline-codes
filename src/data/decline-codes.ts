@@ -44,7 +44,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     nextSteps:
       'The customer needs to contact their card issuer to make sure their card can be used to make this type of purchase.',
     nextUserAction:
-      'Your card issuer may not support this type of purchase, please contact your card issuer for more information.',
+      'Your card may not support this type of purchase. Please contact your card issuer for more information.',
     category: 'HARD_DECLINE',
     translations: {
       ja: {
@@ -159,7 +159,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The card number is incorrect.',
     nextSteps: 'The customer should try again using the correct card number.',
     nextUserAction:
-      'Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.',
+      'Please check your card number and try again. If it still cannot be processed, please contact your card issuer.',
     category: 'HARD_DECLINE',
     translations: {
       ja: {
@@ -173,7 +173,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     description: 'The CVC number is incorrect.',
     nextSteps: 'The customer should try again using the correct CVC.',
     nextUserAction:
-      'Please check your card numbers and try again. If it still cannot be processed, please contact your card issuer.',
+      'Please check your card security code (CVC) and try again. If it still cannot be processed, please contact your card issuer.',
     category: 'HARD_DECLINE',
     translations: {
       ja: {
@@ -261,7 +261,7 @@ export const DECLINE_CODES: Record<DeclineCode, DeclineCodeInfo> = {
     },
   },
   invalid_expiry_year: {
-    description: 'The expiration year invalid.',
+    description: 'The expiration year is invalid.',
     nextSteps: 'The customer should try again using the correct expiration date.',
     nextUserAction: 'Please try again using the correct expiration date.',
     category: 'HARD_DECLINE',
