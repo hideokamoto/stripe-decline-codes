@@ -134,8 +134,8 @@
         },
         {
           "name": "code",
-          "type": "DeclineCodeInfo | {}",
-          "description": "Decline code information, or empty object if code not found"
+          "type": "DeclineCodeInfo | undefined",
+          "description": "Decline code information, or undefined if code not found"
         }
       ]
     },

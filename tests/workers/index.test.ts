@@ -26,8 +26,8 @@ describe('getDeclineDescription', () => {
     expect(result.code).toHaveProperty('description');
   });
 
-  it('returns an empty object for an invalid code', () => {
-    expect(getDeclineDescription('not_a_code').code).toEqual({});
+  it('returns undefined for an invalid code', () => {
+    expect(getDeclineDescription('not_a_code').code).toBeUndefined();
   });
 });
 

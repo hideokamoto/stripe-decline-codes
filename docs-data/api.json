@@ -239,7 +239,7 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Decline code information, or empty object if code not found"
+								"text": "Decline code information, or undefined if code not found"
 							}
 						]
 					},
@@ -261,24 +261,8 @@
 								"package": "stripe-decline-codes"
 							},
 							{
-								"type": "reference",
-								"target": {
-									"packageName": "typescript",
-									"packagePath": "lib/lib.es5.d.ts",
-									"qualifiedName": "Record"
-								},
-								"typeArguments": [
-									{
-										"type": "intrinsic",
-										"name": "string"
-									},
-									{
-										"type": "intrinsic",
-										"name": "never"
-									}
-								],
-								"name": "Record",
-								"package": "typescript"
+								"type": "intrinsic",
+								"name": "undefined"
 							}
 						]
 					}
@@ -1100,9 +1084,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 134,
+					"line": 136,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L134"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L136"
 				}
 			],
 			"signatures": [
@@ -1143,9 +1127,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 134,
+							"line": 136,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L134"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L136"
 						}
 					],
 					"parameters": [
@@ -1253,9 +1237,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 81,
+					"line": 83,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L81"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L83"
 				}
 			],
 			"signatures": [
@@ -1287,7 +1271,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nconst codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 44\nconsole.log(codes.includes('insufficient_funds')); // => true\n```"
+										"text": "```ts\nconst codes = getAllDeclineCodes();\nconsole.log(codes.length); // => 43\nconsole.log(codes.includes('insufficient_funds')); // => true\n```"
 									}
 								]
 							}
@@ -1296,9 +1280,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 81,
+							"line": 83,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L81"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L83"
 						}
 					],
 					"type": {
@@ -1322,9 +1306,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 173,
+					"line": 175,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L173"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L175"
 				}
 			],
 			"signatures": [
@@ -1365,9 +1349,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 173,
+							"line": 175,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L173"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L175"
 						}
 					],
 					"parameters": [
@@ -1418,9 +1402,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 299,
+					"line": 301,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L299"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L301"
 				}
 			],
 			"signatures": [
@@ -1487,9 +1471,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 299,
+							"line": 301,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L299"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L301"
 						}
 					],
 					"parameters": [
@@ -1540,9 +1524,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 26,
+					"line": 28,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L26"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L28"
 				}
 			],
 			"signatures": [
@@ -1574,7 +1558,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\nconst result = getDeclineDescription('insufficient_funds');\nconsole.log(result.code.description);\n// => \"The card has insufficient funds to complete the purchase.\"\nconsole.log(result.code.nextUserAction);\n// => \"Please try again using an alternative payment method.\"\n```"
+										"text": "```ts\nconst result = getDeclineDescription('insufficient_funds');\nif (result.code) {\n  console.log(result.code.description);\n  // => \"The card has insufficient funds to complete the purchase.\"\n  console.log(result.code.nextUserAction);\n  // => \"Please try again using an alternative payment method.\"\n}\n```"
 									}
 								]
 							}
@@ -1583,9 +1567,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 26,
+							"line": 28,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L26"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L28"
 						}
 					],
 					"parameters": [
@@ -1629,9 +1613,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 55,
+					"line": 57,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L55"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L57"
 				}
 			],
 			"signatures": [
@@ -1672,9 +1656,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 55,
+							"line": 57,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L55"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L57"
 						}
 					],
 					"parameters": [
@@ -1745,9 +1729,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 112,
+					"line": 114,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L112"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L114"
 				}
 			],
 			"signatures": [
@@ -1788,9 +1772,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 112,
+							"line": 114,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L112"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L114"
 						}
 					],
 					"type": {
@@ -1809,9 +1793,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 232,
+					"line": 234,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L232"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L234"
 				}
 			],
 			"signatures": [
@@ -1852,9 +1836,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 232,
+							"line": 234,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L232"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L234"
 						}
 					],
 					"parameters": [
@@ -1925,9 +1909,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 193,
+					"line": 195,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L193"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L195"
 				}
 			],
 			"signatures": [
@@ -1968,9 +1952,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 193,
+							"line": 195,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L193"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L195"
 						}
 					],
 					"parameters": [
@@ -2010,9 +1994,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 209,
+					"line": 211,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L209"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L211"
 				}
 			],
 			"signatures": [
@@ -2053,9 +2037,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 209,
+							"line": 211,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L209"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L211"
 						}
 					],
 					"parameters": [
@@ -2095,9 +2079,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 267,
+					"line": 269,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L267"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L269"
 				}
 			],
 			"signatures": [
@@ -2206,9 +2190,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 267,
+							"line": 269,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L267"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L269"
 						}
 					],
 					"parameters": [
@@ -2255,9 +2239,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 97,
+					"line": 99,
 					"character": 16,
-					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L97"
+					"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L99"
 				}
 			],
 			"signatures": [
@@ -2298,9 +2282,9 @@
 					"sources": [
 						{
 							"fileName": "index.ts",
-							"line": 97,
+							"line": 99,
 							"character": 16,
-							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L97"
+							"url": "https://github.com/hideokamoto/stripe-decline-codes/blob/main/src/index.ts#L99"
 						}
 					],
 					"parameters": [

@@ -46,11 +46,13 @@ import { getDeclineDescription } from 'stripe-decline-codes';
 
 const result = getDeclineDescription('insufficient_funds');
 
-console.log(result.code.description);
-// => "The card has insufficient funds to complete the purchase."
+if (result.code) {
+  console.log(result.code.description);
+  // => "The card has insufficient funds to complete the purchase."
 
-console.log(result.code.nextUserAction);
-// => "Please try again using an alternative payment method."
+  console.log(result.code.nextUserAction);
+  // => "Please try again using an alternative payment method."
+}
 
 console.log(result.docVersion);
 // => "2024-12-18"
@@ -216,17 +218,7 @@ Returns detailed information about a decline code.
 ```typescript
 {
   docVersion: string;
-  code: {
-    description: string;
-    nextSteps: string;
-    nextUserAction: string;
-    translations?: {
-      ja?: {
-        description: string;
-        nextUserAction: string;
-      };
-    };
-  } | {};
+  code: DeclineCodeInfo | undefined;
 }
 ```
 
