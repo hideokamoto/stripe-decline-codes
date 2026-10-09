@@ -62,6 +62,11 @@ jobs:
     name: Deploy to GitHub Pages
     if: github.event_name != 'pull_request'
     needs: build
+    concurrency:
+      # Deploys are serialized globally — workflow_dispatch can run from any
+      # ref, so the per-ref workflow group alone is not enough
+      group: pages-deploy
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       pages: write
