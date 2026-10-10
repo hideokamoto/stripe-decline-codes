@@ -28,25 +28,62 @@ const searchText = (c: DeclineCodeEntry) =>
     .filter(Boolean)
     .join(' ')
     .toLowerCase();
+
+const ui = {
+  en: {
+    searchPlaceholder: 'Filter by code or description…',
+    searchLabel: 'Filter decline codes',
+    categoryLabel: 'Filter by category',
+    allCategories: 'All categories',
+    softDeclines: 'Soft declines',
+    hardDeclines: 'Hard declines',
+    code: 'Code',
+    category: 'Category',
+    description: 'Description',
+    recommendedUserAction: 'Recommended user action',
+    deprecated: 'deprecated',
+    soft: 'Soft',
+    hard: 'Hard',
+    empty: 'No decline codes match the current filters.',
+    count: '{shown} / {total} codes',
+  },
+  ja: {
+    searchPlaceholder: 'コードまたは説明文で絞り込み…',
+    searchLabel: '拒否コードを絞り込む',
+    categoryLabel: 'カテゴリで絞り込む',
+    allCategories: 'すべてのカテゴリ',
+    softDeclines: 'ソフト拒否',
+    hardDeclines: 'ハード拒否',
+    code: 'コード',
+    category: 'カテゴリ',
+    description: '説明',
+    recommendedUserAction: '推奨するユーザー向けアクション',
+    deprecated: '非推奨',
+    soft: 'ソフト',
+    hard: 'ハード',
+    empty: '現在の条件に一致する拒否コードはありません。',
+    count: '{total} 件中 {shown} 件',
+  },
+}[Astro.currentLocale === 'ja' ? 'ja' : 'en'];
 ---
 
-<div class="dct not-content">
+<div class="dct not-content" data-count-template={ui.count}>
   <div class="dct-controls">
-    <input type="search" class="dct-search" placeholder="Filter by code or description…" aria-label="Filter decline codes" />
-    <select class="dct-category" aria-label="Filter by category">
-      <option value="all">All categories</option>
-      <option value="SOFT_DECLINE">Soft declines</option>
-      <option value="HARD_DECLINE">Hard declines</option>
+    <input type="search" class="dct-search" placeholder={ui.searchPlaceholder} aria-label={ui.searchLabel} />
+    <select class="dct-category" aria-label={ui.categoryLabel}>
+      <option value="all">{ui.allCategories}</option>
+      <option value="SOFT_DECLINE">{ui.softDeclines}</option>
+      <option value="HARD_DECLINE">{ui.hardDeclines}</option>
     </select>
     <span class="dct-count" aria-live="polite"></span>
   </div>
   <table>
     <thead>
       <tr>
-        <th>Code</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Recommended user action</th>
+        <th>{ui.code}</th>
+        <th>{ui.category}</th>
+        <th>{ui.description}</th>
+        <th>{ui.recommendedUserAction}</th>
       </tr>
     </thead>
     <tbody>
@@ -57,11 +94,11 @@ const searchText = (c: DeclineCodeEntry) =>
             <tr data-category={c.category} data-text={searchText(c)} class:list={[{ 'dct-deprecated': c.deprecated }]}>
               <td>
                 <code>{c.code}</code>
-                {c.deprecated && <span class="dct-badge dct-badge-deprecated">deprecated</span>}
+                {c.deprecated && <span class="dct-badge dct-badge-deprecated">{ui.deprecated}</span>}
               </td>
               <td>
                 <span class:list={['dct-badge', c.category === 'SOFT_DECLINE' ? 'dct-badge-soft' : 'dct-badge-hard']}>
-                  {c.category === 'SOFT_DECLINE' ? 'Soft' : 'Hard'}
+                  {c.category === 'SOFT_DECLINE' ? ui.soft : ui.hard}
                 </span>
               </td>
               <td>
@@ -86,7 +123,7 @@ const searchText = (c: DeclineCodeEntry) =>
       }
     </tbody>
   </table>
-  <p class="dct-empty" hidden>No decline codes match the current filters.</p>
+  <p class="dct-empty" hidden>{ui.empty}</p>
 </div>
 
 <script>
@@ -96,6 +133,7 @@ const searchText = (c: DeclineCodeEntry) =>
     const rows = root.querySelectorAll<HTMLTableRowElement>('tbody tr');
     const count = root.querySelector<HTMLElement>('.dct-count');
     const empty = root.querySelector<HTMLElement>('.dct-empty');
+    const countTemplate = root.dataset.countTemplate ?? '{shown} / {total} codes';
     if (!input || !select || !count || !empty) continue;
     const apply = () => {
       const q = input.value.trim().toLowerCase();
@@ -107,7 +145,9 @@ const searchText = (c: DeclineCodeEntry) =>
         row.style.display = visible ? '' : 'none';
         if (visible) shown += 1;
       }
-      count.textContent = `${shown} / ${rows.length} codes`;
+      count.textContent = countTemplate
+        .replace('{shown}', String(shown))
+        .replace('{total}', String(rows.length));
       empty.hidden = shown !== 0;
     };
     input.addEventListener('input', apply);

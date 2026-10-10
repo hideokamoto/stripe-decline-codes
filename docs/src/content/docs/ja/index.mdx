@@ -1,0 +1,35 @@
+---
+title: Stripe Decline Codes
+description: Stripe の決済拒否コードの完全なデータベース（説明文とローカライズ済みメッセージ付き）
+template: splash
+hero:
+  tagline: TypeScript/JavaScript プロジェクト向けに、すべての Stripe 決済拒否コードの技術的な説明とローカライズ済みメッセージを提供するデータベースです。
+  actions:
+    - text: はじめる
+      link: /stripe-decline-codes/ja/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: API リファレンス
+      link: /stripe-decline-codes/ja/api/readme/
+      icon: open-book
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import declineCodesData from '../../../../../docs-data/decline-codes.json';
+
+## 特徴
+
+<CardGrid stagger>
+  <Card title={`${declineCodesData.totalCodes} の拒否コード`} icon="approve-check">
+    すべての Stripe 決済拒否コードを網羅し、技術的な説明と加盟店向けのガイダンスを提供します。
+  </Card>
+  <Card title="ローカライズ対応" icon="translate">
+    ユーザー向けメッセージの英語・日本語訳を標準搭載しています。
+  </Card>
+  <Card title="TypeScript ファースト" icon="puzzle">
+    JSDoc コメントと型エクスポートを備えた完全な型付き API で、優れた開発者体験を提供します。
+  </Card>
+  <Card title="ソフト / ハード拒否の区別" icon="warning">
+    一時的なソフト拒否と恒久的なハード拒否を区別し、リトライすべきかどうかを判断できます。
+  </Card>
+</CardGrid>

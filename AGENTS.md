@@ -13,6 +13,10 @@ Published to npm as `stripe-decline-codes`.
   Codes page renders from `docs-data/decline-codes.json` at build time — no
   generated pages are committed, so `pnpm run docs` + a docs build is enough to
   refresh the site.
+  i18n: English is the `root` locale (URLs unprefixed), Japanese lives under
+  `src/content/docs/ja/` (`/ja/` URLs). Sidebar labels are translated via
+  `translations` in `astro.config.mjs`; TypeDoc API pages are English-only
+  (ja falls back to en).
 - `docs-data/` — generated API data shipped in the package (`files` includes it)
 
 ## Commands
