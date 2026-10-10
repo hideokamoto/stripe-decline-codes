@@ -1,0 +1,133 @@
+---
+title: はじめに
+description: stripe-decline-codes のインストール方法と使い方
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+## インストール
+
+<Tabs>
+  <TabItem label="npm">
+    ```sh
+    npm install stripe-decline-codes
+    ```
+  </TabItem>
+  <TabItem label="pnpm">
+    ```sh
+    pnpm add stripe-decline-codes
+    ```
+  </TabItem>
+  <TabItem label="yarn">
+    ```sh
+    yarn add stripe-decline-codes
+    ```
+  </TabItem>
+</Tabs>
+
+## 基本的な使い方
+
+### 拒否コードの検索
+
+`getDeclineDescription` を使うと、拒否コードの技術的な情報をすべて取得できます:
+
+```ts
+import { getDeclineDescription } from 'stripe-decline-codes';
+
+const result = getDeclineDescription('insufficient_funds');
+
+if (result.code) {
+  console.log(result.code.description);
+  // => "The card has insufficient funds to complete the purchase."
+
+  console.log(result.code.nextSteps);
+  // => "The payment should be attempted again using a different payment method."
+
+  console.log(result.code.nextUserAction);
+  // => "Please try again using an alternative payment method."
+}
+```
+
+### ローカライズされたメッセージの取得
+
+`getDeclineMessage` を使うと、指定したロケールのユーザー向けメッセージを取得できます:
+
+```ts
+import { getDeclineMessage } from 'stripe-decline-codes';
+
+// 英語（デフォルト）
+const enMessage = getDeclineMessage('insufficient_funds');
+// => "Please try again using an alternative payment method."
+
+// 日本語
+const jaMessage = getDeclineMessage('insufficient_funds', 'ja');
+// => "別のお支払い方法を使用してもう一度お試しください。"
+```
+
+### Stripe エラーオブジェクトの処理
+
+Stripe がエラーを返したときは、`getMessageFromStripeError` でローカライズ済みメッセージを直接取り出せます:
+
+```ts
+import Stripe from 'stripe';
+import { getMessageFromStripeError } from 'stripe-decline-codes';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+try {
+  await stripe.paymentIntents.create({ ... });
+} catch (err) {
+  if (err instanceof Stripe.errors.StripeCardError) {
+    const userMessage = getMessageFromStripeError(err, 'ja');
+    // userMessage を顧客に表示する
+  }
+}
+```
+
+## 拒否カテゴリの確認
+
+Stripe の拒否コードは、**ソフト拒否**（一時的なものでリトライ可能）と**ハード拒否**（恒久的なもので自動リトライすべきでない）に分類されます。
+
+```ts
+import { isHardDecline, isSoftDecline, getDeclineCategory } from 'stripe-decline-codes';
+
+// ソフト拒否 — 別の支払い方法でリトライ可能
+isSoftDecline('insufficient_funds'); // => true
+isHardDecline('insufficient_funds'); // => false
+
+// ハード拒否 — 自動リトライはしない
+isHardDecline('fraudulent');  // => true
+isSoftDecline('fraudulent');  // => false
+
+// カテゴリを直接取得
+getDeclineCategory('insufficient_funds'); // => 'SOFT_DECLINE'
+getDeclineCategory('fraudulent');         // => 'HARD_DECLINE'
+```
+
+## 拒否コードのバリデーション
+
+```ts
+import { isValidDeclineCode } from 'stripe-decline-codes';
+
+isValidDeclineCode('insufficient_funds'); // => true
+isValidDeclineCode('not_a_real_code');    // => false
+```
+
+## すべてのコードの一覧取得
+
+```ts
+import { getAllDeclineCodes } from 'stripe-decline-codes';
+
+const codes = getAllDeclineCodes();
+console.log(codes.length); // => 50
+```
+
+## データバージョンの確認
+
+このライブラリは、拒否コードデータの参照元となった Stripe API ドキュメントのバージョンを記録しています:
+
+```ts
+import { getDocVersion } from 'stripe-decline-codes';
+
+console.log(getDocVersion()); // => "2026-10-09"
+```

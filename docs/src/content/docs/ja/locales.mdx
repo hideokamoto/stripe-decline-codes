@@ -1,0 +1,61 @@
+---
+title: 対応ロケール
+description: ローカライズされた拒否コードメッセージで利用可能なロケール
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+## 利用可能なロケール
+
+| ロケールコード | 言語 | ステータス |
+|----------------|------|------------|
+| `en` | 英語 | <Badge text="対応済み" variant="success" /> |
+| `ja` | 日本語 | <Badge text="対応済み" variant="success" /> |
+
+## 使い方
+
+`getDeclineMessage` または `formatDeclineMessage` の第 2 引数にロケールコードを渡します:
+
+```ts
+import { getDeclineMessage, formatDeclineMessage } from 'stripe-decline-codes';
+
+getDeclineMessage('insufficient_funds', 'en'); // 英語（デフォルト）
+getDeclineMessage('insufficient_funds', 'ja'); // 日本語
+
+// formatDeclineMessage は同じロケール引数に加えて、任意のテンプレート変数を受け取ります
+formatDeclineMessage('insufficient_funds', 'ja');
+// => "別のお支払い方法を使用してもう一度お試しください。"
+
+formatDeclineMessage('insufficient_funds', 'en', { supportEmail: 'support@example.com' });
+// => "Please try again using an alternative payment method."
+```
+
+ロケールを指定しない場合は、デフォルトで `'en'` が使用されます。
+
+## フォールバックの動作
+
+要求したロケールの翻訳が存在しない場合、`getDeclineMessage` は `undefined` を返します。必要に応じて英語メッセージをフォールバックとして使用してください:
+
+```ts
+import { getDeclineMessage, type Locale } from 'stripe-decline-codes';
+
+function getLocalizedMessage(code: string, locale: Locale | string): string {
+  return (
+    getDeclineMessage(code, locale as Locale) ??
+    getDeclineMessage(code, 'en') ??
+    'An error occurred with your payment.'
+  );
+}
+```
+
+## 生の翻訳データへのアクセス
+
+高度なユースケースでは、基盤となるデータに直接アクセスできます:
+
+```ts
+import { DECLINE_CODES } from 'stripe-decline-codes';
+
+const info = DECLINE_CODES['insufficient_funds'];
+console.log(info.translations?.ja?.nextUserAction);
+// => "別のお支払い方法を使用してもう一度お試しください。"
+```

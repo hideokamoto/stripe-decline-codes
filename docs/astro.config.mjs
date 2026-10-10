@@ -17,6 +17,11 @@ export default defineConfig({
       title: 'Stripe Decline Codes',
       description:
         'Complete database of Stripe decline codes with descriptions and localized messages',
+      defaultLocale: 'root',
+      locales: {
+        root: { label: 'English', lang: 'en' },
+        ja: { label: '日本語' },
+      },
       social: {
         github: 'https://github.com/hideokamoto/stripe-decline-codes',
       },
@@ -36,14 +41,28 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Guides',
+          translations: { ja: 'ガイド' },
           items: [
-            { label: 'Getting Started', link: '/getting-started/' },
-            { label: 'Decline Codes', link: '/decline-codes/' },
-            { label: 'Supported Locales', link: '/locales/' },
+            {
+              label: 'Getting Started',
+              translations: { ja: 'はじめに' },
+              link: '/getting-started/',
+            },
+            {
+              label: 'Decline Codes',
+              translations: { ja: '拒否コード一覧' },
+              link: '/decline-codes/',
+            },
+            {
+              label: 'Supported Locales',
+              translations: { ja: '対応ロケール' },
+              link: '/locales/',
+            },
           ],
         },
         {
           label: 'API Reference',
+          translations: { ja: 'API リファレンス' },
           autogenerate: { directory: 'api' },
         },
       ],
